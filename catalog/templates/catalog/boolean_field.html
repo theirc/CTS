@@ -1,0 +1,15 @@
+<div class="form-group
+ {% if md_width %}col-md-{{ md_width }}{% else %}col-md-{{ width }}{% endif %}
+ {% if sm_width %}col-sm-{{ sm_width }}{% endif %}
+ {% if nopadding %}no-padding{% endif %}
+">
+  {% if field.errors %}
+    <div class="alert alert-danger">
+      {{ field.errors }}
+    </div>
+  {% endif %}
+  <label for="{{ field.id_for_label }}">
+  <input type="checkbox" id="{{ field.id_for_label }}" name="{{ field.html_name }}" {% if field.value %}checked=checked{% endif %}/>
+  {{ field.label }}
+  </label>
+</div>

@@ -1,0 +1,34 @@
+{% extends 'reports/report.html' %}
+{% load bootstrap3 %}
+
+{% block report-form %}
+  <div>
+    <form class="form form-horizontal" method="GET" action="">
+
+      {% if filter.form.partner %}
+        {% bootstrap_field filter.form.partner layout='horizontal' %}
+      {% endif %}
+      {% bootstrap_field filter.form.shipment layout='horizontal' %}
+      {% bootstrap_field filter.form.status layout='horizontal' %}
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-4">
+          <button type="submit" class="btn btn-primary" id="btn-update-filters">Update Filters</button>
+          <a href="{% url view.get_report_url_name %}" class="btn btn-default">Clear Filters</a>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock report-form %}
+
+{% block extra-js %}
+  {{ block.super }}
+  <script>
+    $(function () {
+      /* As soon as they change partner, re-load page to limit shipment choices */
+      $('select#id_partner').on('change', function () {
+        $('button#btn-update-filters').click();
+      })
+    });
+  </script>
+{% endblock %}

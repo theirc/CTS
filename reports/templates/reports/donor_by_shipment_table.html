@@ -1,0 +1,19 @@
+{% extends 'reports/cts_table.html' %}
+{% load currency %}
+
+{% block table.tfoot %}
+  <tfoot>
+    <tr>
+      <th>Totals</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="text-right">{{ total_package_count }}</td>
+      <td class="text-right">{{ total_item_count }}</td>
+      <td></td>
+      <td class="text-right">{{ total_local|format_local }}</td>
+      <td class="text-right">{{ total_usd|format_usd }}</td>
+    </tr>
+  </tfoot>
+{% endblock table.tfoot %}

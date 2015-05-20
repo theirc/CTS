@@ -1,0 +1,21 @@
+<div class="form-group
+ {% if md_width %}col-md-{{ md_width }}{% else %}col-md-{{ width }}{% endif %}
+ {% if sm_width %}col-sm-{{ sm_width }}{% endif %}
+ {% if nopadding %}no-padding{% endif %}
+">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {% if field.errors %}
+    <div class="alert alert-danger">
+      {{ field.errors }}
+    </div>
+  {% endif %}
+  {% if field.field.readonly %}
+    <span class="form-control">{{ field.field.display_value }}</span>
+  {% else %}
+    <select class="form-control" id="{{ field.id_for_label }}"  name="{{ field.html_name }}" placeholder="">
+      {% for val, label in field.field.widget.choices %}
+        <option value="{{ val }}"{% if field.value|stringformat:'s' == val|stringformat:'s' %} selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  {% endif %}
+</div>

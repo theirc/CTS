@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>CTS Instances:</h1>
+  <ul>
+    {% for name, prefix in settings.INSTANCES %}
+      <li><a href="{{ prefix }}/">{{ name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

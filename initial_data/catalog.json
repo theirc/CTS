@@ -1,0 +1,4450 @@
+[
+{
+  "pk": 35, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Abdominal Surgical Kit", 
+    "unit": "Abdominal Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 36, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Adhesive tape", 
+    "unit": "Zinc oxide, 2.50cmx 5cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 37, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Advanced Trauma Kit", 
+    "unit": "Advanced Trauma Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 38, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Albendazole", 
+    "unit": "400mg, chewable", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 39, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Albendazole", 
+    "unit": "200mg", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 40, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin", 
+    "unit": "250mg capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 41, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "250mg, liquid", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 42, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "1g, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 43, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "625mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 44, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 45, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "875mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 46, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ampicillin + Cloxacillin", 
+    "unit": "Ampicillin + Cloxacillin", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 47, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Antiseptic solution", 
+    "unit": "Hexol(15% cetrimide+1.5%chlorhexidine glucona", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 48, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Autoclave", 
+    "unit": "Autoclave", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 49, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Basic Major Orthopedic Kit", 
+    "unit": "Basic Major Orthopedic Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 50, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Benzathine Penicillin ", 
+    "unit": "2.4MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 51, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Benzyl Penicillin", 
+    "unit": "5MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 52, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blade for surgical knives", 
+    "unit": "size 22", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 53, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blood bags", 
+    "unit": "Blood bags", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 54, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blood Pressure Machine", 
+    "unit": "Blood Pressure Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 55, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Bucaine", 
+    "unit": "0.5% (Bupivacaine HCl), 100 mg/20 ml.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 56, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Butterfly Tape", 
+    "unit": "Butterfly tape", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 57, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Calcium Gluconate", 
+    "unit": "1g/10ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 58, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cardiac Monitor", 
+    "unit": "Cardiac Monitor", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 59, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter", 
+    "unit": "Nelatone, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 60, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 18, ball. 5-15ml, sterile, disposable.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 61, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 14, ball. 5-15ml, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 62, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 12, ball. 5-15ml, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 63, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cefixime", 
+    "unit": "100mg/5ml  powder", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 64, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cefixime", 
+    "unit": "400mg blister", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 65, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ceftriaxone", 
+    "unit": "2g powder, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 66, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ceftriaxone", 
+    "unit": "1g powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 67, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Nosebleed", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 68, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Applicator w/ Celox granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 69, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Hemostatic granuals 35g use with applicator", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 70, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Home 10pc x 2g hemostatic granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 71, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox gauze", 
+    "unit": "dressing strip w/ celox hemostatic granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 72, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cetrimide", 
+    "unit": "15%+chlorhexidine gluconate 1.5%, 1", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 73, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 1\"x3\"", 
+    "unit": "ChitoFlex - 1\"x3\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 74, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 3\"x28\"", 
+    "unit": "ChitoFlex - 3\"x28\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 75, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 3\"x9\"", 
+    "unit": "ChitoFlex - 3\"x9\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 76, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Chlorhexidine antiseptic", 
+    "unit": "20% solution, 5L", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 77, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cotton wool absorbent", 
+    "unit": "BP/EurP, 500g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 78, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Defibrillator", 
+    "unit": "Defibrillator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 79, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Dextrose ", 
+    "unit": "50%, 50ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 80, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diazepam", 
+    "unit": "2 mg/ml, aml amp.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 81, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diazepam", 
+    "unit": "5mg/ml, 10mg/2ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 82, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "50mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 83, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "75mg/ml, 3ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 84, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "25mg/ml, 3ml injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 85, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Doxycycline", 
+    "unit": "100mg capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 86, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ECG Machine", 
+    "unit": "ECG Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 87, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Elastic bandage", 
+    "unit": "8cmx 5m (stretched)", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 88, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "7.5mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 89, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "8mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 90, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "7mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 91, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Epinephrin ", 
+    "unit": "Injection: 1 mg as hydrochloride or hydrogen ", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 92, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "L, latex, pre-powdered, disp.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 93, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "latex, medium, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 94, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "M, latex, pre-powdered, dispo.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 95, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "S, latex, pre-powdered, disp.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 96, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Feeding tube", 
+    "unit": "Ch 5, 40cm, luer tip, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 97, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Feeding tube", 
+    "unit": "Ch 8, 40cm, luer tip, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 98, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Flucloxacillin 250mg + Amoxycillin 250mg", 
+    "unit": "Flucloxacillin 250mg + Amoxycillin 250mg", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 99, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps ", 
+    "unit": "Dissecting, non dressing,16cm, non-toothed", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 100, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Tissue, 14.5cm, 1/2 teeth", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 101, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Halsted Mosquito, artery, 12.5cm, curved", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 102, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Pean, artery, 14.5cm , straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 103, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Pean, artery, 14.0cm, straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 104, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "dissecting(dressing), 16cm, non toothed", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 105, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Furosemide", 
+    "unit": "20mg/ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 106, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze compresses", 
+    "unit": "10x10cm, 12ply, non-sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 107, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze compresses", 
+    "unit": "10x10cm, 12ply, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 108, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze hydrophilic", 
+    "unit": "90cmx91m, BP13 heavy(17g/m2) ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 109, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze swabs", 
+    "unit": "Non- sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 110, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze with silver sulfadiazine", 
+    "unit": "Wide mesh, 10ply, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 111, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gentian Violet", 
+    "unit": "BP80, 25g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 112, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Glimperide", 
+    "unit": "2mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 113, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gynecological Surgical Kit", 
+    "unit": "Gynecological Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 114, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Haemostatic sponge", 
+    "unit": "CELOX, 70x50x10mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 115, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Handle for surgical blade", 
+    "unit": "No. 4", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 116, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Head lamp", 
+    "unit": "LED", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 117, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 2\"x2\"", 
+    "unit": "HemCon - Bandage - 2\"x2\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 118, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 2\"x4\"", 
+    "unit": "HemCon - Bandage - 2\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 119, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 4\"x4\"", 
+    "unit": "HemCon - Bandage - 4\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 120, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - ChitoGauze Pro.", 
+    "unit": "HemCon - ChitoGauze Pro.  7.5 cm x 3.7 m", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 121, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Patch, 1.5\"x1.5\"", 
+    "unit": "HemCon - Patch, 1.5\"x1.5\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 122, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Strip,", 
+    "unit": "HemCon - Strip,", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 123, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hexol Antiseptic Solution", 
+    "unit": "15%", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 124, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Bag", 
+    "unit": "55mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 125, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Bag ", 
+    "unit": "70mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 126, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Base", 
+    "unit": "55mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 127, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Base", 
+    "unit": "70mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 128, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Karaya Paste", 
+    "unit": "128g, adhesive", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 129, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Human Albumin", 
+    "unit": "20%, Behring, low salt. 50ml.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 130, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrochlorothiazide", 
+    "unit": "25mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 131, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrocortisone", 
+    "unit": "100mg, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 132, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrophilic bandage", 
+    "unit": "8cmx 4cm, self-edged", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 133, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "400mg, film coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 134, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "200mg, film coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 135, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "100mg/5ml, liquid", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 136, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusion Giving Set", 
+    "unit": "With airinlet + needle", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 137, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Dextrose", 
+    "unit": "5% in water, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 138, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Mixed Sodium Chloride + Dextrose", 
+    "unit": "0.9% sodium chloride + 5% dextrose, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 139, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Ringer's Lactate", 
+    "unit": "Hartmann's solution, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 140, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Sodium Chloride", 
+    "unit": "0.9%, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 141, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Insertion tape", 
+    "unit": "Measuring circumference, PVC", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 142, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Instrument tray", 
+    "unit": "30cmx20cmx2cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 143, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Inufusions- Dextrose", 
+    "unit": "5% in water, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 144, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "18g, green ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 145, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "24g, yellow", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 146, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "22g, blue", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 147, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Kidney dish", 
+    "unit": "24cm, s.s, 24cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 148, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Kidney dish", 
+    "unit": "24cm, s.s, 825ml", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 149, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "KytoStat - 1\"x4\"", 
+    "unit": "KytoStat - 1\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 150, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Laryngoscope", 
+    "unit": "Laryngoscope", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 151, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lidocaine HCL", 
+    "unit": "1%, 20ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 152, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lidocaine HCL", 
+    "unit": "1%, 2mL, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 153, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lorazepam", 
+    "unit": "1mg tab", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 154, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Magnesium Sulphate", 
+    "unit": "50%, 20ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 155, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Magnesium Trisilicate", 
+    "unit": "250/120mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 156, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Major Surgical Kit", 
+    "unit": "Major Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 157, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Measuring tape", 
+    "unit": "1.5m, flexible, vinyl coated", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 158, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole", 
+    "unit": "250mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 159, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole ", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 160, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole", 
+    "unit": "5mg/ml, 100ml syrup", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 161, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "Oral gel, 40g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 162, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "2% cream, 30g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 163, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "10mg, muco-adhesive buccal tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 164, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Minims Atropine Sulphate", 
+    "unit": "1% e/d (Injection: 1 mg (sulfate) in 1?ml amp", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 165, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Minor Surgical Kit", 
+    "unit": "Minor Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 166, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Nasogastric Tube", 
+    "unit": "40cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 167, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle holder", 
+    "unit": "Mayo-Hegar, 18cm, straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 168, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer ", 
+    "unit": "19g(1.1x38mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 169, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "25g(0.5x16mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 170, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "23g(0.6x25mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 171, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "21g(0.8x38mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 172, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Neostigmine", 
+    "unit": "0.5mg/ml, 1ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 173, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Oral Rehydration Salt", 
+    "unit": "20.5g/L sachets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 174, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Otoscope", 
+    "unit": "\"mini Heine\" with battery handle, S", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 175, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Otoscope bulb", 
+    "unit": "\"mini Heine\" (XHL 056 2.5V)", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 176, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Oxygen Generator", 
+    "unit": "Oxygen Generator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 177, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "100mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 178, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "125mg bottle", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 179, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 180, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Portable Cautery Device", 
+    "unit": "Portable Cautery Device", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 181, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Portable Ventilator", 
+    "unit": "Portable Ventilator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 182, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Povidone antiseptic solution", 
+    "unit": "10%, 200ml flacon", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 183, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Prednisolone", 
+    "unit": "5mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 184, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Probe", 
+    "unit": "2mm, double ended", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 185, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Procaine penicillin", 
+    "unit": "3MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 186, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Promethazine HCl", 
+    "unit": "50mg/2ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 187, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Promethazine HCL", 
+    "unit": "25mg coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 188, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Pulse Oximetry Device", 
+    "unit": "Pulse Oximetry Device", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 189, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "PVP Iodine", 
+    "unit": "10% solution", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 190, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Razor, disposable", 
+    "unit": "With blade and handle", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 191, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Rectal tube", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 192, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Resuscitation bag", 
+    "unit": "Ambu-type, adult, black rubber+ mask ", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 193, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Safety box for syringe disposal", 
+    "unit": "5L", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 194, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "Inhaler 0.1mg/dose", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 195, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "4mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 196, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "2mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 197, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol sulfate", 
+    "unit": "Syrup, 120ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 198, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol Sulfate Solution, 0.5%", 
+    "unit": "Salbutamol sulfate solution, 0.5%", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 199, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Savalon + Cotton  Plaster Set", 
+    "unit": "Savalon + Cotton  Plaster Set", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 200, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scale", 
+    "unit": "Salter type, 25kgx100g, with 5 trousers", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 201, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp vein infusion set", 
+    "unit": "21g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 202, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp Vein Infusion Set", 
+    "unit": "(23g)", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 203, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp vein infusion set", 
+    "unit": "25g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 204, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Gynaecological, 20cm, curved, bl/bl", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 205, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Surgical, Deaver, sh/bl, straight, 14cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 206, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Mayo, 14cm, curved, bl/bl", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 207, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scopolamine", 
+    "unit": "Injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 208, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Silver Sulfadizine", 
+    "unit": "1%, 50g cream", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 209, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sphygmomanometer", 
+    "unit": "Anaeroid, simple", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 210, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Spinal needle", 
+    "unit": "22gx40mm, sterile, disposable ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 211, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Spinal needle ", 
+    "unit": "20gx90mm, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 212, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stethoscope", 
+    "unit": "Foetal, metal", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 213, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stethoscope", 
+    "unit": "Littman type, with spares", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 214, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stomach tube", 
+    "unit": "Ch16, 125cm, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 215, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Suction Device and Aspirator", 
+    "unit": "Suction Device and Aspirator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 216, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical caps", 
+    "unit": "Non-sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 217, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 8.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 218, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "size 8.0, sterile, disposabl", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 219, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 6.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 220, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 7.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 221, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gown", 
+    "unit": "Disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 222, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical scrub brush", 
+    "unit": "Sterilisable, plastic", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 223, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Suture Surgical Kit", 
+    "unit": "Suture Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 224, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Synthetic, 70cm, with needle, absorbable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 225, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Abs., synthetic, braided(3/0)90cm+26mm, 3/8 c", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 226, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Polypropylene, (0)150cm, braided, non absorba", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 227, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Silk braided, (0)75cm + 3/8 ct needle 30mm, b", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 228, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe", 
+    "unit": "60ml with luer and conical connector, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 229, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe Luer 10ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 230, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 1ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 231, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 2ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 232, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 3ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 233, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 5ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 234, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tablet bags", 
+    "unit": "10x15cm with minigrip closure", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 235, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Targocid", 
+    "unit": "Teicoplanin 200mg, alternative to L", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 236, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tetracycline HCl", 
+    "unit": "1%, 5g eye ointment", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 237, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Thermometer", 
+    "unit": "Digital", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 238, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Thoracic Surgical Kit", 
+    "unit": "Thoracic Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 239, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tissue Staplers", 
+    "unit": "Disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 240, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tongue depressors", 
+    "unit": "Wood, 15cmx18mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 241, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tourniquet latex", 
+    "unit": "Rubber, 50x1.8cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 242, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Towel", 
+    "unit": "Surgical Huck, 430x500mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 243, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Umbilical Cord Tie", 
+    "unit": "3mm, non- sterile, 100m", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 244, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Urine collecting bag", 
+    "unit": "2000ml, with tap+valve", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 245, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vancolon", 
+    "unit": "Vancomycin 500mg, alternative to L", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 246, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vancolon", 
+    "unit": "Vancomycin 1 gm, alternative to Li", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 247, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vascular Doppler Machine", 
+    "unit": "Vascular Doppler Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 248, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin A (Retinol)", 
+    "unit": "200.000 IU capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 249, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin C (Ascorbic Acid)", 
+    "unit": "250mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 250, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin C (Ascorbic Acid)", 
+    "unit": "500 mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 251, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Water For Injection", 
+    "unit": "10ml ampoules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 252, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "xCelox", 
+    "unit": "Hemostatic granuals 35g use with applicator", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 253, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test Aug12", 
+    "unit": "ZZZ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 254, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test Medicine Aug12", 
+    "unit": "Test", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 255, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test21.10.2012", 
+    "unit": "Test", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 256, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Abdominal Surgical Kit", 
+    "unit": "Abdominal Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 257, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Adhesive tape", 
+    "unit": "Zinc oxide, 2.50cmx 5cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 258, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Advanced Trauma Kit", 
+    "unit": "Advanced Trauma Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 259, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Albendazole", 
+    "unit": "400mg, chewable", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 260, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Albendazole", 
+    "unit": "200mg", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 261, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin", 
+    "unit": "250mg capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 262, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "250mg, liquid", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 263, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "1g, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 264, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "625mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 265, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 266, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Amoxicillin + Clavulanic Acid", 
+    "unit": "875mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 267, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ampicillin + Cloxacillin", 
+    "unit": "Ampicillin + Cloxacillin", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 268, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Antiseptic solution", 
+    "unit": "Hexol(15% cetrimide+1.5%chlorhexidine glucona", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 269, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Autoclave", 
+    "unit": "Autoclave", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 270, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Basic Major Orthopedic Kit", 
+    "unit": "Basic Major Orthopedic Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 271, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Benzathine Penicillin ", 
+    "unit": "2.4MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 272, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Benzyl Penicillin", 
+    "unit": "5MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 273, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blade for surgical knives", 
+    "unit": "size 22", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 274, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blood bags", 
+    "unit": "Blood bags", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 275, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Blood Pressure Machine", 
+    "unit": "Blood Pressure Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 276, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Bucaine", 
+    "unit": "0.5% (Bupivacaine HCl), 100 mg/20 ml.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 277, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Butterfly Tape", 
+    "unit": "Butterfly tape", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 278, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Calcium Gluconate", 
+    "unit": "1g/10ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 279, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cardiac Monitor", 
+    "unit": "Cardiac Monitor", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 280, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter", 
+    "unit": "Nelatone, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 281, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 18, ball. 5-15ml, sterile, disposable.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 282, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 14, ball. 5-15ml, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 283, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Catheter Foley", 
+    "unit": "Ch 12, ball. 5-15ml, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 284, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cefixime", 
+    "unit": "100mg/5ml  powder", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 285, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cefixime", 
+    "unit": "400mg blister", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 286, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ceftriaxone", 
+    "unit": "2g powder, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 287, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ceftriaxone", 
+    "unit": "1g powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 288, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Nosebleed", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 289, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Applicator w/ Celox granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 290, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Hemostatic granuals 35g use with applicator", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 291, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox", 
+    "unit": "Home 10pc x 2g hemostatic granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 292, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Celox gauze", 
+    "unit": "dressing strip w/ celox hemostatic granuals", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 293, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cetrimide", 
+    "unit": "15%+chlorhexidine gluconate 1.5%, 1", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 294, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 1\"x3\"", 
+    "unit": "ChitoFlex - 1\"x3\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 295, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 3\"x28\"", 
+    "unit": "ChitoFlex - 3\"x28\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 296, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ChitoFlex - 3\"x9\"", 
+    "unit": "ChitoFlex - 3\"x9\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 297, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Chlorhexidine antiseptic", 
+    "unit": "20% solution, 5L", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 298, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Cotton wool absorbent", 
+    "unit": "BP/EurP, 500g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 299, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Defibrillator", 
+    "unit": "Defibrillator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 300, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Dextrose ", 
+    "unit": "50%, 50ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 301, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diazepam", 
+    "unit": "2 mg/ml, aml amp.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 302, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diazepam", 
+    "unit": "5mg/ml, 10mg/2ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 303, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "50mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 304, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "75mg/ml, 3ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 305, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Diclofenac Sodium", 
+    "unit": "25mg/ml, 3ml injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 306, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Doxycycline", 
+    "unit": "100mg capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 307, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "ECG Machine", 
+    "unit": "ECG Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 308, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Elastic bandage", 
+    "unit": "8cmx 5m (stretched)", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 309, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "7.5mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 310, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "8mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 311, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Endotracheal tubes", 
+    "unit": "7mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 312, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Epinephrin ", 
+    "unit": "Injection: 1 mg as hydrochloride or hydrogen ", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 313, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "L, latex, pre-powdered, disp.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 314, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "latex, medium, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 315, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "M, latex, pre-powdered, dispo.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 316, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Examination gloves", 
+    "unit": "S, latex, pre-powdered, disp.", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 317, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Feeding tube", 
+    "unit": "Ch 5, 40cm, luer tip, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 318, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Feeding tube", 
+    "unit": "Ch 8, 40cm, luer tip, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 319, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Flucloxacillin 250mg + Amoxycillin 250mg", 
+    "unit": "Flucloxacillin 250mg + Amoxycillin 250mg", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 320, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps ", 
+    "unit": "Dissecting, non dressing,16cm, non-toothed", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 321, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Tissue, 14.5cm, 1/2 teeth", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 322, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Halsted Mosquito, artery, 12.5cm, curved", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 323, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Pean, artery, 14.5cm , straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 324, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "Pean, artery, 14.0cm, straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 325, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Forceps", 
+    "unit": "dissecting(dressing), 16cm, non toothed", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 326, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Furosemide", 
+    "unit": "20mg/ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 327, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze compresses", 
+    "unit": "10x10cm, 12ply, non-sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 328, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze compresses", 
+    "unit": "10x10cm, 12ply, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 329, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze hydrophilic", 
+    "unit": "90cmx91m, BP13 heavy(17g/m2) ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 330, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze swabs", 
+    "unit": "Non- sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 331, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gauze with silver sulfadiazine", 
+    "unit": "Wide mesh, 10ply, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 332, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gentian Violet", 
+    "unit": "BP80, 25g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 333, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Glimperide", 
+    "unit": "2mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 334, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Gynecological Surgical Kit", 
+    "unit": "Gynecological Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 335, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Haemostatic sponge", 
+    "unit": "CELOX, 70x50x10mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 336, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Handle for surgical blade", 
+    "unit": "No. 4", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 337, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Head lamp", 
+    "unit": "LED", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 338, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 2\"x2\"", 
+    "unit": "HemCon - Bandage - 2\"x2\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 339, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 2\"x4\"", 
+    "unit": "HemCon - Bandage - 2\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 340, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Bandage - 4\"x4\"", 
+    "unit": "HemCon - Bandage - 4\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 341, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - ChitoGauze Pro.", 
+    "unit": "HemCon - ChitoGauze Pro.  7.5 cm x 3.7 m", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 342, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Patch, 1.5\"x1.5\"", 
+    "unit": "HemCon - Patch, 1.5\"x1.5\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 343, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "HemCon - Strip,", 
+    "unit": "HemCon - Strip,", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 344, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hexol Antiseptic Solution", 
+    "unit": "15%", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 345, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Bag", 
+    "unit": "55mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 346, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Bag ", 
+    "unit": "70mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 347, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Base", 
+    "unit": "55mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 348, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Colostomy Base", 
+    "unit": "70mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 349, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hollister Karaya Paste", 
+    "unit": "128g, adhesive", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 350, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Human Albumin", 
+    "unit": "20%, Behring, low salt. 50ml.", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 351, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrochlorothiazide", 
+    "unit": "25mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 352, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrocortisone", 
+    "unit": "100mg, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 353, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Hydrophilic bandage", 
+    "unit": "8cmx 4cm, self-edged", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 354, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "400mg, film coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 355, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "200mg, film coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 356, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Ibuprofen", 
+    "unit": "100mg/5ml, liquid", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 357, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusion Giving Set", 
+    "unit": "With airinlet + needle", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 358, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Dextrose", 
+    "unit": "5% in water, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 359, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Mixed Sodium Chloride + Dextrose", 
+    "unit": "0.9% sodium chloride + 5% dextrose, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 360, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Ringer's Lactate", 
+    "unit": "Hartmann's solution, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 361, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Infusions - Sodium Chloride", 
+    "unit": "0.9%, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 362, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Insertion tape", 
+    "unit": "Measuring circumference, PVC", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 363, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Instrument tray", 
+    "unit": "30cmx20cmx2cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 364, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Inufusions- Dextrose", 
+    "unit": "5% in water, 500ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 365, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "18g, green ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 366, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "24g, yellow", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 367, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "IV Placement Unit", 
+    "unit": "22g, blue", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 368, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Kidney dish", 
+    "unit": "24cm, s.s, 24cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 369, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Kidney dish", 
+    "unit": "24cm, s.s, 825ml", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 370, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "KytoStat - 1\"x4\"", 
+    "unit": "KytoStat - 1\"x4\"", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 371, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Laryngoscope", 
+    "unit": "Laryngoscope", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 372, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lidocaine HCL", 
+    "unit": "1%, 20ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 373, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lidocaine HCL", 
+    "unit": "1%, 2mL, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 374, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Lorazepam", 
+    "unit": "1mg tab", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 375, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Magnesium Sulphate", 
+    "unit": "50%, 20ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 376, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Magnesium Trisilicate", 
+    "unit": "250/120mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 377, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Major Surgical Kit", 
+    "unit": "Major Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 378, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Measuring tape", 
+    "unit": "1.5m, flexible, vinyl coated", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 379, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole", 
+    "unit": "250mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 380, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole ", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 381, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Metronidazole", 
+    "unit": "5mg/ml, 100ml syrup", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 382, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "Oral gel, 40g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 383, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "2% cream, 30g", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 384, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Miconazole", 
+    "unit": "10mg, muco-adhesive buccal tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 385, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Minims Atropine Sulphate", 
+    "unit": "1% e/d (Injection: 1 mg (sulfate) in 1?ml amp", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 386, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Minor Surgical Kit", 
+    "unit": "Minor Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 387, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Nasogastric Tube", 
+    "unit": "40cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 388, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle holder", 
+    "unit": "Mayo-Hegar, 18cm, straight", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 389, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer ", 
+    "unit": "19g(1.1x38mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 390, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "25g(0.5x16mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 391, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "23g(0.6x25mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 392, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Needle luer", 
+    "unit": "21g(0.8x38mm), sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 393, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Neostigmine", 
+    "unit": "0.5mg/ml, 1ml for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 394, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Oral Rehydration Salt", 
+    "unit": "20.5g/L sachets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 395, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Otoscope", 
+    "unit": "\"mini Heine\" with battery handle, S", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 396, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Otoscope bulb", 
+    "unit": "\"mini Heine\" (XHL 056 2.5V)", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 397, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Oxygen Generator", 
+    "unit": "Oxygen Generator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 398, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "100mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 399, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "125mg bottle", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 400, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Paracetamol", 
+    "unit": "500mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 401, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Portable Cautery Device", 
+    "unit": "Portable Cautery Device", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 402, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Portable Ventilator", 
+    "unit": "Portable Ventilator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 403, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Povidone antiseptic solution", 
+    "unit": "10%, 200ml flacon", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 404, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Prednisolone", 
+    "unit": "5mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 405, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Probe", 
+    "unit": "2mm, double ended", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 406, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Procaine penicillin", 
+    "unit": "3MIU, powder for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 407, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Promethazine HCl", 
+    "unit": "50mg/2ml, for injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 408, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Promethazine HCL", 
+    "unit": "25mg coated tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 409, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Pulse Oximetry Device", 
+    "unit": "Pulse Oximetry Device", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 410, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "PVP Iodine", 
+    "unit": "10% solution", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 411, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Razor, disposable", 
+    "unit": "With blade and handle", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 412, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Rectal tube", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 413, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Resuscitation bag", 
+    "unit": "Ambu-type, adult, black rubber+ mask ", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 414, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Safety box for syringe disposal", 
+    "unit": "5L", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 415, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "Inhaler 0.1mg/dose", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 416, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "4mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 417, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol", 
+    "unit": "2mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 418, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol sulfate", 
+    "unit": "Syrup, 120ml", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 419, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Salbutamol Sulfate Solution, 0.5%", 
+    "unit": "Salbutamol sulfate solution, 0.5%", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 420, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Savalon + Cotton  Plaster Set", 
+    "unit": "Savalon + Cotton  Plaster Set", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 421, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scale", 
+    "unit": "Salter type, 25kgx100g, with 5 trousers", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 422, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp vein infusion set", 
+    "unit": "21g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 423, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp Vein Infusion Set", 
+    "unit": "(23g)", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 424, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scalp vein infusion set", 
+    "unit": "25g", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 425, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Gynaecological, 20cm, curved, bl/bl", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 426, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Surgical, Deaver, sh/bl, straight, 14cm", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 427, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scissors", 
+    "unit": "Mayo, 14cm, curved, bl/bl", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 428, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Scopolamine", 
+    "unit": "Injection", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 429, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Silver Sulfadizine", 
+    "unit": "1%, 50g cream", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 430, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sphygmomanometer", 
+    "unit": "Anaeroid, simple", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 431, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Spinal needle", 
+    "unit": "22gx40mm, sterile, disposable ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 432, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Spinal needle ", 
+    "unit": "20gx90mm, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 433, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stethoscope", 
+    "unit": "Foetal, metal", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 434, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stethoscope", 
+    "unit": "Littman type, with spares", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 435, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Stomach tube", 
+    "unit": "Ch16, 125cm, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 436, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Suction Device and Aspirator", 
+    "unit": "Suction Device and Aspirator", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 437, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical caps", 
+    "unit": "Non-sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 438, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 8.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 439, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "size 8.0, sterile, disposabl", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 440, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 6.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 441, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gloves", 
+    "unit": "Size 7.5, sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 442, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical gown", 
+    "unit": "Disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 443, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Surgical scrub brush", 
+    "unit": "Sterilisable, plastic", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 444, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Suture Surgical Kit", 
+    "unit": "Suture Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 445, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Synthetic, 70cm, with needle, absorbable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 446, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Abs., synthetic, braided(3/0)90cm+26mm, 3/8 c", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 447, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Polypropylene, (0)150cm, braided, non absorba", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 448, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Sutures", 
+    "unit": "Silk braided, (0)75cm + 3/8 ct needle 30mm, b", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 449, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe", 
+    "unit": "60ml with luer and conical connector, sterile", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 450, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe Luer 10ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 451, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 1ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 452, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 2ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 453, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 3ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 454, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Syringe luer 5ml", 
+    "unit": "Sterile, disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 455, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tablet bags", 
+    "unit": "10x15cm with minigrip closure", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 456, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Targocid", 
+    "unit": "Teicoplanin 200mg, alternative to L", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 457, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tetracycline HCl", 
+    "unit": "1%, 5g eye ointment", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 458, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Thermometer", 
+    "unit": "Digital", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 459, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Thoracic Surgical Kit", 
+    "unit": "Thoracic Surgical Kit", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 460, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tissue Staplers", 
+    "unit": "Disposable", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 461, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tongue depressors", 
+    "unit": "Wood, 15cmx18mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 462, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Tourniquet latex", 
+    "unit": "Rubber, 50x1.8cm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 463, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Towel", 
+    "unit": "Surgical Huck, 430x500mm", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 464, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Umbilical Cord Tie", 
+    "unit": "3mm, non- sterile, 100m", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 465, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Urine collecting bag", 
+    "unit": "2000ml, with tap+valve", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 466, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vancolon", 
+    "unit": "Vancomycin 500mg, alternative to L", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 467, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vancolon", 
+    "unit": "Vancomycin 1 gm, alternative to Li", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 468, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vascular Doppler Machine", 
+    "unit": "Vascular Doppler Machine", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 469, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin A (Retinol)", 
+    "unit": "200.000 IU capsules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 470, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin C (Ascorbic Acid)", 
+    "unit": "250mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 471, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Vitamin C (Ascorbic Acid)", 
+    "unit": "500 mg tablets", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 472, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Water For Injection", 
+    "unit": "10ml ampoules", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 473, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "xCelox", 
+    "unit": "Hemostatic granuals 35g use with applicator", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 474, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test Aug12", 
+    "unit": "ZZZ", 
+    "item_category": 2
+  }
+},
+{
+  "pk": 475, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test Medicine Aug12", 
+    "unit": "Test", 
+    "item_category": 1
+  }
+},
+{
+  "pk": 476, 
+  "model": "catalog.catalogitem", 
+  "fields": {
+    "price": null, 
+    "description": "Z-Test21.10.2012", 
+    "unit": "Test", 
+    "item_category": 3
+  }
+},
+{
+  "pk": 1, 
+  "model": "catalog.itemcategory", 
+  "fields": {
+    "name": "Medicine"
+  }
+},
+{
+  "pk": 2, 
+  "model": "catalog.itemcategory", 
+  "fields": {
+    "name": "Medical Supplies"
+  }
+},
+{
+  "pk": 3, 
+  "model": "catalog.itemcategory", 
+  "fields": {
+    "name": "Medical Equipment"
+  }
+},
+{
+  "pk": 4, 
+  "model": "catalog.itemcategory", 
+  "fields": {
+    "name": "Non-Food Items"
+  }
+}
+]

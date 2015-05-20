@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+  <h2>Login</h2>
+    <form action="{% url "account_login" %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            {% if form.username.errors %}
+              <div class="alert alert-danger">
+                {{ form.username.errors }}
+              </div>
+            {% endif %}
+            <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+            {% if form.password.errors %}
+              <div class="alert alert-danger">
+                {{ form.password.errors }}
+              </div>
+            {% endif %}
+            <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <input type="hidden" name="next" value="{{ next }}" />
+            <input class="btn btn-solid-primary" type="submit" value="Login" />
+            <p><a href="{% url 'password_reset' %}">{% trans 'Forgotten your password?' %}</a></p>
+          </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base-datatables.html' %}
+{% load static from staticfiles %}
+{% load currency %}
+
+{% block content %}
+  <div class="row">
+    <div class="page-top">
+      <div class="left-side">
+        <div style="margin-left:15px;">
+          {% if perms.shipments.add_shipment %}
+            <a href="{% url 'create_shipment' %}">
+              <button class="btn btn-solid-primary">
+                Create Shipment
+              </button>
+            </a>
+          {% endif %}
+          <a href="{% url 'shipments_dashboard' %}">
+          <button class="btn btn-outline">
+            Map View
+          </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table id="shipments-table" class="table table-striped" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>{# partner color swatch #}</th>
+            <th>Partner</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Store Release</th>
+            <th>Donor</th>
+            <th># Packages</th>
+            <th>Price {{ local_currency }}</th>
+            <th>Price {{ usd_currency }}</th>
+            <th>Status</th>
+            <th>Status notes</th>
+            {% if perms.shipments.change_shipment %}
+              <th class="sorting_disabled"></th>
+              <th class="sorting_disabled"></th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for shipment in object_list %}
+            <tr>
+              <td><div style="width: 14px; height:14px; border:1px solid black; background-color: {{ shipment.partner.colour }}" ></td>
+              <td><p class="catalog-td">{{ shipment.partner.name }}</p></td>
+              <td><p class="catalog-td">{{ shipment.shipment_date|date:"Y-m-d" }}</p></td>
+              <td><p class="catalog-td"><a href="{% url 'edit_shipment' shipment.pk %}">{{ shipment }}</a></p></td>
+              <td><p class="catalog-td">{{ shipment.store_release }}</p></td>
+              <td><p class="catalog-td">{{ shipment.donor }}</p></td>
+              <td><p class="catalog-td">{{ shipment.num_packages }}</p></td>
+              <td><p class="catalog-td">{{ shipment.price_local|format_local }}</p></td>
+              <td><p class="catalog-td">{{ shipment.price_usd|format_usd }}</p></td>
+              <td><p class="catalog-td">{{ shipment.get_verbose_status }}</p></td>
+              <td><p class="catalog-td">{{ shipment.status_note }}</p></td>
+              {% if perms.shipments.change_shipment %}
+                <td><a href="{% url 'edit_shipment' shipment.pk %}"><i class="fa fa-pencil"></i></a></td>
+                <td><a href="{% url 'delete_shipment' shipment.pk %}"><i class="fa fa-times"></i></a></td></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra-js %}
+  {{ block.super }}
+
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#shipments-table').dataTable({
+        "searching": false,
+        "scrollCollapse": true,
+        "paging": false,
+        "columnDefs": [{    // first column, last 2 columns not sortable
+          'orderable': false,
+          'targets': [0, -1, -2]
+        }],
+        "order": [2, 'desc']   // sort on column 2 (shipment date) descending initially
+      });
+    });
+  </script>
+
+  <!-- tables and modals -->
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+{% endblock %}

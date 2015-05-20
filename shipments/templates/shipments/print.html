@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    <div class="row">
+      {% include 'catalog/select_field.html' with field=form.print_format width=3 %}
+    </div>
+    <div class="row">
+      {% include 'catalog/select_field.html' with field=form.qrcode_size width=3 %}
+    </div>
+
+    <div class="row" id="labels_control">
+      <div class="col-md-6">
+        <label>Labels to print</label>
+        {{ form.labels }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-submit btn-primary">Print</button>
+  </form>
+{% endblock %}
+
+{% block extra-js %}
+  <script>
+    $('#id_print_format').on('change', function() {
+      var value = $(this).val();
+      {# show qrcode size selector for full manifest and package barcode pages #}
+      $('#id_qrcode_size').parent().toggle(value === '2' || value === '4');
+      {# show label selector for package barcode page only #}
+      $('#labels_control').toggle(value === '4');
+    });
+    $('#id_print_format').change();
+  </script>
+{% endblock %}

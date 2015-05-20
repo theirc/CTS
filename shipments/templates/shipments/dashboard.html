@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load leaflet_tags %}
+{% load staticfiles %}
+
+    <!-- leafleft -->
+    {% block extra-css %}
+        {% leaflet_css plugins="cluster," %}
+        <style>
+          .waypoint {
+            background: #FFF;
+            width: 1.5em;
+            height: 1.5em;
+            text-align: center;
+            margin: -5px;
+            border: 1px solid #CCC;
+          }
+          #delivered-shipments, #undelivered-shipments, #spinner {
+            display: none;
+          }
+        </style>
+    {% endblock %}
+
+  {% block body-id %}shipment-maps{% endblock %}
+
+  {% block content %}
+    <div class="side-section">
+        <div class="well">
+            {% if more_than_partner %}
+              {% include 'shipments/includes/_dropdown_widget.html' with type='donor' objects=donors %}
+            {% endif %}
+            {% include 'shipments/includes/_dropdown_widget.html' with type='partner' objects=partners %}
+            {% include 'shipments/includes/_dropdown_widget.html' with type='shipment' objects=shipments %}
+            <a href="" id="reset">reset</a>
+        </div>
+        <div class="well" id="delivered-shipments">
+          <h4>Delivered Shipments (<span id="delivered-number">{{ delivered_number }}</span>)</h4>
+          <p>Packages delivered: <b id="delivered-packages">{{ delivered_packages.pkg_count }}</b></p>
+          <p>Items delivered: <b id="delivered-items">{{ delivered_items.item_count }}</b></p>
+          <p>Total USD value: <b id="delivered-usd-value">{{ delivered_value.sum_price_usd }}</b></p>
+          <p>Total {{ local_currency_symbol }} value: <b id="delivered-local-value">{{ delivered_value.sum_price_local }}</b></p>
+          <p>Partners: <b id="delivered-partners">{% for partner in delivered_partners %}{{ partner }}{% if not forloop.last %}, {% endif %}{% endfor %}</b></p>
+        </div>
+        <div class="well" id="undelivered-shipments">
+          <h4>Undelivered Shipments (<span id="undelivered-number">{{ undelivered_number }}</span>)</h4>
+          <p>Packages: <b id="undelivered-packages">{{ undelivered_packages.pkg_count }}</b></p>
+          <p >Items: <b id="undelivered-items">{{ undelivered_items.item_count }}</b></p>
+          <p>Total USD value: <b id="undelivered-usd-value">{{ undelivered_value.sum_price_usd }}</b></p>
+          <p>Total {{ local_currency_symbol }} value: <b id="undelivered-local-value">{{ undelivered_value.sum_price_local }}</b></p>
+          <p>Partners: <b id="undelivered-partners">{% for partner in undelivered_partners %}{{ partner }}{% if not forloop.last %}, {% endif %}{% endfor %}</b></p>
+        </div>
+        <div class="well" id="no-results">
+          <p>No results. Select from the above filter(s) to display shipment scans.</p>
+        </div>
+        <div class="well" id="spinner">
+          <i  class="fa fa-cog fa-spin"></i> <br />loading map...
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <div id="page-content-wrapper" class="extra-padding">
+        <div class="large-section">
+            <div style="clear:both;"></div>
+            <div class="page-content inset">
+                {% leaflet_map "shipments" callback="main_map_init" %}
+            </div>
+        </div>
+    </div>
+  {% endblock %}
+  {% block extra-js %}
+    {% leaflet_js plugins="cluster"  %}
+    <script type="text/javascript" charset="utf-8">
+
+      function clearMap(map) {
+          for(i in map._layers) {
+              if(map._layers[i]._path != undefined || map._layers[i]._popup != undefined || map._layers[i]._needsRemoving != undefined ) {
+                  try {
+                      map.removeLayer(map._layers[i]);
+                  }
+                  catch(e) {
+                      console.log("problem with " + e + map._layers[i]);
+                  }
+              }
+          }
+      }
+
+      function render_map(map, data) {
+
+            var Polylines = {};
+            var markerList = [];
+            var markers = L.markerClusterGroup();
+
+            for (var i = 0; i < data.shipments.length; i++) {
+                  var shipment = data.shipments[i];
+                  var shipment_locs = [];
+                  for (var idx = 0; idx < shipment.locations.length; idx++) {
+                    var scan_no = idx+1;
+                    var loc = shipment.locations[idx];
+                    var lat_lng = L.latLng(loc.latitude, loc.longitude);
+                    var waypoint  = ['Scan ' + scan_no + ' on: ' + loc.when + '<br />Shipment ' + shipment.descr, loc.latitude, loc.longitude];
+                    var marker = new L.marker([waypoint[1],waypoint[2]], {icon: L.divIcon({html: scan_no, iconSize: null, className: 'waypoint'})})
+                      .bindPopup(waypoint[0]);
+
+                    markerList.push(marker);
+                    shipment_locs.push(lat_lng);
+                  }
+                  Polylines["polyline" + i] = L.polyline(
+                    shipment_locs
+                  ,{
+                      weight: 4,
+                      readOnly: true,
+                      color: shipment.colour
+                  }).addTo(map);
+            }
+            markers.addLayers(markerList);
+            map.addLayer(markers);
+
+            if (markers._topClusterLevel._childCount !== 0 || !($.isEmptyObject(markers._featureGroup._layers))) {
+              map.fitBounds(markers.getBounds())
+            } else {
+              map.panTo(map.options.center);
+              map.setZoom(map.options.zoom);
+            }
+      }
+
+      function populate_dropdown(name, data) {
+        var input = $('#' + name + '-input ul');
+        var options = data[name + '_options'];
+        input.empty();
+        for (var i = 0; i < options.length; i++) {
+          var option_pk = options[i][0];
+          var option_name = options[i][1];
+          var option = '<li role="presentation">' +
+                        '<a role="menuitem" tabindex="-1" data-type="' + name + '" data-pk="' + option_pk + '" class="selection_link">' + option_name + '</a>' +
+                        '</li>';
+          input.append(option);
+        }
+      }
+
+
+      function fill_aggregates(data) {
+        if (data.delivered && (data.delivered.packages.pkg_count || data.undelivered.packages.pkg_count)) {
+            $( "#delivered-shipments" ).show();
+            $( "#undelivered-shipments" ).show();
+            $( "#no-results" ).hide();
+
+            $('#delivered-packages').html(data.delivered.packages.pkg_count);
+            $('#delivered-items').html(data.delivered.items.item_count);
+            $('#delivered-usd-value').html(data.delivered.total_value.sum_price_usd);
+            $('#delivered-local-value').html(data.delivered.total_value.sum_price_local);
+            $('#delivered-partners').html(data.delivered.partners);
+            $('#delivered-number').html(data.delivered.number);
+
+            $('#undelivered-packages').html(data.undelivered.packages.pkg_count);
+            $('#undelivered-items').html(data.undelivered.items.item_count);
+            $('#undelivered-usd-value').html(data.undelivered.total_value.sum_price_usd);
+            $('#undelivered-local-value').html(data.undelivered.total_value.sum_price_local);
+            $('#undelivered-partners').html(data.undelivered.partners);
+            $('#undelivered-number').html(data.undelivered.number);
+        } else {
+            $('#delivered-shipments').hide();
+            $('#undelivered-shipments').hide();
+            $('#no-results').show();
+        }
+      }
+
+      // render default map with no filters
+      function main_map_init(map, options) {
+          var dataurl = '{% url "shipments_dashboard" %}';
+
+          map.layerscontrol.addOverlay(L.tileLayer('http://{s}.www.toolserver.org/tiles/osm-labels-en/{z}/{x}/{y}.png'), 'English');
+          map.layerscontrol.addOverlay(L.tileLayer('http://{s}.www.toolserver.org/tiles/osm-labels-ar/{z}/{x}/{y}.png'), 'Arabic');
+
+          var get_selected_item_pk = function (type) {
+            return sessionStorage.getItem(type + '-pk');
+          };
+
+          var get_selected_item_name = function (type) {
+            /* Get name of selected kit by querying the text in the select control */
+            var selected_link = $('.selection_link[data-pk="' + get_selected_item_pk(type) + '"][data-type="' + type + '"]');
+            return selected_link.html();
+          };
+
+          var change_selected_item = function (pk, type) {
+            // Change the selected item.
+            // make sure the pk and item is valid
+            if ($('.selection_link[data-pk="' + pk + '"][data-type="' + type + '"]').length === 0) {
+              return;
+            }
+            sessionStorage.setItem(type + '-pk', pk);
+            /* display the parts of the page that are only displayed if a kit has been selected */
+            $('a#select-' + type  + '-dropdown').html(get_selected_item_name(type));
+          };
+
+          $('.dropdown-menu').on('click', '.selection_link', function () {
+            var pk = $(this).data('pk');
+            var type = $(this).data('type');
+
+            if (pk && type) {
+              change_selected_item(pk, type);
+              // rerender map!
+              var dataurl = '{% url "shipments_dashboard" %}';
+              var args = {}
+              for (var i=0, len = sessionStorage.length; i  <  len; i++){
+                  var key = sessionStorage.key(i);
+                  var value = sessionStorage.getItem(key);
+                  args[key] = value;
+              }
+              $('#delivered-shipments').hide();
+              $('#undelivered-shipments').hide();
+              $('#no-results').hide();
+              $('#spinner').show();
+              $.getJSON(dataurl, args, function (data) {
+                clearMap(map);
+                render_map(map, data);
+                fill_aggregates(data);
+                populate_dropdown('partner', data);
+                populate_dropdown('shipment', data);
+                $('#spinner').hide();
+              });
+            }
+          });
+
+          $('#reset').on('click', function (e) {
+              e.preventDefault();
+              sessionStorage.clear();
+              // rerender map!
+              var dataurl = '{% url "shipments_dashboard" %}';
+              $('#delivered-shipments').hide();
+              $('#undelivered-shipments').hide();
+              $('#no-results').hide();
+              $('#spinner').show();
+              $.getJSON(dataurl, { reset: "1"}, function (data) {
+                clearMap(map);
+                render_map(map, data);
+                fill_aggregates(data);
+                $('a.trigger').each(function () {
+                  $(this).html('Select ' + $(this).data('type'));
+                });
+                populate_dropdown('partner', data);
+                populate_dropdown('shipment', data);
+
+               $('#spinner').hide();
+              });
+
+          });
+
+      }
+    </script>
+  {% endblock %}
+

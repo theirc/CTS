@@ -1,0 +1,44 @@
+[
+{
+  "pk": 1, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Coordinator"
+  }
+},
+{
+  "pk": 2, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Monitoring Manager"
+  }
+},
+{
+  "pk": 3, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Monitoring Officer"
+  }
+},
+{
+  "pk": 4, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Transporter"
+  }
+},
+{
+  "pk": 5, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Referrer"
+  }
+},
+{
+  "pk": 6, 
+  "model": "misc.role", 
+  "fields": {
+    "name": "Recipient"
+  }
+}
+]

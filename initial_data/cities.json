@@ -1,0 +1,30 @@
+[
+{
+  "pk": 1, 
+  "model": "misc.city", 
+  "fields": {
+    "name": "Amman"
+  }
+},
+{
+  "pk": 2, 
+  "model": "misc.city", 
+  "fields": {
+    "name": "Jerusalem"
+  }
+},
+{
+  "pk": 3, 
+  "model": "misc.city", 
+  "fields": {
+    "name": "Ramallah"
+  }
+},
+{
+  "pk": 18, 
+  "model": "misc.city", 
+  "fields": {
+    "name": "Carrboro"
+  }
+}
+]

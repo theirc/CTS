@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load leaflet_tags %}
+{% load staticfiles %}
+
+    <!-- leafleft -->
+    {% block extra-css %}
+        {% leaflet_css %}
+        <style>
+          .waypoint {
+            background: #FFF;
+            width: 1.25em;
+            height: 1.5em;
+            text-align: center;
+            margin: -5px;
+            border: 1px solid #CCC;
+          }
+        </style>
+    {% endblock %}
+
+  {% block body-id %}shipment-maps{% endblock %}
+
+  {% block content %}
+    <div class="side-section">
+        <div class="well">
+          <p><a href="{% url 'edit_shipment' package.shipment.pk %}">{{ package.shipment }}</a></p>
+          <p>Package #{{ package.number_in_shipment }} {{package.name }}</p>
+          <p>Total USD value: <b id="delivered-usd-value">{{ package.compute_price_usd }}</b></p>
+          <p>Total {{ local_currency_symbol }} value: <b id="delivered-local-value">{{ package.compute_price_local }}</b></p>
+          <p>Items: {{ package.num_items }}</p>
+          <p>Partner: <b id="delivered-partners"><span style="background-color: {{ package.shipment.partner.colour }}; border: 1px solid black; width: 1em;">&nbsp;&nbsp;</span> {{ package.shipment.partner }}</b></p>
+          <p>Status: {{ package.get_status_display }}</p>
+        </div>
+    </div>
+
+    <!-- Page content -->
+    <div id="page-content-wrapper" class="extra-padding">
+        <div class="large-section">
+            <div style="clear:both;"></div>
+            <div class="page-content inset">
+                {% leaflet_map "shipments" callback="main_map_init" %}
+            </div>
+        </div>
+    </div>
+  {% endblock %}
+  {% block extra-js %}
+    {% leaflet_js %}
+    <script type="text/javascript" charset="utf-8">
+
+      function render_map(map, data) {
+            var shipment_locs = [];
+            $(data.locations).each(function(index){
+              var scan_no = index+1;
+              var lat_lng = L.latLng(this.latitude, this.longitude);
+              shipment_locs.push(lat_lng);
+
+              // Create the waypoint(s)
+              var waypoint  = ['Scan ' + scan_no + ' on: ' + this.when + '<br />Shipment ' + data.descr, this.latitude, this.longitude];
+              marker = new L.marker([waypoint[1],waypoint[2]], {icon: L.divIcon({html: scan_no, iconSize: null, className: 'waypoint'})})
+                .bindPopup(waypoint[0])
+                .addTo(map);
+            });
+            var polyline = L.polyline(
+              shipment_locs
+            ,{
+                weight: 5,
+                readOnly: true,
+                color: data.colour
+            }).addTo(map);
+            map.addLayer(markers);
+            map.layerscontrol.addOverlay(L.tileLayer('http://{s}.www.toolserver.org/tiles/osm-labels-en/{z}/{x}/{y}.png'), 'English');
+            map.layerscontrol.addOverlay(L.tileLayer('http://{s}.www.toolserver.org/tiles/osm-labels-ar/{z}/{x}/{y}.png'), 'Arabic');
+      }
+
+      // render default map with no filters
+      function main_map_init(map, options) {
+          var dataurl = '{% url "shipments_package_map" package.pk %}';
+          $.getJSON(dataurl, function (data) {
+            render_map(map, data);
+          });
+      }
+    </script>
+  {% endblock %}
+

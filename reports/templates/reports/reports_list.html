@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock title %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Reports</h1>
+  </div>
+
+  {% if reports %}
+    <ul id="reports-list">
+      {% for report in reports %}
+        {% if more_than_partner or report.partners_may_access %}
+          <li>
+            <a href="{% url report.get_report_url_name %}">{{ report.get_report_title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no reports at this time.</p>
+  {% endif %}
+{% endblock content %}

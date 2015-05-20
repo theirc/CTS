@@ -1,0 +1,179 @@
+{# Stuff that's common to every non-error-page on the site #}
+{% load compress i18n %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta-description %}{% endblock %}">
+  <meta name="author" content="{% block meta-author %}{% endblock %}">
+
+  <title>{% block title %}{% trans "IRC CTS" %}{% endblock %} {% if settings.ENVIRONMENT != 'production' %}{{ settings.ENVIRONMENT }} {% endif %}{{ settings.INSTANCE_NAME }}</title>
+
+  <meta name="keywords" content="{% block meta-keywords %}{% endblock %}">
+  {% block extra-meta %}{% endblock %}
+
+  <!-- CSS -->
+  {% block css %}
+  <!-- Bootstrap -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all">
+
+  <!-- Fonts -->
+  <link href="{% static 'css/Source_Sans_Pro.css' %}" rel='stylesheet' type='text/css' media="all">
+  <link href="{% static 'css/font-awesome.min.css' %}"  rel='stylesheet' type="text/css" media="all">
+
+  <!-- Site styles -->
+  <link href="{% static 'css/site.css' %}" rel="stylesheet" type="text/css" media="all">
+  <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet" type="text/css" media="all">
+  {% endblock css %}
+
+  <!-- Page-specific CSS -->
+  {% block extra-css %}{% endblock %}
+</head>
+
+<body id="{% block body-id %}{% endblock %}" class="{% block body-class %}{% endblock %}">
+  {% block modals %}
+  {% endblock modals %}
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand"><a href="#"><img width="191" src="{% static 'images/IRC-logo.png' %}" /></a>
+        </li>
+        <li>
+          <a href="{% url 'instances' %}">
+            {{ settings.INSTANCE|capfirst }} CTS
+          </a>
+        </li>
+        {% if perms.catalog %}
+          <li{% if nav_catalog %} class="sidebar-active"{% endif %}>
+              <a href="{% url 'catalog_list' %}"><img width="22" src="{% static 'images/catalog-icon.png' %}"/>Catalog</a>
+          </li>
+        {% endif %}
+        {% if perms.shipments %}
+          <li{% if nav_shipments %} class="sidebar-active"{% endif %}>
+            <a href="{% url 'shipments_list' %}"><img width="22" src="{% static 'images/shipments-icon.png' %}"/>Shipments</a>
+          </li>
+        {% endif %}
+        {% if perms.catalog %}
+        <li class="panel-group navexpand {% if nav_entities %}sidebar-active{% endif %}" id="accordion">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseNav"><img width="22" src="{% static 'images/partners-icon.png' %}"/>Entities</a>
+          <div id="collapseNav" class="panel-collapse collapse out {% if nav_entities %}collapse in{% endif %}">
+                        <div class="panel-body">
+                         <ul>
+                            {% if perms.catalog.add_itemcategory %}
+                              <li {% if subnav_categories %}class="subnav-active"{% endif %}><a href="{% url 'category_list' %}">Categories</a></li>
+                            {% endif %}
+                            {% if perms.catalog.add_donor %}
+                              <li {% if subnav_donors %}class="subnav-active"{% endif %}><a href="{% url 'donor_list' %}">Donors</a></li>
+                            {% endif %}
+                            {% if perms.catalog.add_donorcode %}
+                              <li {% if subnav_donorcodes %}class="subnav-active"{% endif %}><a href="{% url 'donorcode_list' %}">Donor Codes</a></li>
+                            {% endif %}
+                            {% if perms.catalog.add_supplier %}
+                              <li {% if subnav_suppliers %}class="subnav-active"{% endif %}><a href="{% url 'supplier_list' %}">Suppliers</a></li>
+                            {% endif %}
+                            {% if perms.catalog.add_transporter %}
+                              <li {% if subnav_transporters %}class="subnav-active"{% endif %}><a href="{% url 'transporter_list' %}">Transporters</a></li>
+                            {% endif %}
+                         </ul>
+                        </div>
+                    </div>
+        </li>
+        {% endif %}
+        {% if perms.accounts %}
+          <li{% if nav_users %} class="sidebar-active"{% endif %}>
+            <a href="{% url 'user_list' %}"><img width="22" src="{% static 'images/users-icon.png' %}"/>Users</a>
+          </li>
+        {% endif %}
+        {% if user.is_authenticated %}{# FIXME - check specific permissions #}
+          <li{% if nav_reports %} class="sidebar-active"{% endif %}>
+            <a href="{% url 'reports_list' %}"><img width="22" src="{% static 'images/reports-icon.png' %}"/>Reports</a>
+          </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+          <li><a href="#FIXME">Docs (FIXME)</a></li>
+        {% endif %}
+        {% if user.is_authenticated and user.is_staff %}
+          <li><a href="http://cts-ircdeploy.readthedocs.org/en/latest/">Admin docs</a></li>
+          <li><a href="{% url 'django.swagger.base.view' %}">API docs</a></li>
+          <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'password_reset' %}">{% trans "Password" %}</a></li>
+          <li><a href="{% url 'account_logout' %}">{% trans "Logout" %}</a></li>
+        {% else %}
+          <li><a href="{% url 'account_login' %}">{% trans "Login" %}</a></li>
+        {% endif %}
+      </ul>
+    </div><!-- End Sidebar -->
+
+    {# second sidebar, to the right of the global one #}
+    {% block second-sidebar %}
+    {% endblock second-sidebar %}
+
+    <!-- Page content -->
+    {% block page_content_wrapper %}{# in case template needs to override #}
+    <div id="page-content-wrapper">
+      <div class="page-content inset">
+        {# All page content (right side) must be inside page-content inset #}
+        {% block messages %}
+        {# This div has messages to the user. It will often be empty. #}
+        <div id="messages">
+            {% for message in messages %}
+              {# FIXME - map django message levels to bootstrap message levels #}
+              <div class="alert alert-{{ message.tags }} alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+              </div>
+            {% endfor %}
+
+            {# see modals.js ajax_alert() #}
+            <div id="ajax_alert_template" class="hidden">
+               <div class="alert alert-ALERT_LEVEL alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <div id="ajax_alert_content">MESSAGE</div>
+               </div>
+            </div>
+            <div id="ajax_alert_container"></div>
+        </div> <!-- end messages -->
+        {% endblock messages %}
+        {# This row has the usual page content #}
+        {% block content %}This page needs some content.{% endblock %}
+      </div>
+    </div>
+    {% endblock page_content_wrapper %}
+  </div>
+
+  {% block js %}
+  <!-- JavaScript -->
+  <!-- jQuery -->
+  <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery.form.js' %}"></script>
+
+  <!-- Bootstrap -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  {% include 'cts/session_security.html' %}
+
+  <!-- Site javascript -->
+  <script src="{% static 'js/site.js' %}"></script>
+
+  <!-- Custom JavaScript for the Menu Toggle -->
+  <script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("active");
+  });
+  </script>
+  {% endblock js %}
+
+  <!-- Page-specific javascript -->
+  {% block extra-js %}{% endblock %}
+</body>
+</html>

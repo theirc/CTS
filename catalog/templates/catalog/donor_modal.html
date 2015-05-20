@@ -1,0 +1,73 @@
+{% load selectable_tags %}
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'css/jquery-ui-1.8.23.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/jquery-ui-overrides.css' %}" type="text/css">
+{{ form.media.css }}
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="h4-editItem-modal">{% block title %}Edit Item{% endblock %}</h4>
+</div>
+
+<div class="modal-body col-md-12">
+  {# We'll nest rows inside this column #}
+
+  <form role="form" method="post" id="{% block form_id %}edit_item_form{% endblock %}">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="row">
+        <div class="modal-body col-md-12">
+          <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="row">
+      {% include "catalog/text_field.html" with field=form.name width=12 %}
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="{{ form.t1_codes.id_for_label }}">{{ form.t1_codes.label }}</label><br />
+        {% if form.t1_codes.errors %}
+          <div class="alert alert-danger">
+            {{ form.t1_codes.errors }}
+          </div>
+        {% endif %}
+        {{ form.t1_codes }}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="{{ form.t3_codes.id_for_label }}">{{ form.t3_codes.label }}</label><br />
+        {% if form.t3_codes.errors %}
+          <div class="alert alert-danger">
+            {{ form.t3_codes.errors }}
+          </div>
+        {% endif %}
+        {{ form.t3_codes }}
+      </div>
+    </div>
+
+    <div class="row">
+      {% include "catalog/text_field.html" with field=form.new_t1_codes width=6 %}
+      {% include "catalog/text_field.html" with field=form.new_t3_codes width=6 %}
+    </div>
+
+  </form>
+</div><!-- end modal-body -->
+
+<div class="modal-footer">
+  <div class="centered">
+    <button type="button" class="btn btn-solid-primary"
+        {% if form.instance.pk %}
+          data-url="{% url 'edit_transporter_modal' form.instance.pk %}"
+        {% endif %}
+        id="{% block button_id %}{% endblock %}">{% block button_text %}Save Item{% endblock %}</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>
+
+{{ form.media.js }}

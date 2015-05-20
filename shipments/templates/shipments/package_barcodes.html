@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Package bar codes</title>
+
+    <style type="text/css">
+      img.qrcode {
+        margin: 0;
+        padding: 0;
+        width: {{ size }}cm;
+        height: {{ size }}cm;
+      }
+      .pkg {
+        margin: 10px;
+        text-align: center;
+        float: left;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body>
+    {% for package in packages %}
+      <div class="pkg">
+        <img class="qrcode" src="{% url 'qrcode_sized' code=package.code size=size %}" alt=""/>
+        {% if 1 in labels %}<br />#{{ package.number_in_shipment }}{% endif %}
+        {% if 5 in labels %}<br />Code: {{ package.code }}{% endif %}
+        {% if 2 in labels %}<br />Partner: {{ package.shipment.partner.name }}{% endif %}
+        {% if 3 in labels %}<br />Package: {{ package.name_or_description|default:"No name or description" }}{% endif %}
+        {% if 4 in labels %}<br />Shipment: {{ package.shipment }}{% endif %}
+      </div>
+    {% endfor %}
+  </body>
+</html>

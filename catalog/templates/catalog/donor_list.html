@@ -1,0 +1,56 @@
+{% extends 'base-datatables.html' %}
+
+{% load static from staticfiles %}
+
+{% block modals %}
+  {% include 'cts/modal_placeholder.html' with id='donor_edit_modal' %}
+  {% include 'cts/modal_placeholder.html' with id='new_donor_modal' %}
+{% endblock modals %}
+
+{% block content %}
+  <div class="page-top">
+    <!-- left-side  -->
+    <div class="left-side">
+      <div style="margin-left:-15px;">
+        <button class="btn btn-outline" data-toggle="modal" data-target="#newDonor-modal" id="new-donor-button" data-url="{% url 'new_donor_modal' %}">
+          <i class="fa fa-plus"></i> New Donor
+        </button>
+      </div>
+    </div><!-- End left-side  -->
+  </div>
+  <!-- donor-table-1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <table id="donors-table-1" class="table table-striped hidden" cellspacing="0" width="100%" >{# hide before it's ever rendered, we'll show later after we're done updating it #}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th class="sorting_disabled">T1 Codes</th>
+            <th class="sorting_disabled">T3 Codes</th>
+            <th class="sorting_disabled"></th>
+            <th class="sorting_disabled"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for donor in object_list %}
+            <tr>
+              <td><p class="donor-td">{{ donor.name }}</p></td>
+              <td><p class="donor-td">{% for code in donor.t1_codes.all %}{{ code }}{% if not forloop.last %}, {% endif %}{% endfor %}</p></td>
+              <td><p class="donor-td">{% for code in donor.t3_codes.all %}{{ code }}{% if not forloop.last %}, {% endif %}{% endfor %}</p></td>
+              <td><a href="#" class="donor-edit-pencil" data-url="{% url 'edit_donor_modal' donor.pk %}"><i class="fa fa-pencil"></i></a></td>
+              <td><a href="{% url 'donor_delete' donor.pk %}"><i class="fa fa-times"></i></a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- End col-md-12 -->
+  </div><!-- End items-table-1  -->
+{% endblock content %}{
+
+{% block extra-js %}
+  {{ block.super }}
+  <!-- tables and modals -->
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/donor.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/jquery-ui.js' %}"></script>
+{% endblock extra-js %}

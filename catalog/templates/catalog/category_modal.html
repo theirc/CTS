@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="h4-editItem-modal">{% block title %}Edit Item{% endblock %}</h4>
+</div>
+
+<div class="modal-body col-md-12">
+  <form role="form" method="post" id="{% block form_id %}edit_item_form{% endblock %}">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+    {% include "catalog/text_field.html" with field=form.name width=12 %}
+  </form>
+</div>
+
+<div class="modal-footer">
+  <div class="centered">
+    <button type="button" class="btn btn-solid-primary"
+        {% if form.instance.pk %}
+          data-url="{% url 'edit_category_modal' form.instance.pk %}"
+        {% endif %}
+        id="{% block button_id %}{% endblock %}">{% block button_text %}Save Item{% endblock %}</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>

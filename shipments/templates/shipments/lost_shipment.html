@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {% include 'catalog/select_field.html' with field=form.acceptable %}
+  {% include 'catalog/textarea_field.html' with field=form.notes %}
+
+  <div class="button-container">
+    <button class="btn btn-solid-primary" type="submit">Save</button>
+    <a href="{% url 'edit_shipment' view.shipment.pk %}" class="text-action-btn">Cancel</a>
+  </div>
+</form>
+{% endblock content %}

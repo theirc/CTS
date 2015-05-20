@@ -1,0 +1,70 @@
+<!-- New Package from Kit Modal -->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="myModalLabel">Create New Package from Kits</h4>
+</div>
+
+
+<div class="modal-body col-md-12">
+  <p class="modal-text">A new package or packages will be created containing all of the selected kits.</p>
+  <form role="form" id="new_pkg_from_kit_form">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {% include 'catalog/text_field.html' with field=form.name width=12 %}
+    {% include 'catalog/text_field.html' with field=form.description width=12 %}
+    {% include 'catalog/number_field.html' with field=form.package_quantity width=4 %}
+
+    <div class="col-md-12">
+      {# This table starts hidden - after it's fully populated, we'll unhide it #}
+      <table id="kits-table" class="table table-striped hidden" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+          <th>Kit Name</th>
+          <th>Description</th>
+          <th># Items</th>
+          <th>Price {{ local_currency }}</th>
+          <th>Price {{ usd_currency }}</th>
+          <th class="sorting_disabled">Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for kit in kits %}
+        <tr>
+          <td><p class="catalog-td">{{ kit.name }}</p></td>
+          <td><p class="catalog-td">{{ kit.description }}</p></td>
+          <td><p class="catalog-td">{{ kit.num_items }}</p></td>
+          <td><p class="catalog-td">{{ kit.price_local }}</p></td>
+          <td><p class="catalog-td">{{ kit.price_usd }}</p></td>
+          <td>
+            <input type="number"
+                class="form-control item-quantity-field"
+                id="kit-quantity-{{ kit.pk }}" placeholder="..." min="0" name="kit-quantity-{{ kit.pk }}"
+                value={{ kit.quantity }}
+                data-kit-pk="{{ kit.pk }}">
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <div class="centered">
+    <button type="button" class="btn btn-solid-primary" id="submit-new-pkg-button">Save New Package</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>
+
+<script>
+ $('#kits-table').DataTable({
+    "paging": false
+  });
+  $('#kits-table').removeClass('hidden');
+</script>

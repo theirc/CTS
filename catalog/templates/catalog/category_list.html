@@ -1,0 +1,50 @@
+{% extends 'base-datatables.html' %}
+{% load static from staticfiles %}
+
+{% block modals %}
+  {% include 'cts/modal_placeholder.html' with id='category_edit_modal' %}
+  {% include 'cts/modal_placeholder.html' with id='new_category_modal' %}
+{% endblock modals %}
+
+{% block content %}
+  <div class="page-top">
+    <!-- left-side  -->
+    <div class="left-side">
+     <div style="margin-left:-15px;">
+        <button class="btn btn-outline" data-toggle="modal" data-target="#newcategory-modal" id="new-category-button" data-url="{% url 'new_category_modal' %}">
+          <i class="fa fa-plus"></i> New category
+        </button>
+      </div>
+    </div><!-- End left-side  -->
+  </div>
+  <!-- category-table-1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <table id="categories-table-1" class="table table-striped hidden" cellspacing="0" width="100%" >{# hide before it's ever rendered, we'll show later after we're done updating it #}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th class="sorting_disabled"></th>
+            <th class="sorting_disabled"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category in object_list %}
+            <tr>
+              <td><p class="category-td">{{ category.name }}</p></td>
+              <td><a href="#" class="category-edit-pencil" data-url="{% url 'edit_category_modal' category.pk %}"><i class="fa fa-pencil"></i></a></td>
+              <td><a href="{% url 'category_delete' category.pk %}"><i class="fa fa-times"></i></a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- End col-md-12 -->
+  </div><!-- End items-table-1  -->
+{% endblock content %}{
+
+{% block extra-js %}
+  {{ block.super }}
+  <!-- tables and modals -->
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/category.js' %}"></script>
+{% endblock extra-js %}

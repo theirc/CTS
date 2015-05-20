@@ -1,0 +1,17 @@
+<div class="form-group
+ {% if md_width %}col-md-{{ md_width }}{% else %}col-md-{{ width }}{% endif %}
+ {% if sm_width %}col-sm-{{ sm_width }}{% endif %}
+ {% if nopadding %}no-padding{% endif %}
+">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {% if field.errors %}
+    <div class="alert alert-danger">
+      {{ field.errors }}
+    </div>
+  {% endif %}
+  {% if field.field.readonly %}
+    <span class="form-control">{{ field.value }}</span>
+  {% else %}
+    <input type="{% block input_field_type %}text{% endblock %}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}" value="{{ field.value }}" {% if field.field.widget.attrs.placeholder %}placeholder="{{ field.field.widget.attrs.placeholder }}"{% endif %} {% block input_attrs %}{% endblock %}>
+  {% endif %}
+</div>

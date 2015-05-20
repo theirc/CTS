@@ -1,0 +1,39 @@
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+background: none;
+}
+
+ul.selectable-deck li.selectable-deck-item .selectable-deck-remove {
+border: none;
+}
+
+.ui-icon-close {
+background-position: -99px -125px;
+}
+
+ul.selectable-deck, ul.ui-autocomplete {
+font-family: 'Source Sans Pro', Arial,sans-serif;
+padding-left: 0;
+font-size:16px;
+}
+
+ul.selectable-deck li.selectable-deck-item, ul.ui-autocomplete li.ui-menu-item {
+padding-top: 10px;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { 
+	background: none;
+}
+
+.ui-widget-content {
+	border-color: #cccccc;
+}
+
+.ui-widget-content a:hover {
+	border-left-color:#cccccc;
+	border-right-color:#fff;
+	border-top-color:#fff;
+	border-bottom-color:#fff;
+	color:#3CB879;
+	border-radius: 0;
+
+}

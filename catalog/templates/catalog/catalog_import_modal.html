@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="h4-editItem-modal">{% block title %}Catalog Import{% endblock %}</h4>
+</div>
+
+<div class="modal-body col-md-12">
+  <p>Choose an Excel file to upload and import</p>
+  <p>Data should be in the first sheet, in columns named
+
+  {% for name in view.column_names %}<strong>{{ name }}</strong>{% if not forloop.last %}, {% endif %}{% if forloop.revcounter0 == 1 %} and {% endif %}{% endfor %}.
+  The columns don't need to be in that order, and there can be other columns, which will just be ignored.</p>
+  <p>The column names are read from the first row.</p>
+  <p>All remaining rows in the first sheet will be added as new items,
+  except that no two records may have the same
+  Description, Donor, Supplier and local Price,
+  so any attempt to import records that would violate
+  that will fail.</p>
+  <p>If any errors occur, no items will be imported.</p>
+  <form role="form" method="post" id="{% block form_id %}import_form{% endblock %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors|linebreaksbr }}
+      </div>
+    {% endif %}
+    <div class="form-group">
+      <label for="{{ form.file.id_for_label }}">{{ form.file.label }}</label>
+      {% if form.file.errors %}
+        <div class="alert alert-danger">
+          {{ form.file.errors }}
+        </div>
+      {% endif %}
+      <input type="file" class="form-control" id="{{ form.file.id_for_label }}" name="{{ form.file.html_name }}">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <div class="centered">
+    <button type="button" class="btn btn-solid-primary"
+        id="{% block button_id %}submit-import-button{% endblock %}">{% block button_text %}Import{% endblock %}</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>

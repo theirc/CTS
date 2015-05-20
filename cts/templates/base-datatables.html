@@ -1,0 +1,19 @@
+{# Base template for pages that use datatables #}
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+  {# Placing datatables css here so that extending templates can use extra-css normally. #}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dataTables.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/dataTables.bootstrap.css' %}">
+  {{ block.super }}
+{% endblock css %}
+
+{% block js %}
+  {# Placing data tables js here so that extending templates can use extra-js normally. #}
+  {{ block.super }}
+  {% block datatables-js %}
+    <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.js' %}"></script>
+  {% endblock %}
+{% endblock js %}

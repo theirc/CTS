@@ -1,0 +1,6 @@
+[run]
+omit=*/__init__.py,*/tests.py,*/tests/*.py,*/migrations/*
+source=api,catalog,currency,shipments,accounts,ona,reports
+
+[report]
+show_missing = true

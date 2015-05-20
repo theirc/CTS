@@ -1,0 +1,198 @@
+{% extends 'base-datatables.html' %}
+{% load static from staticfiles %}
+{% load cts_tags %}
+
+{% block modals %}
+  {% include 'cts/modal_placeholder.html' with id='catalog_item_edit_modal' %}
+  {% include 'cts/modal_placeholder.html' with id='new_catalog_item_modal' %}
+  {% include 'cts/modal_placeholder.html' with id='new_kit_modal' %}
+  {% include 'cts/modal_placeholder.html' with id='edit_kit_modal' modal_lg=True %}
+  {% include 'cts/modal_placeholder.html' with id='import_modal' %}
+{% endblock modals %}
+
+{% block messages %}
+  {{ block.super }}
+  {% for message in form.non_field_errors %}
+    <div class="alert alert-error alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endblock messages %}
+
+{% block content %}
+  <div class="row">
+    <div class="page-top">
+    <!-- left-side  -->
+    <div class="left-side">
+      <div style="margin-left:15px;">
+        <div class="dropdown">
+          <a class="trigger" id="select-kit-dropdown" role="button" data-toggle="dropdown" data-target="#">
+            Select Kit
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="select-kit-dropdown">
+            {% for k in kits %}
+              <li role="presentation">
+                <a role="menuitem" tabindex="-1" data-pk="{{ k.pk }}" class="kit_selection_link">{{ k.name }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="arrow-box hidden">
+        <a href="#" id='edit_kit_button'></a>
+      </div>
+    </div><!-- End left-side  -->
+
+    <!-- right-side  -->
+    <div class="right-side">
+      <div class="searchbar">
+        <form role="search">
+          <div class="input-group add-on">
+            <input class="form-control search" placeholder="Search items..." name="q" id="srch-term" type="text" value="{{ q }}">
+            <div class="input-group-btn">
+              <button class="btn btn-search search" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Button trigger  Add item modal -->
+      <button class="btn btn-outline" id="new-item-button" data-url="{% url 'new_catalog_item_modal' %}">
+        <i class="fa fa-plus"></i> New Item
+      </button>
+
+      <!-- Button trigger Create Kit modal -->
+      <button class="btn btn-outline" id="new-kit-button" data-url="{% url 'new_kit_modal' %}">
+        <i class="fa fa-plus"></i> Create Kit
+      </button>
+
+    <button class="btn btn-outline"  id="import-button" data-url="{% url 'catalog_import_modal' %}">
+      <i class="fa fa-upload"></i>
+    </button>
+
+    </div><!-- End right-side  -->
+    </div><!-- End page-top  -->
+  </div><!-- End row -->
+
+  <!-- Filter section  -->
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            Filter categories:
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse out">
+        <div class="panel-body">
+          <div class="col-md-2">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" id="filter-select-all">
+                Select All
+              </label>
+            </div>
+            {% for category in categories %}
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="{{ category.pk }}" class="filter-checkbox"
+                      data-name="{{ category.name }}">
+                  {{ category.name }}
+                </label>
+              </div>
+            {# if the number of categories so far, plus the "select all" checkbox we #}
+            {# started with, is divisible by the number of items we want in each column, #}
+            {# then start a new column. #}
+            {% if forloop.counter|add:'1'|divisibleby:'4' %}</div><div class="col-md-2">{% endif %}
+            {% endfor %}
+          </div>
+        </div><!-- End panel-body  -->
+      </div><!-- End collapse  -->
+    </div> <!-- End panel panel default  -->
+  </div><!-- End Filter section  -->
+
+
+  <!-- items-table-1 -->
+  <form action="" method="POST">{% csrf_token %}
+  {{ form.selected_kit }}
+  <div class="row">
+    <div class="col-md-12">
+      <table id="items-table-1" class="table table-striped hidden" cellspacing="0" width="100%" >{# hide before it's ever rendered, we'll show later after we're done updating it #}
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th id='category-column'>Category</th>
+            <th>Unit</th>
+            <th>Donor</th>
+            <th>T1</th>
+            <th>Supplier</th>
+            <th>({{ local_currency }})</th>
+            <th>({{ usd_currency }})</th>
+            <th class="sorting_disabled">
+              <span class="hidden hide_if_no_kit_selected" id="item-quantity-header">Qty <button id="reset-quantities" type="button" data-toggle="tooltip" title="Reset quantities" class="btn-in-header">0</button></span>
+            </th>
+            <th class="sorting_disabled">
+               <button type="submit" id="add-items-to-kit-button"
+                   class="btn btn-link{% if not kit %} hidden{% endif %} hide_if_no_kit_selected"
+                   title="Add all items with quantities entered to the current kit" data-toggle="tooltip">
+                 <i class="fa fa-plus-circle"></i>
+               </button>
+            </th>
+            <th class="sorting_disabled"></th>
+            <th class="sorting_disabled"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in object_list %}
+            <tr>
+              <td><p class="catalog-td">{{ item.description }}</p></td>
+              <td><p class="catalog-td">{{ item.item_category.name }}</p></td>
+              <td><p class="catalog-td">{{ item.unit }}</p></td>
+              <td><p class="catalog-td">{% if item.donor %}{{ item.donor.name }}{% endif %}</p></td>
+              <td><p class="catalog-td">{% if item.donor_t1 %}{{ item.donor_t1.code }}{% endif %}</p></td>
+              <td><p class="catalog-td">{% if item.supplier %}{{ item.supplier.name }}{% endif %}</p></td>
+              <td><p class="catalog-td">{% if item.price_local %}{{ item.formatted_price_local }}{% endif %}</p></td>
+              <td><p class="catalog-td">{% if item.price_usd %}{{ item.formatted_price_usd }}{% endif %}</p></td>
+              {% with field=form|getfield:item.form_field_name %}
+              <td {% if field.errors %}class="has-error"{% endif %}>
+                  {% for error in field.errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                  {% endfor %}
+                  <span id="result-{{ item.pk }}"></span>
+                  <input id="{{ field.id_for_label }}" name="{{ field.html_name }}" value="{{ field.value }}"
+                    class="form-control item-quantity-field hide_if_no_kit_selected"
+                    placeholder="..."
+                    data-item-pk={{ item.pk }}
+                  >
+              </td>
+              {% endwith %}
+              <td>
+                <button type="button" class="add-to-kit-circle btn btn-link{% if not kit %} hidden{% endif %} hide_if_no_kit_selected"
+                  data-url="{% url 'add_item_to_kit' 8888 item.pk 9999 %}" data-pk="{{ item.pk }}"><i class="fa fa-plus-circle"></i></button>
+              </td>
+              <td><a href="#" class="item-edit-pencil" data-url="{% url 'edit_catalog_item_modal' item.pk %}"><i class="fa fa-pencil"></i></a></td>
+              <td><a href="{% url 'catalog_delete' item.pk %}"><i class="fa fa-times"></i></a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- End col-md-12 -->
+  </div><!-- End items-table-1  -->
+  </form>
+{% endblock content %}{
+
+{% block extra-js %}
+  {{ block.super }}
+  <!-- tables and modals -->
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/catalog.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/jquery-ui.js' %}"></script>
+
+  <script type="text/javascript">
+    function get_kit_edit_url (pk) {
+      return "{% url 'kit_edit_modal' 9999 %}".replace('9999', pk);
+    };
+  </script>
+{% endblock extra-js %}

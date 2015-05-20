@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "entities.user", "fields": {"code": "4fa7aabf77fa1", "name": "IRC Admin", "mobile": "", "notes": "", "city": null, "role": 1, "skype": "", "referrer_id": null, "password": "206c80413b9a96c1312cc346b7d2517b84463edd", "email": "admin@supply.rescue.org"}}]

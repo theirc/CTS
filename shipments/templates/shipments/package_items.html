@@ -1,0 +1,46 @@
+{% load currency %}
+{# rows in the package items table #}
+<tbody>
+{% for item in package_items %}
+  <tr>
+    {% if perms.shipments.change_package %}
+      <td><input type="checkbox" name="package_item" value="{{ item.pk }}"/></td>
+    {% endif %}
+    <td>{{ item.get_description }}</td>
+    <td>{{ item.donor }}</td>
+    {% if more_than_partner %}
+      <td>{{ item.supplier }}</td>
+    {% endif %}
+    <td>{{ item.price_local|default_if_none:0|format_local }}</td>
+    <td>{{ item.price_usd|default_if_none:0|format_usd }}</td>
+    <td>{{ item.quantity }}</td>
+    {% if perms.shipments.change_package %}
+      <td>
+        <a href="#" class="edit-package-item-button" data-url="{% url 'package_item_edit' item.pk %}">
+        <i class="fa fa-pencil"></i>
+        </a>
+      </td>
+      <td><a href="{% url 'package_item_delete' item.pk %}"><i class="fa fa-times"></i></a></td>
+    {% endif %}
+  </tr>
+{% endfor %}
+</tbody>
+<tfoot>
+  <tr>
+    {% if perms.shipments.change_package %}
+      <td></td>
+    {% endif %}
+    <td><b>Totals</b></td> {# description #}
+    <td></td> {# donor #}
+    {% if more_than_partner %}
+      <td></td> {# supplier #}
+    {% endif %}
+    <td>{{ package.compute_price_local|default_if_none:0|format_local }}</td>
+    <td>{{ package.compute_price_usd|default_if_none:0|format_usd }}</td>
+    <td>{{ package.num_items }}</td>
+    {% if perms.shipments.change_package %}
+      <td></td>
+      <td></td>
+    {% endif %}
+  </tr>
+</tfoot>

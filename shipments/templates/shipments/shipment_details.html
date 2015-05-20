@@ -1,0 +1,108 @@
+{% load cts_tags %}
+{% load staticfiles %}
+{% load currency %}
+
+<html>
+  <head>
+    <title>IRC Supply Chain :: Manifest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="https://qasupply.rescue.org/assets/image/favicon.ico" type="image/x-icon" />
+
+    <link href="{% static 'css/manifest.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div style="padding:25px">
+      <table class="manifest" style="border-color: black" cellspacing="0">
+        <tr>
+          <td rowspan="6" style="width:15px; background-color: {{ shipment.partner.colour }}"></td>
+          <td colspan="4"><h1>{{ shipment.description }}</h1></td>
+        </tr>
+        <tr>
+          <th>Store Release</th>
+          <td>{{ shipment.store_release }}</td>
+          <th>Date</th>
+          <td>{{ shipment.shipment_date|date:"d M Y" }}</td>
+        </tr>
+        <tr>
+          <th>Transporter</th>
+          <td>{{ shipment.transporter|default_if_none:"" }}</td>
+          <th>Delivery Time</th>
+          <td>{{ shipment.delivery_days }} day{{ shipment.delivery_days|pluralize }}</td>
+        </tr>
+        <tr>
+          <th>Partner</th>
+          <td>{{ shipment.partner.name }}</td>
+          <th>Number of Packages</th>
+          <td>{{ shipment.num_packages }}</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>{{ shipment.get_status_display }}</td>
+          <th>Total Value</th>
+          <td>{% format_local shipment.price_local international=True %}
+            <br/>${{ shipment.price_usd }}
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <br />
+      <br />
+
+      {% for package in packages %}
+        <span class="package-name">#{{ package.number_in_shipment }}. {{ package.name }} ({{ package.number_in_shipment }}/{{ shipment.num_packages }})</span>
+        <table class="package-manifest">
+          <tr>
+            <th class="align-start">Description</th>
+            <th class="align-start">Unit</th>
+            <th>Quantity</th>
+            <th>Donor</th>
+            {% if more_than_partner %}
+              <th>Supplier</th>
+            {% endif %}
+            <th>Price {{ local_currency }}</th>
+            <th>Price {{ usd_currency }}</th>
+            <th>Total {{ local_currency }}</th>
+            <th>Total {{ usd_currency }}</th>
+          </tr>
+          {% for item in package.items.all %}
+            <tr>
+              <td>{{ item.description }}</td>
+              <td>{{ item.unit }}</td>
+              <td style="text-align:center">{{ item.quantity }}</td>
+              <td>{{ item.donor }}</td>
+              {% if more_than_partner %}
+                <td>{{ item.supplier }}</td>
+              {% endif %}
+              <td style="text-align:right">
+                {% format_local item.price_local international=True %}
+              </td>
+              <td style="text-align:right">
+                {% format_usd item.price_usd international=True %}
+              </td>
+              <td style="text-align:right">
+                {% format_local item.extended_price_local international=True %}
+              </td>
+              <td style="text-align:right">
+                {% format_usd item.extended_price_usd international=True %}
+              </td>
+            </tr>
+          {% endfor %}
+          <tr>
+            {% if more_than_partner %}
+              <td colspan="7">&nbsp;</td> {# need to skip supplier column too #}
+            {% else %}
+              <td colspan="6">&nbsp;</td>
+            {% endif %}
+            <td style="font-weight:bold; text-align:right">{% format_local package.compute_price_local international=True %}</td>
+            <td style="font-weight:bold; text-align:right">${{ package.compute_price_usd }}</td>
+          </tr>
+        </table>
+        <br />
+        <br />
+        <br />
+      {% endfor %}
+    </div>
+  </body>
+</html>

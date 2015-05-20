@@ -1,0 +1,70 @@
+{% extends 'django_tables2/table.html' %}
+{# extend django_tables2 table template to add pagination to the top too #}
+{% load django_tables2 %}  {# <-- for 'nospaceless/endnospaceless' #}
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block table %}
+{% spaceless %}
+{% if table.is_configured %}
+    {% for label, format in table.formats %}
+        <a href="{% querystring table.param_report=format %}">
+            {% with 'img/'|add:format|add:'_icon.png' as format_icon %}
+              <img src="{% static format_icon %}" title="{{ label }}"/>
+            {% endwith %}
+        </a>
+    {% endfor %}
+{% endif %}
+
+{% if table.page %}
+  {% with table.page.paginator.count as total %}
+    {% with table.page.object_list|length as count %}
+      <ul class="pagination">
+          {% if table.page.has_previous %}
+            {% nospaceless %}
+              <li class="previous">
+                <a href="{% querystring table.prefixed_page_field=table.page.previous_page_number %}">{% trans "Previous" %}</a>
+              </li>
+            {% endnospaceless %}
+          {% endif %}
+
+          {% if table.page.has_previous or table.page.has_next %}
+           {% nospaceless %}
+             <li class="current">
+               {% blocktrans with table.page.number as current and table.paginator.num_pages as total %}Page {{ current }} of {{ total }}{% endblocktrans %}
+             </li>
+           {% endnospaceless %}
+          {% endif %}
+
+          {% if table.page.has_next %}
+           {% nospaceless %}
+             <li class="next">
+               <a href="{% querystring table.prefixed_page_field=table.page.next_page_number %}">{% trans "Next" %}</a>
+             </li>
+           {% endnospaceless %}
+          {% endif %}
+
+          {% nospaceless %}
+            <li class="cardinality">
+              {% if total != count %}
+                {% blocktrans %}{{ count }} of {{ total }}{% endblocktrans %}
+              {% else %}
+                {{ total }}
+              {% endif %}
+              {% if total == 1 %}
+                {{ table.data.verbose_name }}
+              {% else %}
+                {{ table.data.verbose_name_plural }}
+              {% endif %}
+            </li>
+          {% endnospaceless %}
+      </ul>
+    {% endwith %}
+  {% endwith %}
+  </div>
+{% endif %}
+
+{{ block.super }}
+
+{% endspaceless %}
+{% endblock table %}

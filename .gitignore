@@ -1,0 +1,23 @@
+*.py[co]
+.project
+.pydevproject
+*~
+*.db
+*.orig
+*.sw[po]
+*.DS_Store
+.coverage
+*/settings/local.py
+htmlcov/
+public/static/
+public/media/
+secrets.sls
+secrets.sls.bak
+env
+
+# Node modules
+node_modules
+.sass-cache/
+
+*.css.map
+_build

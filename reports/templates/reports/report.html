@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+
+{% block body-class %}report{% endblock body-class %}
+{% block title %}{{ view.get_report_title }}{% endblock title %}
+
+{% block extra-js %}
+  {{ block.super }}
+  <script>
+    $(function() {
+      $('#report-loading-modal').modal('show');
+
+      $.ajax({
+          url: $(location).attr('href')
+      }).done(function(data, status, xhr) {
+        $('#report').html(data);
+      }).fail(function(xhr, status, error) {
+        $('#report').html("An error occurred while loading the report data.");
+      }).always(function() {
+        $('#report-loading-modal').modal('hide');
+      });
+
+      /* If there's a status set of checkboxes, insert an all/none type checkbox */
+      $('div#id_status').prepend($('<div class="checkbox"><label><input id="all_status" type="checkbox" />All</label></div>'));
+      $('input#all_status').on('change', function (e) {
+          $('input[name=status]').prop('checked', $(this).prop('checked'));
+      });
+    })
+  </script>
+{% endblock extra-js %}
+
+{% block content %}
+  <div id="report-loading-modal" class="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          Loading report...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1>{{ view.get_report_title }}</h1>
+  </div>
+
+  {% block report-form %}
+    {% if filter.form.fields %}
+    <div>
+      <form class="form form-horizontal" method="GET" action="">
+        {% bootstrap_form filter.form layout='horizontal' %}
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-4">
+            <button type="submit" class="btn btn-primary">Update Filters</button>
+            <a href="{% url view.get_report_url_name %}" class="btn btn-default">Clear Filters</a>
+          </div>
+        </div>
+      </form>
+      <hr />
+    </div>
+    {% endif %}
+  {% endblock report-form %}
+
+  {% block report-content %}
+    <div class="report-container">
+      <div id="report"></div>
+    </div>
+  {% endblock report-content %}
+{% endblock content %}

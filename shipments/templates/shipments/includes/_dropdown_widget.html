@@ -1,0 +1,12 @@
+<div class="dropdown" id="{{ type }}-input">
+  <a class="trigger" data-type="{{ type|title }}" id="select-{{ type }}-dropdown" role="button" data-toggle="dropdown" data-target="#">
+    Select {{ type|title }}
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="select-{{ type }}-dropdown">
+    {% for obj in objects %}
+      <li role="presentation">
+        <a role="menuitem" tabindex="-1" data-type="{{ type }}" data-pk="{{ obj.pk }}" class="selection_link">{{ obj }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

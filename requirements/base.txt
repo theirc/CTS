@@ -1,0 +1,47 @@
+psycopg2==2.5.2
+Pillow==2.4.0
+Django==1.7.1
+django-braces==1.4.0
+django_compressor==1.4
+# Required by django-compressor
+django-appconf==0.6
+six==1.8.0
+xlrd==0.9.3
+django-session-security==2.2.0
+djangorestframework==2.4.2
+  # optional reqs for django rest framework
+  markdown==2.4
+  defusedxml==0.4.1
+
+django-tables2==0.15.0
+django-tables2-reports==0.0.10
+django-filter==0.7
+django-bootstrap3==4.11.0
+
+BeautifulSoup4==4.3.2
+requests==2.3.0
+celery==3.1.13
+django-celery==3.1.16
+
+django-leaflet==0.13.7
+django-selectable==0.8.0
+django-hstore==1.3.2
+
+qrcode==5.0.1
+django-rest-swagger==0.1.14
+
+django-sendfile==0.3.6
+  Unidecode==0.04.16
+
+# To build docs
+Sphinx==1.2.2
+  Jinja2==2.7.3
+  Pygments==1.6
+  docutils==0.12
+  MarkupSafe==0.23
+
+# To read Salt config
+PyYAML==3.11
+
+# For backups
+-e hg+https://bitbucket.org/scottm_caktus/django-dbbackup#egg=django-dbbackup

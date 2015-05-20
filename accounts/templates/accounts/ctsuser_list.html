@@ -1,0 +1,69 @@
+{% extends 'base-datatables.html' %}
+{% load static from staticfiles %}
+
+{% block modals %}
+{% include 'cts/modal_placeholder.html' with id="cts_user_edit_modal" %}
+{% include 'cts/modal_placeholder.html' with id="new_cts_user_modal" %}
+{% endblock modals %}
+
+{% block content %}
+  <div class="page-top">
+    <!-- left-side  -->
+    <div class="left-side">
+      <div style="margin-left:-15px;">
+        <button class="btn btn-outline" data-toggle="modal" data-target="#newUser-modal" id="new-user-button" data-url="{% url 'new_cts_user_modal' %}">
+          <i class="fa fa-plus"></i> New User
+        </button>
+      </div>
+    </div><!-- End left-side  -->
+  </div>
+  <!-- users-table-1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <table id="users-table-1" class="table table-striped hidden" cellspacing="0" width="100%" >{# hide before it's ever rendered, we'll show later after we're done updating it #}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Skype</th>
+            <th>Code</th>
+            <th>Device ID</th>
+            <th>Color</th>
+            <th>Role</th>
+            <th class="sorting_disabled"></th>
+            <th class="sorting_disabled"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in object_list %}
+            <tr>
+              <td><p class="users-td">{{ user.name }}</p></td>
+              <td><p class="users-td">{{ user.email }}</p></td>
+              <td><p class="users-td">{{ user.mobile }}</p></td>
+              <td><p class="users-td">{{ user.skype }}</p></td>
+              <td><p class="users-td">{% if user.code %}<a href="{% url 'user_barcode' user.pk %}" target="_blank"><i class="fa fa-qrcode"></i></a> {{ user.code }}{% endif %}</p></td>
+              <td><p class="users-td">{{ user.deviceid }}</p></td>
+              <td><p class="users-td">
+                {% if user.colour %}
+                  <div style="float: left; background-color: {{ user.colour }}; border: 1px solid black; width: 1em;">&nbsp;</div>
+                {% endif %}
+                </p></td>
+              <td><p class="users-td">{% if user.is_active %}{{ user.get_role_display }}{% else %}inactive{% endif %}</p></td>
+              <td><a href="#" class="cts-user-edit-pencil" data-url="{% url 'edit_cts_user_modal' user.pk %}"><i class="fa fa-pencil"></i></a></td>
+              <td>{% if user.is_active %}<a href="{% url 'user_delete' user.pk %}"><i class="fa fa-times"></i>{% endif %}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div><!-- End col-md-12 -->
+  </div><!-- End items-table-1  -->
+{% endblock content %}{
+
+{% block extra-js %}
+  {{ block.super }}
+  <!-- tables and modals -->
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/cts_user.js' %}"></script>
+{% endblock extra-js %}

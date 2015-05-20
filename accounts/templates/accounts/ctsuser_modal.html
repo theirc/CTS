@@ -1,0 +1,79 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="h4-editItem-modal">{% block title %}Edit Item{% endblock %}</h4>
+</div>
+
+<div class="modal-body col-md-12">
+  <form role="form" method="post" id="{% block form_id %}edit_item_form{% endblock %}">
+    {% csrf_token %}
+    <div class="row">
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+      {% include "catalog/text_field.html" with field=form.email width=12 %}
+      {% include "catalog/text_field.html" with field=form.name width=12 %}
+      {% include "catalog/text_field.html" with field=form.mobile width=6 %}
+      {% include "catalog/text_field.html" with field=form.skype width=6 %}
+    </div><!-- end row -->
+
+    <div class="row">
+      {% include "catalog/select_field.html" with field=form.role width=6 %}
+      <div class="form-group col-md-3">
+        <label for="{{ form.colour.id_for_label }}">{{ form.colour.label }}</label>
+        {% if form.colour.errors %}
+          <div class="alert alert-danger">
+            {{ form.colour.errors }}
+          </div>
+        {% endif %}
+        <input type="color" class="form-control" id="{{ form.colour.id_for_label }}" name="{{ form.colour.html_name }}" value="{{ form.colour.value }}">
+      </div>
+
+      {# only make is_active visible if user already exists #}
+      {% if form.instance.pk %}
+        {% include "catalog/boolean_field.html" with field=form.is_active width=3 %}
+      {% else %}
+        <input name='is_active' checked=checked type="hidden"/>
+      {% endif %}
+    </div><!-- end row -->
+
+    <div class="row">
+      {% include "catalog/password_field.html" with field=form.password1 width=6 %}
+      {% include "catalog/password_field.html" with field=form.password2 width=6 %}
+    </div><!-- end row -->
+  </form>
+
+  {% if object and object.auth_token %}
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label>API token (read only)</label>
+        <form action="{% url 'reset_api_token' object.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="link" class="text-action-btn btn btn-link">Reset API token</button>
+        </form>
+        <span class="form-control">{{ object.auth_token.key }}</span>
+      </div>
+    </div><!-- end row -->
+  {% endif %}
+</div>
+
+<div class="modal-footer">
+  <div class="centered">
+    {% if form.instance.pk %}
+      <p>
+        Leave passwords blank to leave user's password unchanged.
+        Users can use the Password link on the left to change their password.
+        <a href="{% url 'send_password_reset_email' object.pk %}">Send password reset email.</a>
+      </p>
+    {% else %}
+      <p>Leave passwords blank and the new user will be emailed a link to set their initial password.</p>
+    {% endif %}
+    <button type="button" class="btn btn-solid-primary"
+        {% if form.instance.pk %}
+          data-url="{% url 'edit_cts_user_modal' form.instance.pk %}"
+        {% endif %}
+        id="{% block button_id %}{% endblock %}">{% block button_text %}Save Item{% endblock %}</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>

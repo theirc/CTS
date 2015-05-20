@@ -1,0 +1,25 @@
+{% load currency %}
+
+{# This gets loaded asynchronously into the page in create_edit_shipment.html #}
+{% for pkg in packages %}
+  <tr class="package-row" id="package-row-{{ pkg.pk }}" data-pk="{{ pkg.pk }}">
+    <td><p class="catalog-td">{{ pkg.number_in_shipment|default_if_none:"" }}</p></td>
+    <td><p class="catalog-td">{{ pkg.name }} {{ pkg.description }}</p></td>
+    <td><p class="catalog-td">{{ pkg.num_items|default_if_none:"0" }}</p></td>
+    {% if shipment.is_finalized %}
+      <td><p class="catalog-td">{{ pkg.get_status_display|default_if_none:"" }}</p></td>
+    {% endif %}
+    <td>
+      <p class="catalog-td">{{ pkg.price_local|default_if_none:0|format_local }}</p>
+    </td>
+    <td>
+      <p class="catalog-td">{{ pkg.price_usd|default_if_none:0|format_usd }}</p>
+    </td>
+    {% if shipment.has_shipped %}
+      <td><a href="{% url 'shipments_package_map' pkg.pk %}"><i class="fa fa-globe"></i></a></td>
+    {% endif %}
+    {% if not shipment.is_finalized and perms.shipments.change_package %}
+      <td><a href="{% url 'package_delete' pkg.pk %}"><i class="fa fa-times"></i></a></td>
+    {% endif %}
+  </tr>
+{% endfor %}

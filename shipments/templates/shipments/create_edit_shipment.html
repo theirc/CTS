@@ -1,0 +1,246 @@
+{% extends 'base-datatables.html' %}
+
+{% load staticfiles %}
+{% load currency %}
+
+{% block modals %}
+  {% include 'cts/modal_placeholder.html' with id='edit-package-details-modal' %}
+  {% include 'cts/modal_placeholder.html' with id='new-package-from-kit-modal' modal_lg=True %}
+  {% include 'cts/modal_placeholder.html' with id='new-package-modal' %}
+  {% include 'cts/modal_placeholder.html' with id='edit-package-item-modal' %}
+  {% include 'cts/modal_placeholder.html' with id='bulk-edit-package-items-modal' %}
+{% endblock %}
+
+{% block second-sidebar %}
+
+<div class="side-section">
+  <div class="row left-side"><h2>Shipment</h2></div>
+  <div class="left-side">
+    {% if not view.creating %}
+      {# dropdown to choose a shipment #}
+    <div class="form-group col-md-12 no-padding">
+      <div class="dropdown">
+        <a class="trigger" id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+          {% if object %}{{ object }}{% else %}Select Shipment{% endif %}
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          {% for ship in shipments %}
+            <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="{% url 'edit_shipment' ship.pk %}">{{ ship }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
+  {# create shipment, or edit properties of selected shipment #}
+  {% if perms.shipments.change_shipment %}
+  <form role="form" id="edit_shipment_form" method="POST">
+    {% csrf_token %}
+  {% endif %}
+    {% include "catalog/text_field.html" with field=form.description width=12 nopadding=True %}
+
+    {% if not view.creating %}
+    <div class="form-group">
+      <p><label>Status:</label> <b>{{ shipment.get_verbose_status }}</b></p>
+    </div>
+    {% endif %}
+
+    {% include "catalog/text_field.html" with field=form.store_release width=12 nopadding=True %}
+    {% if form.partner %}
+      {% include "catalog/select_field.html" with field=form.partner md_width=12 sm_width=12 nopadding=True %}
+    {% endif %}
+    {% include "catalog/select_field.html" with field=form.transporter md_width=12 sm_width=12 nopadding=True %}
+    {% include "catalog/date_field.html" with field=form.shipment_date md_width=12 sm_width=12 nopadding=True %}
+    {% include "catalog/text_field.html" with field=form.estimated_delivery md_width=12 nopadding=True %}
+
+
+
+    <div class="button-container">
+      {% if perms.shipments.change_shipment %}
+        <button class="btn btn-solid-primary" type="submit">
+          Save
+        </button>
+      {% endif %}
+
+      {% if not view.creating %}
+        {% if perms.shipments.change_shipment %}
+          {% if shipment.may_reopen %}
+            <button class="btn btn-solid-secondary" type="submit" name="reopen_shipment">Re-open</button>
+          {% endif %}
+          {% if shipment.may_finalize %}
+            <button class="btn btn-solid-secondary" type="submit" name="finalize">Finalize</button>
+          {% endif %}
+        {% endif %}
+
+        <a class="btn btn-solid-primary" href="{% url 'print' shipment.pk %}" target="_blank">Print...</a>
+      {% endif %}
+
+      <div class="text-action-btn">
+        <ul>
+          <li><a href="{% url 'shipments_list' %}" class="text-action-btn">Cancel</a></li>
+          {% if perms.shipments.change_shipment %}
+            {% if shipment.may_cancel %}
+              <li><button name="cancel_shipment" class="look_like_link">Cancel Shipment</button></li>
+            {% endif %}
+            {% if shipment.may_lose %}
+              <li><a href="{% url 'lost_shipment' object.pk %}" class="text-action-btn">Lost</a></li>
+            {% endif %}
+            {% if shipment.is_lost %}
+              <li><a href="{% url 'edit_lost_note' object.pk %}" class="text-action-btn">Edit lost note</a></li>
+            {% endif %}
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  {% if perms.shipments.change_shipment %}
+    </form>
+  {% endif %}
+  </div>
+</div>
+{% endblock second-sidebar %}
+
+{% block page_content_wrapper %}
+{# need to override page_content_wrapper so we can add the extra-padding class and omit the page-content inset div #}
+<div id="page-content-wrapper" class="extra-padding">
+
+  {% block messages %}{{ block.super }}{% endblock messages %}
+
+  <!-- Page content -->
+  {% if not view.creating %}
+  <div class="large-section">
+    {% if not shipment.is_finalized %}
+      <div class="shipment-top">
+        <h2 class="left-side shipment-header">Packages</h2>
+        {% if perms.shipments.change_shipment %}
+          <div class="right-side">
+            <!-- Button trigger newPackageKit-modal -->
+            <button class="btn btn-outline" id="create_package_from_kit_button"
+                data-url="{% url 'new_package_from_kit' shipment.pk %}">
+              <i class="fa fa-plus"></i> Create Package from Kit
+            </button>
+
+            <!-- Button trigger newPackage-modal -->
+            <button class="btn btn-outline" id="create_package_button"
+                data-url="{% url 'new_package' shipment.pk %}"
+                data-toggle="modal">
+              <i class="fa fa-plus"></i> Create New Package
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <h2 class="left-side shipment-header">Packages</h2>
+    {% endif %}
+    <div class="scrollit col-md-12 col-xs-12">
+      <table id="packages-list-table" class="table{% if not shipment.is_finalized %} highlight-active-rows{% endif %}" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+          <th>Number</th>
+          <th>Package</th>
+          <th># Items</th>
+          {% if shipment.is_finalized %}
+            <th>Status</th>
+          {% endif %}
+          <th>{{ local_currency }}</th>
+          <th>{{ usd_currency }}</th>
+          {% if shipment.has_shipped %}
+            <th class="sorting_disabled"></th>
+          {% endif %}
+          {% if not shipment.is_finalized and perms.shipments.change_package %}
+            <th class="sorting_disabled"></th>
+          {% endif %}
+        </tr>
+        </thead>
+        <tbody id='packages_rows' data-url="{% url 'shipment_packages' shipment.pk %}">
+          <tr><td colspan="6">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    {% if not shipment.is_finalized %}
+      <div style="clear:both; margin-bottom:64px;">
+        <div class="left-side">
+          <h3 class="left-side shipment-header">Package</h3>
+          <div class="dropdown" style="float:left">
+            <a class="trigger" id="select-pkg-dropdown" role="button" data-toggle="dropdown" data-target="#">
+              Select Package
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="select-pkg-dropdown">
+              {% for pkg in packages %}
+                <li role="presentation">
+                  <a role="menuitem" tabindex="-1" data-pk="{{ pkg.pk }}" class="pkg_selection_link">{{ pkg.number_in_shipment }} {{ pkg.name }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% if perms.shipments.change_package %}
+          <div class="right-side">
+            <button class="btn btn-outline" id="edit_package_details_button"
+                data-url="{% url 'edit_package' 9999 %}">
+              Edit Package Details
+            </button>
+          </div>
+        {% endif %}
+        <div style="clear:both" class="left-side">
+          <h4>Items</h4>
+        </div>
+        {% if perms.shipments.change_package %}
+          <div class="right-side">
+            <button class="btn btn-outline" id="bulk_button" data-url="{% url 'bulk_edit_package_items' %}">
+              Bulk Edit Items
+            </button>
+
+            <!-- Button trigger newPackage-modal -->
+            <button class="btn btn-outline" id="add_item_to_package_button"
+                  data-url="{% url 'package_item_create' 9999 %}" data-toggle="modal" data-target="#newKit-modal">
+              <i class="fa fa-plus"></i> Add Item
+            </button>
+         </div>
+        {% endif %}
+      </div>
+
+      <!-- items in currently selected package -->
+      <form id="bulk-edit-form" method="post" action="{% url 'bulk_edit_package_items' %}">
+        <div class="row hidden" id='selected_package_table_div'>
+          <div class="col-md-12">
+            <table id="items-table-1" class="table table-striped" cellspacing="0" width="100%">
+              <thead>
+              <tr>
+                {% if perms.shipments.change_package %}
+                  <th><input type="checkbox" id="package_item_all_or_none_checkbox"/></th>
+                {% endif %}
+                <th>Item</th>
+                <th>Donor</th>
+                {% if more_than_partner %}
+                  <th>Supplier</th>
+                {% endif %}
+                <th>{{ local_currency }} (each)</th>
+                <th>{{ usd_currency }} (each)</th>
+                <th>Quantity</th>
+                {% if perms.shipments.change_package %}
+                  <th class="sorting_disabled"></th>
+                  <th class="sorting_disabled"></th>
+                {%endif %}
+              </tr>
+              </thead>
+              {# body and footer will be populated by JSON as needed #}
+            </table>
+          </div><!-- End col-md-12 -->
+        </div><!-- End items-table-1  -->
+      </form>
+    {% endif %}
+
+
+  </div>
+  {% endif %}
+</div>
+{% endblock page_content_wrapper %}
+
+{% block extra-js %}
+  {{ block.super }}
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/modals.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/create_edit_shipment.js' %}"></script>
+  <script type="text/javascript" charset="utf-8" src="{% static 'js/jquery-ui.js' %}"></script>
+{% endblock %}

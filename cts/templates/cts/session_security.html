@@ -1,0 +1,26 @@
+{% load session_security_tags %}
+{% load i18n l10n %}
+{% load url from future %}
+{% load static from staticfiles %}
+
+{# If the user is not authenticated then there is no session to secure ! #}
+{% if request.user.is_authenticated %}
+    {# styles have been moved to our site.css and edited #}
+
+    {# Include the template that actually contains the modal dialog #}
+    {% include 'session_security/dialog.html' %}
+
+    {# Load SessionSecurity javascript 'class', jquery should be loaded - by you - at this point #}
+    <script type="text/javascript" src="{% static 'session_security/script.js' %}"></script>
+
+    {# Bootstrap a SessionSecurity instance as the sessionSecurity global variable #}
+    {% localize off %}
+        <script type="text/javascript">
+            var sessionSecurity = new yourlabs.SessionSecurity({
+                pingUrl: '{% url 'session_security_ping' %}',
+                warnAfter: {{ request|warn_after|unlocalize }},
+                expireAfter: {{ request|expire_after|unlocalize }}
+            });
+        </script>
+    {% endlocalize %}
+{% endif %}

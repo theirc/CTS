@@ -1,0 +1,21 @@
+bootstrap-3.2.0:
+    https://github.com/twbs/bootstrap/releases/download/v3.2.0/bootstrap-3.2.0-dist.zip
+
+DataTables-1.10.0:
+    http://www.datatables.net/download/download
+
+font-awesome-4.1.0:
+    http://fontawesome.io/assets/font-awesome-4.1.0.zip
+
+google fonts:
+    https://www.google.com/fonts
+
+other css:
+    http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700 and some editing -> Source_Sans_Pro.css
+    https://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.css
+
+other js:
+    https://code.jquery.com/jquery-1.11.1.min.js
+    https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.js
+    http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js
+    http://malsup.github.com/jquery.form.js

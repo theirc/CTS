@@ -1,0 +1,29 @@
+<!-- New Package Modal -->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title" id="myModalLabel">{% block title %}Create New Package{% endblock %}</h4>
+</div>
+
+
+<div class="modal-body col-md-12">
+  <p class="modal-text">{% block modal-text %}A new package will be created containing no items.{% endblock %}</p>
+  <form role="form" id="new_pkg_form">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {% include 'catalog/text_field.html' with field=form.name width=12 %}
+    {% include 'catalog/text_field.html' with field=form.description width=12 %}
+    {% include 'catalog/number_field.html' with field=form.package_quantity width=3 %}
+  </form>
+</div>
+
+<div class="modal-footer">
+  <div class="centered">
+    <button type="button" class="btn btn-solid-primary" id="submit-new-pkg-button">{% block save_button_text %}Save New Package{% endblock %}</button>
+    <div class="text-action-btn" data-dismiss="modal">Cancel</div>
+  </div>
+</div>

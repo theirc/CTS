@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Are you sure you want to delete "{{ object }}"?
+</p>
+
+<div class="button-container">
+  <div class="row">
+    <div class="col-md-5">
+      <form action="" method="post">
+        {% csrf_token %}
+        <button class="btn btn-solid-primary" type="submit">
+          Confirm
+        </button>
+      </form>
+    </div>
+    <div class="col-md-5">
+      <a href="{{ cancel_url }}">
+        <button class="btn btn-solid-secondary" type="link">
+          Cancel
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

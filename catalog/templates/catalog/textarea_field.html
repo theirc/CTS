@@ -1,0 +1,13 @@
+<div class="form-group
+ {% if md_width %}col-md-{{ md_width }}{% else %}col-md-{{ width }}{% endif %}
+ {% if sm_width %}col-sm-{{ sm_width }}{% endif %}
+ {% if nopadding %}no-padding{% endif %}
+">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {% if field.errors %}
+    <div class="alert alert-danger">
+      {{ field.errors }}
+    </div>
+  {% endif %}
+  <textarea class="form-control" id="{{ field.id_for_label }}" name="{{ field.html_name }}" cols="90" rows="12" >{{ field.value }}</textarea>
+</div>

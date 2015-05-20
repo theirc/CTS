@@ -1,0 +1,14 @@
+{
+  "name": "cts",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-sass": "~0.7.3",
+    "grunt-contrib-watch": "~0.6.1",
+    "matchdep": "~0.3.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}

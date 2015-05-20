@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <title>IRC Supply Chain :: Manifest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="{% static 'css/manifest.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div style="padding:25px">
+      {% for package in object_list %}
+        <span class="package-name">#{{ package.number_in_shipment }}. {{ package.name }}</span>
+        <table class="package-manifest">
+          <tr>
+          <th class="align-start">Description</th>
+          <th class="align-start">Unit</th>
+          <th>Quantity</th>
+          </tr>
+          {% for item in package.items.all %}
+            <tr>
+            <td>{{ item.get_description }}</td>
+            <td>{{ item.get_unit }}</td>
+            <td class="align-center">{{ item.quantity }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        <br />
+        <br />
+        <br />
+      {% endfor %}
+    </div>
+  </body>
+</html>

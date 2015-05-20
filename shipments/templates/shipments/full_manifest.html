@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <title>IRC Supply Chain :: Manifest</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="{% static 'css/manifest.css' %}" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+      img.qrcode {
+        margin: 0;
+        padding: 0;
+        width: {{ size }}cm;
+        height: {{ size }}cm;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div style="padding:25px">
+      {% for package in packages %}
+        <div class="page-break-after">
+          <div class="align-center">
+            <img class="qrcode" src="{% url 'qrcode_sized' code=package.code size=size %}" alt=""/><br />
+          </div>
+          <span class="package-name">#{{ package.number_in_shipment }}. {{ package.name }}</span>
+          <table class="package-manifest">
+            <tr>
+              <th class="align-start">Description</th>
+              <th class="align-start">Unit</th>
+              <th>Quantity</th>
+            </tr>
+            {% for item in package.items.all %}
+              <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.unit }}</td>
+                <td class="align-center">{{ item.quantity }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+          <br />
+          <br />
+          <br />
+        </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
