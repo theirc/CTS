@@ -5,6 +5,9 @@ Commodity Tracking System (CTS)
   :target: http://cts-project.readthedocs.org/en/develop/
   :alt: Documentation Status
 
+.. image:: https://travis-ci.org/theirc/CTS-project.svg?branch=develop
+  :target: https://travis-ci.org/theirc/CTS-project
+
 The `International Rescue Committee (IRC)`_ has built a remote verification and
 monitoring system in order to track and report on the movement of goods to
 ensure that the intended beneficiaries receive them. Due to staffing and lack
