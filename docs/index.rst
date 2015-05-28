@@ -6,7 +6,7 @@
 Welcome to CTS's documentation!
 ===============================
 
-.. image:: _static/logo.gif
+.. image:: _static/logo.png
 
 The `International Rescue Committee (IRC)`_ has built a remote verification and
 monitoring system in order to track and report on the movement of goods to
