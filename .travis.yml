@@ -9,9 +9,9 @@ env:
 install:
   - pip install -r requirements/dev.txt
 before_script:
+  - psql template1 -c 'CREATE EXTENSION hstore;'
   - createdb -E UTF-8 cts -U postgres -O $USER
   - psql -c 'CREATE EXTENSION IF NOT EXISTS postgis;' -U postgres -d cts
-  - psql -c 'CREATE EXTENSION IF NOT EXISTS hstore;' -U postgres -d cts
   - python manage.py migrate --noinput
 script:
   - coverage run manage.py test
