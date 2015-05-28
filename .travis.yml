@@ -10,8 +10,11 @@ install:
   - pip install -r requirements/dev.txt
 before_script:
   - createdb -E UTF-8 cts -U postgres -O $USER
-  - psql -c 'CREATE EXTENSION postgis;' -U postgres -d cts
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS postgis;' -U postgres -d cts
   - psql -c 'CREATE EXTENSION IF NOT EXISTS hstore;' -U postgres -d cts
+  - createdb -E UTF-8 test_cts -U postgres -O $USER
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS postgis;' -U postgres -d test_cts
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS hstore;' -U postgres -d test_cts
   - python manage.py migrate --noinput
 script:
   - coverage run manage.py test
