@@ -11,7 +11,7 @@ install:
 before_script:
   - createdb -E UTF-8 cts -U postgres -O $USER
   - psql -c 'CREATE EXTENSION postgis;' -U postgres -d cts
-  - psql -c 'CREATE EXTENSION hstore;' -U postgres -d cts
+  - psql -c 'CREATE EXTENSION IF NOT EXISTS hstore;' -U postgres -d cts
   - python manage.py migrate --noinput
 script:
   - coverage run manage.py test
