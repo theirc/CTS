@@ -1,7 +1,7 @@
 Commodity Tracking System (CTS)
 ===============================
 
-.. image:: https://readthedocs.org/projects/cts-ircdeploy/badge/?version=develop
+.. image:: https://readthedocs.org/projects/cts-ircdeploy/badge/
   :target: http://cts-project.readthedocs.org/en/develop/
   :alt: Documentation Status
 
