@@ -284,6 +284,7 @@ CELERYBEAT_SCHEDULE = {
         'schedule': timedelta(minutes=60),
     },
 }
+CELERY_RESULT_BACKEND = None  # We never care about task results
 
 # See https://github.com/johnsensible/django-sendfile
 SENDFILE_URL = "/protected/"
