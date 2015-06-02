@@ -15,7 +15,7 @@ from ona.representation import PackageScanFormSubmission, OnaItemBase
 logger = logging.getLogger(__name__)
 
 
-@app.task
+@app.task(ignore_result=True)
 def process_new_package_scans():
     """Updates the local database with new package tracking form submissions"""
     logger.debug("process_new_package_scans task starting...")
@@ -64,7 +64,7 @@ def process_new_package_scans():
     logger.debug("process_new_package_scans task done")
 
 
-@app.task
+@app.task(ignore_result=True)
 def verify_deviceid():
     """Store the DeviceID and QR code"""
     last_retrieval = None
