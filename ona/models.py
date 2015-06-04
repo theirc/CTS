@@ -46,7 +46,6 @@ class FormSubmission(models.Model):
         Create and return a new FormSubmission based on form data received from a
         mobile form submission
         """
-        logger.info("Creating FormSubmission")
         uuid = submission._uuid
         obj = FormSubmission(
             form_id=submission.form_id,
