@@ -879,3 +879,15 @@ class ShipmentPackageMapViewTest(BaseViewTestCase):
         self.shipment.save()
         rsp = self.client.get(self.url)
         self.assertEqual(404, rsp.status_code)
+
+
+class ShipmentPackagesViewTest(BaseViewTestCase):
+    def setUp(self):
+        super(ShipmentPackagesViewTest, self).setUp()
+        self.url = reverse('shipment_packages', args=(self.shipment.pk,))
+        self.package = PackageFactory(shipment=self.shipment, code=QR_CODE)
+
+    def test_just_partner(self):
+        self.just_partner()
+        rsp = self.client.get(self.url)
+        self.assertEqual(200, rsp.status_code)
