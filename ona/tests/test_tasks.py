@@ -139,9 +139,8 @@ class DeviceIdToUserTestCase(TestCase):
 
     @patch('ona.tasks.logger')
     def test_bad_form_id(self, mock_logger, mock_ona_form_submissions,
-                                          mock_get_form_definition):
+                         mock_get_form_definition):
         mock_get_form_definition.return_value = None
         verify_deviceid.run()
         self.assertIn(settings.ONA_DEVICEID_VERIFICATION_FORM_ID, bad_form_ids)
         self.assertTrue(mock_logger.error.called)
-
