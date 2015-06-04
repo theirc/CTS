@@ -4,6 +4,7 @@ import requests
 from requests.exceptions import SSLError
 
 from django.conf import settings
+from django.http.response import Http404
 
 
 logger = logging.getLogger(__name__)
@@ -53,6 +54,8 @@ class OnaApiClient(object):
             for arg in e.args:
                 logger.error("SSLError arg: %s" % arg)
             raise OnaApiClientException(0, "SSL error, see log (%s)" % e, url=url)
+        if "404 Not Found" in response.text:
+            raise Http404
         try:
             data = response.json()
         except Exception as e:
@@ -86,4 +89,10 @@ class OnaApiClient(object):
         return self.get('data/{0}'.format(form_id), query_params=kwargs)
 
     def get_form_definition(self, form_id):
-        return self.get('forms/{0}/form'.format(form_id))
+        """
+        Returns form definition if available, else None.
+        """
+        try:
+            return self.get('forms/{0}/form'.format(form_id))
+        except Http404:
+            return None
