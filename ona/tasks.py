@@ -2,6 +2,7 @@ from __future__ import absolute_import
 import logging
 
 from django.conf import settings
+from django.http import Http404
 
 from requests import ConnectionError
 
@@ -55,7 +56,19 @@ def process_new_package_scans():
             logger.debug("No form submissions yet for %r" % form_id)
             since = None
 
-        submissions = client.get_form_submissions(form_id, since=since)
+        try:
+            submissions = client.get_form_submissions(form_id, since=since)
+        except Http404:
+            logger.error(
+                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+            return
+        except OnaApiClientException as e:
+            if e.status_code != 404:
+                raise
+            logger.error(
+                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+            return
+
         logger.debug("process_new_package_scans downloaded %d submitted forms" % len(submissions))
         # add the form definition JSON to each submission
         for data in submissions:
@@ -110,10 +123,15 @@ def verify_deviceid():
 
         try:
             submissions = client.get_form_submissions(form_id, since=last_retrieval.timestamp)
+        except Http404:
+            logger.error(
+                "Got 404 getting submissions for ONA_DEVICEID_VERIFICATION_FORM_ID = %s" % form_id)
+            return
         except OnaApiClientException as e:
             if e.status_code != 404:
                 raise
-            logger.error("Form %s not found at Ona" % form_id)
+            logger.error(
+                "Got 404 getting submissions for ONA_DEVICEID_VERIFICATION_FORM_ID = %s" % form_id)
             return
         # add the form definition JSON to each submission
         for data in submissions:
