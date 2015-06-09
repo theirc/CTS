@@ -4,7 +4,7 @@ import yaml
 
 #                   (top)         cts           settings     staging.py
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-project_sls_file = os.path.join(PROJECT_ROOT, 'conf', 'pillar', 'project.sls')
+project_sls_file = '/srv/pillar/project.sls'
 project = yaml.safe_load(open(project_sls_file, 'r'))
 
 from cts.settings.base import *  # noqa

@@ -33,13 +33,6 @@ django-rest-swagger==0.1.14
 django-sendfile==0.3.6
   Unidecode==0.04.16
 
-# To build docs
-Sphinx==1.2.2
-  Jinja2==2.7.3
-  Pygments==1.6
-  docutils==0.12
-  MarkupSafe==0.23
-
 # To read Salt config
 PyYAML==3.11
 

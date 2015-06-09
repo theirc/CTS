@@ -2,6 +2,7 @@ from __future__ import absolute_import
 import logging
 
 from django.conf import settings
+from django.http import Http404
 
 from requests import ConnectionError
 
@@ -14,15 +15,35 @@ from ona.representation import PackageScanFormSubmission, OnaItemBase
 
 logger = logging.getLogger(__name__)
 
+# If we get an error looking up a form, we remember it here so we don't keep
+# trying it again
+bad_form_ids = set()
 
-@app.task
+
+def reset_bad_form_ids():
+    bad_form_ids.clear()
+
+
+@app.task(ignore_result=True)
 def process_new_package_scans():
     """Updates the local database with new package tracking form submissions"""
     logger.debug("process_new_package_scans task starting...")
     try:
         form_id = int(settings.ONA_PACKAGE_FORM_ID)
+        if form_id in bad_form_ids:
+            return
+
         client = OnaApiClient()
         form_def = client.get_form_definition(form_id)
+
+        if not form_def:
+            # Logging an error should result in an email to the admins so they
+            # know to fix this.
+            logger.error("Bad ONA_PACKAGE_FORM_ID: %s" % form_id)
+            # Let's not keep trying for the bad form ID. We'll have to change the
+            # settings and restart to fix it.
+            bad_form_ids.add(form_id)
+            return
 
         # What's the last submission we got (if any)
         most_recent_submission = FormSubmission.objects.filter(form_id=form_id)\
@@ -35,7 +56,19 @@ def process_new_package_scans():
             logger.debug("No form submissions yet for %r" % form_id)
             since = None
 
-        submissions = client.get_form_submissions(form_id, since=since)
+        try:
+            submissions = client.get_form_submissions(form_id, since=since)
+        except Http404:
+            logger.error(
+                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+            return
+        except OnaApiClientException as e:
+            if e.status_code != 404:
+                raise
+            logger.error(
+                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+            return
+
         logger.debug("process_new_package_scans downloaded %d submitted forms" % len(submissions))
         # add the form definition JSON to each submission
         for data in submissions:
@@ -64,22 +97,41 @@ def process_new_package_scans():
     logger.debug("process_new_package_scans task done")
 
 
-@app.task
+@app.task(ignore_result=True)
 def verify_deviceid():
     """Store the DeviceID and QR code"""
     last_retrieval = None
     try:
         form_id = settings.ONA_DEVICEID_VERIFICATION_FORM_ID
+        if form_id in bad_form_ids:
+            return
+
+        client = OnaApiClient()
+
+        # Make sure the form exists before we try to get submissions
+        form_defn = client.get_form_definition(form_id)
+        if not form_defn:
+            # Logging an error should result in an email to the admins so they
+            # know to fix this.
+            logger.error("Bad ONA_DEVICEID_VERIFICATION_FORM_ID: %s" % form_id)
+            # Let's not keep trying for the bad form ID. We'll have to change the
+            # settings and restart to fix it.
+            bad_form_ids.add(form_id)
+            return
 
         last_retrieval, unused = LastFormRetrievalTimestamp.objects.get_or_create(form_id=form_id)
 
-        client = OnaApiClient()
         try:
             submissions = client.get_form_submissions(form_id, since=last_retrieval.timestamp)
+        except Http404:
+            logger.error(
+                "Got 404 getting submissions for ONA_DEVICEID_VERIFICATION_FORM_ID = %s" % form_id)
+            return
         except OnaApiClientException as e:
             if e.status_code != 404:
                 raise
-            logger.error("Form %s not found at Ona" % form_id)
+            logger.error(
+                "Got 404 getting submissions for ONA_DEVICEID_VERIFICATION_FORM_ID = %s" % form_id)
             return
         # add the form definition JSON to each submission
         for data in submissions:

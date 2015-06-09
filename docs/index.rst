@@ -6,7 +6,7 @@
 Welcome to CTS's documentation!
 ===============================
 
-.. image:: _static/logo.gif
+.. image:: _static/logo.png
 
 The `International Rescue Committee (IRC)`_ has built a remote verification and
 monitoring system in order to track and report on the movement of goods to
@@ -17,7 +17,7 @@ and GPS mapping) that integrates with a web application for administration,
 management and reporting on the status of shipments. This system is known as
 the **Commodity Tracking System (CTS)**.
 
-This is the CTS project and user documentation. To explore other open source
+This is CTS's user and developer documentation. To explore other open source
 IRC projects, please see IRC's `GitHub`_ account.
 
 .. _International Rescue Committee (IRC): http://www.rescue.org/
@@ -30,6 +30,7 @@ Contents:
 
    user/index
    developer/index
+   release_notes
 
 
 Indices and tables

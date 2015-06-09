@@ -91,7 +91,7 @@ class ShipmentPackagesView(PermissionRequiredMixin, TemplateView):
     def dispatch(self, request, *args, **kwargs):
         query_kwargs = {'pk': kwargs['pk']}
         if self.request.user.is_just_partner():
-            query_kwargs['shipment__partner'] = self.request.user
+            query_kwargs['partner'] = self.request.user
         self.shipment = get_object_or_404(Shipment, **query_kwargs)
         return super(ShipmentPackagesView, self).dispatch(request, *args, **kwargs)
 
