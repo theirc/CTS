@@ -1,6 +1,20 @@
 Release Notes for CTS
 =====================
 
+0.5.3 on Jun. 9, 2015
+---------------------
+
+* Handle more places we could get a 404 retrieving Ona forms (#11)
+* Better reporting when an Ona form ID doesn't work (#10)
+* Fix bug viewing shipment package list for partners (#7)
+* Don't store celery task results (#6)
+* Break out deploy-related files to their own repo,
+  https://github.com/theirc/CTS-ircdeploy
+* Update and improve organization of documentation.
+* Remove files related to migrating from CTS v2.
+
+NEW REPO!  https://github.com/theirc/CTS-project
+
 0.5.2 on Apr. 28, 2015
 ----------------------
 
