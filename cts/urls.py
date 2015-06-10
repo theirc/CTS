@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from accounts.views import home_view
+from cts.views import health_view
 
 
 admin.autodiscover()
@@ -12,6 +13,9 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    # Health check for load balancer
+    url(r'^health/$', health_view, name='health'),
+
     url(r'^session_security/', include('session_security.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^catalog/', include('catalog.urls')),
