@@ -1,6 +1,11 @@
 Release Notes for CTS
 =====================
 
+0.5.4 on Jun. 10, 2015
+----------------------
+
+* Add /health/ URL for load balancers to use
+
 0.5.3 on Jun. 9, 2015
 ---------------------
 
