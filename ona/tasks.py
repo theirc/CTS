@@ -16,12 +16,19 @@ from ona.representation import PackageScanFormSubmission, OnaItemBase
 logger = logging.getLogger(__name__)
 
 # If we get an error looking up a form, we remember it here so we don't keep
-# trying it again
+# trying it again.
 bad_form_ids = set()
+
+# After we've looked up a form, don't keep doing it.  Store the definitions here.
+form_defs = {}
 
 
 def reset_bad_form_ids():
     bad_form_ids.clear()
+
+
+def forget_form_definitions():
+    form_defs.clear()
 
 
 @app.task(ignore_result=True)
@@ -34,16 +41,21 @@ def process_new_package_scans():
             return
 
         client = OnaApiClient()
-        form_def = client.get_form_definition(form_id)
 
-        if not form_def:
-            # Logging an error should result in an email to the admins so they
-            # know to fix this.
-            logger.error("Bad ONA_PACKAGE_FORM_ID: %s" % form_id)
-            # Let's not keep trying for the bad form ID. We'll have to change the
-            # settings and restart to fix it.
-            bad_form_ids.add(form_id)
-            return
+        if form_id in form_defs:
+            form_def = form_defs[form_id]
+        else:
+            form_def = client.get_form_definition(form_id)
+            if form_def:
+                form_defs[form_id] = form_def
+            else:
+                # Logging an error should result in an email to the admins so they
+                # know to fix this.
+                logger.error("Bad ONA_PACKAGE_FORM_ID: %s" % form_id)
+                # Let's not keep trying for the bad form ID. We'll have to change the
+                # settings and restart to fix it.
+                bad_form_ids.add(form_id)
+                return
 
         # What's the last submission we got (if any)
         most_recent_submission = FormSubmission.objects.filter(form_id=form_id)\
@@ -92,6 +104,8 @@ def process_new_package_scans():
                                                                    existing.submission_time))
     except ConnectionError:
         logger.exception("Error connecting to Ona server")
+    except OnaApiClientException:
+        logger.exception("Error communicating with Ona server")
     except Exception:
         logger.exception("Something blew up in process_new_package_scans")
     logger.debug("process_new_package_scans task done")
@@ -109,15 +123,19 @@ def verify_deviceid():
         client = OnaApiClient()
 
         # Make sure the form exists before we try to get submissions
-        form_defn = client.get_form_definition(form_id)
-        if not form_defn:
-            # Logging an error should result in an email to the admins so they
-            # know to fix this.
-            logger.error("Bad ONA_DEVICEID_VERIFICATION_FORM_ID: %s" % form_id)
-            # Let's not keep trying for the bad form ID. We'll have to change the
-            # settings and restart to fix it.
-            bad_form_ids.add(form_id)
-            return
+        # We don't actually use the form definition for anything
+        if form_id not in form_defs:
+            form_defn = client.get_form_definition(form_id)
+            if form_defn:
+                form_defs[form_id] = form_defn
+            else:
+                # Logging an error should result in an email to the admins so they
+                # know to fix this.
+                logger.error("Bad ONA_DEVICEID_VERIFICATION_FORM_ID: %s" % form_id)
+                # Let's not keep trying for the bad form ID. We'll have to change the
+                # settings and restart to fix it.
+                bad_form_ids.add(form_id)
+                return
 
         last_retrieval, unused = LastFormRetrievalTimestamp.objects.get_or_create(form_id=form_id)
 
@@ -133,7 +151,7 @@ def verify_deviceid():
             logger.error(
                 "Got 404 getting submissions for ONA_DEVICEID_VERIFICATION_FORM_ID = %s" % form_id)
             return
-        # add the form definition JSON to each submission
+        # add the form ID to each submission
         for data in submissions:
             data.update({'form_id': form_id})
         # create a list of API repr objects and ensure they are sorted by submission date
@@ -153,6 +171,8 @@ def verify_deviceid():
                 logger.error(msg)
     except ConnectionError:
         logger.exception("Error connecting to Ona server")
+    except OnaApiClientException:
+        logger.exception("Error communicating with Ona server")
     except Exception:
         logger.exception("Something blew up in verify_deviceid")
     finally:
