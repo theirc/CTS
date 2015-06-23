@@ -56,6 +56,10 @@ class OnaApiClient(object):
             raise OnaApiClientException(0, "SSL error, see log (%s)" % e, url=url)
         if "404 Not Found" in response.text:
             raise Http404
+        if not len(response.content):
+            # An empty response is not valid JSON and probably indicates something wrong
+            # at the server. Raise a more specific error than just "couldn't parse JSON".
+            raise OnaApiClientException(0, "ONA response was empty", url=url)
         try:
             data = response.json()
         except Exception as e:

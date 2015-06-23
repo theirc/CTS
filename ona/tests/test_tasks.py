@@ -13,7 +13,8 @@ from ona.representation import OnaItemBase
 from shipments.models import PackageScan, Shipment
 from shipments.tests.factories import PackageFactory
 from ona.models import FormSubmission, minimum_aware_datetime
-from ona.tasks import process_new_package_scans, verify_deviceid, reset_bad_form_ids, bad_form_ids
+from ona.tasks import process_new_package_scans, verify_deviceid, reset_bad_form_ids, bad_form_ids, \
+    forget_form_definitions
 from ona.tests.test_models import PACKAGE_DATA, USER_CODE_DATA, QR_CODE
 
 
@@ -28,6 +29,7 @@ from ona.tests.test_models import PACKAGE_DATA, USER_CODE_DATA, QR_CODE
 class ProcessNewPackageScansTestCase(TestCase):
     def setUp(self):
         reset_bad_form_ids()
+        forget_form_definitions()
 
     def test_update_package_locations(self, mock_ona_form_def, mock_ona_form_submissions):
         self.assertFalse(FormSubmission.objects.all())
@@ -86,6 +88,7 @@ class DeviceIdToUserTestCase(TestCase):
     def setUp(self):
         self.user = CtsUserFactory(code=QR_CODE)
         reset_bad_form_ids()
+        forget_form_definitions()
 
     def test_verify_deviceid(self, mock_ona_form_submissions, mock_get_form_definition):
         self.assertEqual('', self.user.deviceid)
