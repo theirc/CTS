@@ -1,6 +1,13 @@
 Release Notes for CTS
 =====================
 
+0.5.5 on Aug. 25, 2015
+----------------------
+
+* Improve error handling a bit when accessing ONA (#13)
+* Fix Travis badge on Github (#14, thanks @stbenjam!)
+* Update to Django 1.7.10; latest Django security release (#16)
+
 0.5.4 on Jun. 10, 2015
 ----------------------
 
