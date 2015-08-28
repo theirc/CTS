@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'django_tables2',
     'django_tables2_reports',
     'bootstrap3',
+    'django_extensions',
     # Project apps
     'catalog',
     'shipments',
