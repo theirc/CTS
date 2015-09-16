@@ -1,6 +1,5 @@
 from datetime import date, datetime
 from decimal import Decimal
-from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.gis.db import models as gis_models
@@ -106,7 +105,8 @@ class Shipment(ShipmentMixin, models.Model):
     date_expected = models.DateField(blank=True, null=True)
     date_received = models.DateField(blank=True, null=True)
     status = models.IntegerField(choices=SHIPMENT_STATUS_CHOICES,
-                                 default=STATUS_IN_PROGRESS)
+                                 default=STATUS_IN_PROGRESS,
+                                 db_index=True)
     transporter = models.ForeignKey(Transporter, blank=True, null=True)
     partner = models.ForeignKey(CtsUser,
                                 limit_choices_to={'role': ROLE_PARTNER})
@@ -246,16 +246,6 @@ class ShipmentDBView(ShipmentMixin, models.Model):
         db_table = 'shipments_view'
         managed = False
         verbose_name = 'shipment'
-
-    @property
-    def locations(self):
-        """Distinct list of location records for the shipment's package(s)"""
-        packages = Package.objects.filter(shipment=self)
-        locations = PackageScan.objects.filter(
-            package__in=packages
-        ).values('when', 'latitude', 'longitude').distinct()
-        sorted_locations = sorted(locations, key=itemgetter('when'))
-        return sorted_locations
 
     @property
     def packages(self):
@@ -737,6 +727,8 @@ class PackageItemDBView(models.Model):
 
 class PackageScan(models.Model):
     package = models.ForeignKey(Package, related_name='scans', db_index=True)
+    # Storing shipment is redundant but speeds up generating maps by shipment
+    shipment = models.ForeignKey(Shipment, related_name='scans')
     longitude = models.DecimalField(decimal_places=10, max_digits=13, null=True)
     latitude = models.DecimalField(decimal_places=10, max_digits=13, null=True)
     altitude = models.DecimalField(decimal_places=6, max_digits=13,
@@ -761,6 +753,8 @@ class PackageScan(models.Model):
         return [self.latitude, self.longitude]
 
     def save(self, *args, **kwargs):
+        if self.package:
+            self.shipment = self.package.shipment
         if not self.country and self.longitude and self.latitude:
             point = 'POINT (%s %s )' % (self.longitude, self.latitude)
             qs = WorldBorder.objects.filter(mpoly__contains=point)
