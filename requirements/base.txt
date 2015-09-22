@@ -40,4 +40,4 @@ PyYAML==3.11
 -e hg+https://bitbucket.org/scottm_caktus/django-dbbackup#egg=django-dbbackup
 
 # To use 'sqldsn'
-git+https://github.com/caktus/django-extensions.git@sqldsn_postgis#egg=django-extensions
+django-extensions==1.5.7
