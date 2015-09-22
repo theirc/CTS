@@ -32,8 +32,8 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # If these lines change, change conf/salt/project/db/init_sls
-DATABASES['default']['NAME'] = 'cts_%s' % INSTANCE
-DATABASES['default']['USER'] = 'cts_%s' % INSTANCE
+DATABASES['default']['NAME'] = os.environ.get('DB_NAME', 'cts_%s' % INSTANCE)
+DATABASES['default']['USER'] = os.environ.get('DB_USER', 'cts_%s' % INSTANCE)
 
 DATABASES['default']['HOST'] = os.environ.get('DB_HOST', '')
 DATABASES['default']['PORT'] = os.environ.get('DB_PORT', '')
