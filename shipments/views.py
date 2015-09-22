@@ -30,9 +30,15 @@ class ShipmentPartnerMixin(object):
     Also, returns Shipments on a POST, but ShipmentDBViews on a GET.
     Unless permit_view is False, then it always uses Shipments.
     """
-    def get_shipment_queryset(self, permit_view=True):
-        """Method to explicitly get shipment objects"""
-        model = Shipment if self.request.method == 'POST' or not permit_view else ShipmentDBView
+    def get_shipment_queryset(self, permit_view=True, model=None):
+        """
+        Method to explicitly get shipment objects.
+        If model is passed, use that model class; otherwise, uses
+        Shipment on a POST or if permit_view is False, else ShipmentDBView.
+        If user is just a partner, limits objects to their own.
+        """
+        if not model:
+            model = Shipment if self.request.method == 'POST' or not permit_view else ShipmentDBView
         queryset = model.objects.all()
         if self.request.user.is_just_partner():
             queryset = queryset.filter(partner=self.request.user)
@@ -558,17 +564,21 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
     template_name = 'shipments/dashboard.html'
 
     def _shipments_aggregates(self, shipments):
-        packages = shipments.aggregate(pkg_count=Sum('num_packages'))
+        shipment_ids = shipments.values('id')
+        packages = self.get_shipment_queryset(model=ShipmentDBView)\
+            .filter(id__in=shipment_ids) \
+            .aggregate(
+            pkg_count=Sum('num_packages'),
+            sum_price_usd=Sum('price_usd'),
+            sum_price_local=Sum('price_local'))
         items = PackageDBView.objects.filter(
-            shipment_id__in=shipments.values('id')
+            shipment_id__in=shipment_ids
         ).aggregate(item_count=Sum('num_items'))
         partners = CtsUser.objects.filter(
-            id__in=shipments.values('partner__id')
+            id__in=shipments.values('partner_id')
         )
-        value = shipments.aggregate(
-            sum_price_usd=Sum('price_usd'),
-            sum_price_local=Sum('price_local')
-        )
+        value = packages
+
         return packages, items, partners, value
 
     def get(self, request, *args, **kwargs):
@@ -577,7 +587,9 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
         else:
             partners = CtsUser.objects.filter(role=ROLE_PARTNER).order_by('name')
         donors = Donor.objects.all()
-        shipments = self.get_shipment_queryset().order_by('description')
+        shipments = self.get_shipment_queryset(model=Shipment)\
+            .order_by('description')\
+            .only('description', 'shipment_date', 'partner', 'store_release')
 
         context = {}
         context['shipments'] = shipments
@@ -587,7 +599,7 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
         return render(request, self.template_name, context)
 
     def get_ajax(self, request, *args, **kwargs):
-        shipments = self.get_shipment_queryset().order_by('description')
+        shipments = self.get_shipment_queryset(model=Shipment)
         if request.user.is_just_partner():
             partners = [request.user]
         else:
@@ -607,21 +619,17 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
                 if shipment_filter:
                     shipments = shipments.filter(id=shipment_filter)
                 if partner_filter:
-                    shipments = shipments.filter(partner__id=partner_filter)
+                    shipments = shipments.filter(partner_id=partner_filter)
                 if donor_filter:
-                    donor = Donor.objects.get(pk=donor_filter)
-                    pkg_ids = donor.packageitem_set.values_list('package_id', flat=True)
-                    shipments = shipments.filter(packages__in=pkg_ids)
-                shipments = ShipmentDBView.objects.filter(
-                    id__in=shipments.values_list('id', flat=True)
-                ).order_by('description')
+                    shipments = shipments.filter(packages__items__donor_id=donor_filter).distinct()
 
                 map_data = []
-                for shipment in shipments:
+                for shipment in shipments.select_related('partner', 'scans'):
                     shipment_data = {
                         'descr': shipment.__unicode__(),
                         'colour': shipment.partner.colour,
-                        'locations': shipment.locations
+                        'locations': list(shipment.scans.values('when', 'latitude', 'longitude').
+                                          distinct()),
                     }
                     map_data.append(shipment_data)
 
@@ -635,7 +643,7 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
                 if donor_filter:
                     # get options for dropdowns
                     partners = CtsUser.objects.filter(
-                        id__in=shipments.values('partner__id')
+                        id__in=shipments.values('partner_id')
                     )
                     data['partner_options'] = [(x.id, x.name) for x in partners]
                     data['shipment_options'] = [(x.id, x.__unicode__()) for x in shipments]
@@ -644,14 +652,14 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
                 data['delivered'] = {
                     'packages': d_packages,
                     'items': d_items,
-                    'partners': ', '.join([x.name for x in d_partners]) or None,
+                    'partners': ', '.join([x.name for x in d_partners.only('name')]) or None,
                     'total_value': d_value,
                     'number': d_shipments.count()
                 }
                 data['undelivered'] = {
                     'packages': u_packages,
                     'items': u_items,
-                    'partners': ', '.join([x.name for x in u_partners]) or None,
+                    'partners': ', '.join([x.name for x in u_partners.only('name')]) or None,
                     'total_value': u_value,
                     'number': u_shipments.count()
                 }
