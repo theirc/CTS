@@ -105,22 +105,16 @@ LOGGING = {
         }
     },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',  # Nothing here logs DEBUG level messages ordinarily
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'basic',
-            'filename': os.path.join(LOG_DIR, 'django.log'),
-            'maxBytes': 10 * 1024 * 1024,  # 10 MB
-            'backupCount': 10,
-        },
-        'mail_admins': {
-            'level': 'ERROR',
+        'syslog': {
+            'level': 'INFO',
+            'class': 'logging.handlers.SysLogHandler',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
+            'address': '/dev/log',
+            'facility': 'local6',
+        }
     },
     'root': {
-        'handlers': ['file', 'mail_admins'],
+        'handlers': ['syslog'],
         'level': 'INFO',
     },
     'loggers': {
@@ -131,7 +125,7 @@ LOGGING = {
         # BEGIN required loggers #
         ##########################
         'django': {
-            'handlers': ['mail_admins'],
+            'handlers': [],  # Let them propagate to root
             'level': 'ERROR',
             'propagate': True,
         },
@@ -143,13 +137,13 @@ LOGGING = {
         # END required loggers #
         ########################
         'ona': {
-            'handlers': ['file'],
+            'handlers': ['syslog'],
             'level': 'INFO',
             'propagate': True,
         },
         'ona.tasks': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'handlers': ['syslog'],
+            'level': 'INFO',
             'propagate': True,
         }
     }
