@@ -46,15 +46,13 @@ Install the postgis and hstore templates and create the Postgres database:
 
     cd scripts
     ./ubuntu_install_postgres_packages.sh
-    sudo su postgres
-    ./create_postgis_hstore_template.sh
-    exit
+    sudo -u postgres ./create_postgis_hstore_template.sh
     createdb -E UTF-8 cts -T template_postgis_hstore
     cd ..
 
-Create the Postgres database and run the initial syncdb/migrate::
+Create the Postgres database and run the initial migrate::
 
-    python manage.py syncdb --migrate
+    python manage.py migrate
 
 You should now be able to run the development server::
 
