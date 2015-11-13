@@ -36,8 +36,5 @@ django-sendfile==0.3.6
 # To read Salt config
 PyYAML==3.11
 
-# For backups
--e hg+https://bitbucket.org/scottm_caktus/django-dbbackup#egg=django-dbbackup
-
 # To use 'sqldsn'
 django-extensions==1.5.7
