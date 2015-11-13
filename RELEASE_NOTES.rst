@@ -1,6 +1,14 @@
 Release Notes for CTS
 =====================
 
+0.6.0 on Nov. 13, 2015
+----------------------
+
+* Speed up maps (#17)
+* Use django-extensions to setup DB connection (#18)
+* Log to syslog (#19)
+* Update SECRET_KEY from environment (#22)
+
 0.5.5 on Aug. 25, 2015
 ----------------------
 
