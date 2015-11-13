@@ -102,7 +102,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'qr7rsp_z@z5_=*)n6^a6e^(83=ctdz_1!_zilo%u=uu^(qgabj'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'qr7rsp_z@z5_=*)n6^a6e^(83=ctdz_1!_zilo%u=uu^(qgabj')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'django_tables2',
     'django_tables2_reports',
     'bootstrap3',
+    'django_extensions',
     # Project apps
     'catalog',
     'shipments',
