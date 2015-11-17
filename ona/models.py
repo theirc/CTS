@@ -93,6 +93,7 @@ def record_package_location(sender, instance, **kwargs):
         if kwargs.get('created', False) and int(instance.data['form_id']) == form_id:
             submission = PackageScanFormSubmission(instance.data)
             logger.debug("New formsubmission. %d QR codes", len(submission.get_qr_codes()))
+
             for code in submission.get_qr_codes():
                 logger.debug("QR code: %s" % code)
                 try:

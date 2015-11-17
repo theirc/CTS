@@ -84,9 +84,14 @@ class PackageScanFormSubmission(OnaItemBase):
         return self.get_gps_data(3)
 
     def get_qr_codes(self):
-        """Return a unique set of package qr codes"""
-        key = 'package/qr_code'
-        return set([x[key] for x in json.loads(self.package) if key in x])
+        """Return a unique set of package or voucher qr codes"""
+        pkg_info = 'package_information/package'
+        if hasattr(self, pkg_info):
+            key = '{0}/qr_code'.format(pkg_info)
+            return set([x[key] for x in json.loads(getattr(self, pkg_info)) if key in x])
+        else:
+            key = 'voucher_information/qr_code'
+            return [getattr(self, key)]
 
     def get_current_packagescan_label(self):
         """
