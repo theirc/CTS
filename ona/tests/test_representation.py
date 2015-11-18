@@ -14,10 +14,9 @@ SUBMISSION_JSON = {
     '_submission_time': datetime.now().strftime(SUBMITTED_AT_FORMAT),
 }
 
-PACKAGE_SUBMISSION_JSON = {
-    'gps': '24.24 25.25 1.0 5.0',
-    'package_information/package': [{"package_information/package/qr_code": "test", "package_information/package/position": "1"}],  # noqa
-    '_submission_time': datetime.now().strftime(SUBMITTED_AT_FORMAT),
+PACKAGE_JSON = {
+    u'package_information/package':
+    u'[{"package_information/package/qr_code": "test", "package_information/package/position": "1"}]'  # noqa
 }
 
 
@@ -62,10 +61,9 @@ class ProductTestCase(unittest.TestCase):
     def test_voucher_qr_codes(self):
         self.assertEqual(['test'], self.form_submission.get_qr_codes())
 
-    # TODO: Need to get this working....
-    # def test_package_qr_codes(self):
-    #     self.form_submission = PackageScanFormSubmission(PACKAGE_SUBMISSION_JSON)
-    #     self.assertEqual(['test'], self.form_submission.get_qr_codes())
+    def test_package_qr_codes(self):
+        self.form_submission = PackageScanFormSubmission(PACKAGE_JSON)
+        self.assertEqual(set(['test']), self.form_submission.get_qr_codes())
 
     def test_gps(self):
         self.assertEqual(SUBMISSION_JSON['gps'], self.form_submission.gps)
