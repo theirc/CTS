@@ -138,7 +138,7 @@ USER_CODE_DATA = """
 """
 
 
-@override_settings(ONA_PACKAGE_FORM_ID=123, ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_PACKAGE_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class FormSubmissionTestCase(TestCase):
     def test_record_package_location(self):
         PackageFactory(code=QR_CODE)

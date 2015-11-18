@@ -3,6 +3,8 @@ import pytz
 
 from datetime import datetime
 
+from shipments.models import Shipment
+
 
 class OnaItemBase(object):
     """Wrapper for an arbitrary Ona item derived from a JSON object.
@@ -85,13 +87,19 @@ class PackageScanFormSubmission(OnaItemBase):
 
     def get_qr_codes(self):
         """Return a unique set of package or voucher qr codes"""
-        pkg_info = 'package_information/package'
-        if hasattr(self, pkg_info):
-            key = '{0}/qr_code'.format(pkg_info)
-            return set([x[key] for x in json.loads(getattr(self, pkg_info)) if key in x])
+        old_key = 'package'
+        new_key = 'package_information/package'
+        voucher_key = 'voucher_information/qr_code'
+        if self.is_voucher():
+            return [getattr(self, voucher_key)]
+        elif hasattr(self, new_key):
+            key = '{0}/qr_code'.format(new_key)
+            return set([x[key] for x in json.loads(getattr(self, new_key)) if key in x])
+        elif hasattr(self, old_key):
+            key = '{0}/qr_code'.format(old_key)
+            return set([x[key] for x in json.loads(self.package) if key in x])
         else:
-            key = 'voucher_information/qr_code'
-            return [getattr(self, key)]
+            return []
 
     def get_current_packagescan_label(self):
         """
@@ -106,14 +114,22 @@ class PackageScanFormSubmission(OnaItemBase):
         # STATUS_RECEIVED-Distribution Point
         # STATUS_RECEIVED-Post-Distribution Point
         # Look up the suffix if available, else the prefix and return the appropriate label
-        parts = self.current_location.split('-', 1)
-        choices = json.loads(self.form_definition)['choices']['location_list']
-        if len(parts) == 2:
-            key = parts[1]
+
+        if self.is_voucher():
+            # If the package scan is for a voucher, set status to received
+            return Shipment.STATUS_RECEIVED
         else:
-            key = parts[0]
-        try:
-            choice = [element for element in choices if key in element['name']][0]
-            return choice['label']['English']
-        except (IndexError, KeyError):
-            return ''
+            parts = self.current_location.split('-', 1)
+            choices = json.loads(self.form_definition)['choices']['location_list']
+            if len(parts) == 2:
+                key = parts[1]
+            else:
+                key = parts[0]
+            try:
+                choice = [element for element in choices if key in element['name']][0]
+                return choice['label']['English']
+            except (IndexError, KeyError):
+                return ''
+
+    def is_voucher(self):
+        return hasattr(self, 'voucher_information/qr_code')

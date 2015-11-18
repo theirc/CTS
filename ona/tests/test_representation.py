@@ -14,9 +14,14 @@ SUBMISSION_JSON = {
     '_submission_time': datetime.now().strftime(SUBMITTED_AT_FORMAT),
 }
 
-PACKAGE_JSON = {
+NEW_PACKAGE_JSON = {
     u'package_information/package':
     u'[{"package_information/package/qr_code": "test", "package_information/package/position": "1"}]'  # noqa
+}
+
+OLD_PACKAGE_JSON = {
+    u'package':
+    u'[{"package/qr_code": "test", "package/position": "1"}]'
 }
 
 
@@ -62,7 +67,11 @@ class ProductTestCase(unittest.TestCase):
         self.assertEqual(['test'], self.form_submission.get_qr_codes())
 
     def test_package_qr_codes(self):
-        self.form_submission = PackageScanFormSubmission(PACKAGE_JSON)
+        self.form_submission = PackageScanFormSubmission(NEW_PACKAGE_JSON)
+        self.assertEqual(set(['test']), self.form_submission.get_qr_codes())
+
+    def test_old_package_qr_codes(self):
+        self.form_submission = PackageScanFormSubmission(OLD_PACKAGE_JSON)
         self.assertEqual(set(['test']), self.form_submission.get_qr_codes())
 
     def test_gps(self):

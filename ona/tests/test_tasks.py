@@ -21,7 +21,7 @@ from ona.tests.test_models import PACKAGE_DATA, USER_CODE_DATA, QR_CODE
 @override_settings(
     ONA_API_ACCESS_TOKEN='foo',
     ONA_DEVICEID_VERIFICATION_FORM_ID=111,
-    ONA_PACKAGE_FORM_ID=123,
+    ONA_PACKAGE_FORM_IDS=[123, 456],
     ONA_DOMAIN='ona.io'
 )
 @patch('ona.tasks.OnaApiClient.get_form_submissions')
@@ -71,14 +71,14 @@ class ProcessNewPackageScansTestCase(TestCase):
     def test_bad_form_id(self, mock_logger, mock_ona_form_def, mock_ona_form_submissions):
         mock_ona_form_def.return_value = None
         process_new_package_scans.run()
-        self.assertIn(settings.ONA_PACKAGE_FORM_ID, bad_form_ids)
+        self.assertIn(123, bad_form_ids)
         self.assertTrue(mock_logger.error.called)
 
 
 @override_settings(
     ONA_API_ACCESS_TOKEN='foo',
     ONA_DEVICEID_VERIFICATION_FORM_ID=111,
-    ONA_PACKAGE_FORM_ID=123,
+    ONA_PACKAGE_FORM_IDS=[123, 456],
     ONA_DOMAIN='ona.io'
 )
 @patch('ona.tasks.OnaApiClient.get_form_definition', autospec=True)

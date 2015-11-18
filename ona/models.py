@@ -89,8 +89,8 @@ def record_package_location(sender, instance, **kwargs):
     # Only record package locations for package tracking forms
     try:
         logger.debug("record_package_location...")
-        form_id = int(settings.ONA_PACKAGE_FORM_ID)
-        if kwargs.get('created', False) and int(instance.data['form_id']) == form_id:
+        form_ids = [int(x) for x in settings.ONA_PACKAGE_FORM_IDS]
+        if kwargs.get('created', False) and int(instance.data['form_id']) in form_ids:
             submission = PackageScanFormSubmission(instance.data)
             logger.debug("New formsubmission. %d QR codes", len(submission.get_qr_codes()))
 
@@ -122,16 +122,19 @@ def record_package_location(sender, instance, **kwargs):
                     # STATUS_RECEIVED-Post-Distribution Point
                     # The prefix part (before the first -) is one of the predefined status
                     # names that are attributes of the Shipment model.
-                    status = submission.current_location.split('-', 1)[0]
-                    logger.debug("status=%r" % status)
-                    if not hasattr(Shipment, status):
-                        # If no match is found, log the invalid package status as it is
-                        # indicative of the app and Ona being out of sync
-                        msg = "FormSubmission with form id of %s has invalid package status: %s" \
-                            % (instance.form_id, status)
-                        logger.error(msg)
-                        continue
-                    status = getattr(Shipment, status, None)
+                    if submission.is_voucher():
+                        status = Shipment.STATUS_RECEIVED
+                    else:
+                        status = submission.current_location.split('-', 1)[0]
+                        logger.debug("status=%r" % status)
+                        if not hasattr(Shipment, status):
+                            # If no match is found, log the invalid package status as it is
+                            # indicative of the app and Ona being out of sync
+                            msg = "FormSubmission with form id of %s has invalid package status: %s" \
+                                % (instance.form_id, status)
+                            logger.error(msg)
+                            continue
+                        status = getattr(Shipment, status, None)
                     if status:
                         update_fields = ['last_scan_status_label']
                         pkg.last_scan_status_label = scan_status_label
@@ -154,9 +157,9 @@ def record_package_location(sender, instance, **kwargs):
                         logger.debug("set status to %s" % pkg.get_status_display())
         else:
             logger.debug("Ignoring this FormSubmission.  kwargs[created]=%s, form_id=%s,"
-                         " form_id=%s"
+                         " form_ids=%s"
                          % (kwargs.get('created', False), int(instance.data['form_id']),
-                            form_id))
+                            form_ids))
     except Exception:
         logger.exception("Something blew up in record_package_location")
 
