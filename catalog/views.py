@@ -17,7 +17,7 @@ from django.views.generic import ListView, UpdateView, DeleteView, CreateView, F
 from braces.views import PermissionRequiredMixin
 
 from catalog.forms import CatalogFileImportForm, CatalogItemEditForm, DonorEditForm, \
-    CATALOG_ITEM_FIELDS, KIT_FIELDS, KitEditForm, AddKitItemsForm
+    CATALOG_ITEM_FIELDS, KitEditForm, AddKitItemsForm
 from catalog.models import CatalogItem, ItemCategory, Transporter, Supplier, \
     Donor, DonorCode
 from catalog.utils import catalog_import, CatalogImportFailure, IMPORT_COLUMN_NAMES

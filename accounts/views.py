@@ -7,7 +7,7 @@ from django.views.generic import ListView, UpdateView, DeleteView, CreateView, V
 
 from braces.views import PermissionRequiredMixin
 
-from accounts.forms import CtsUserEditForm, CTS_USER_FIELDS
+from accounts.forms import CtsUserEditForm
 from accounts.models import CtsUser
 from accounts.utils import send_user_password_reset_email
 from cts.utils import FormErrorReturns400Mixin, DeleteViewMixin
