@@ -87,19 +87,12 @@ class PackageScanFormSubmission(OnaItemBase):
 
     def get_qr_codes(self):
         """Return a unique set of package or voucher qr codes"""
-        old_key = 'package'
-        new_key = 'package_information/package'
-        voucher_key = 'voucher_information/qr_code'
         if self.is_voucher():
-            return [getattr(self, voucher_key)]
-        elif hasattr(self, new_key):
-            key = '{0}/qr_code'.format(new_key)
-            return set([x[key] for x in json.loads(getattr(self, new_key)) if key in x])
-        elif hasattr(self, old_key):
-            key = '{0}/qr_code'.format(old_key)
-            return set([x[key] for x in json.loads(self.package) if key in x])
+            key = 'voucher_information/qr_code'
+            return [getattr(self, key)]
         else:
-            return []
+            key = 'package/qr_code'
+            return set([x[key] for x in json.loads(self.package) if key in x])
 
     def get_current_packagescan_label(self):
         """

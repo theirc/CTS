@@ -32,11 +32,11 @@ def forget_form_definitions():
 
 
 @app.task(ignore_result=True)
-def process_new_package_scans():
+def process_new_scans():
     """Updates the local database with new package tracking form submissions"""
-    logger.debug("process_new_package_scans task starting...")
+    logger.debug("process_new_scans task starting...")
     try:
-        form_ids = [int(x) for x in settings.ONA_PACKAGE_FORM_IDS]
+        form_ids = [int(x) for x in settings.ONA_FORM_IDS]
         for form_id in form_ids:
             if form_id in bad_form_ids:
                 return
@@ -52,7 +52,7 @@ def process_new_package_scans():
                 else:
                     # Logging an error should result in an email to the admins so they
                     # know to fix this.
-                    logger.error("Bad ONA_PACKAGE_FORM_ID: %s" % form_id)
+                    logger.error("Bad ONA_FORM_ID: %s" % form_id)
                     # Let's not keep trying for the bad form ID. We'll have to change the
                     # settings and restart to fix it.
                     bad_form_ids.add(form_id)
@@ -73,17 +73,17 @@ def process_new_package_scans():
                 submissions = client.get_form_submissions(form_id, since=since)
             except Http404:
                 logger.error(
-                    "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+                    "Got 404 getting submissions for ONA_FORM_ID = %s" % form_id)
                 return
             except OnaApiClientException as e:
                 if e.status_code != 404:
                     raise
                 logger.error(
-                    "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
+                    "Got 404 getting submissions for ONA_FORM_ID = %s" % form_id)
                 return
 
             logger.debug(
-                "process_new_package_scans downloaded %d submitted forms" % len(submissions))
+                "process_new_scans downloaded %d submitted forms" % len(submissions))
             # add the form definition JSON to each submission
             for data in submissions:
                 data.update({'form_id': form_id})
@@ -109,8 +109,8 @@ def process_new_package_scans():
     except OnaApiClientException:
         logger.exception("Error communicating with Ona server")
     except Exception:
-        logger.exception("Something blew up in process_new_package_scans")
-    logger.debug("process_new_package_scans task done")
+        logger.exception("Something blew up in process_new_scans")
+    logger.debug("process_new_scans task done")
 
 
 @app.task(ignore_result=True)

@@ -7,7 +7,7 @@ import logging
 
 from django.core.management.base import NoArgsCommand
 
-from ona.tasks import process_new_package_scans
+from ona.tasks import process_new_scans
 
 
 class Command(NoArgsCommand):
@@ -18,4 +18,4 @@ class Command(NoArgsCommand):
         logger.setLevel(logging.DEBUG)
         logger.addHandler(logging.StreamHandler())
 
-        process_new_package_scans()
+        process_new_scans()

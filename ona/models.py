@@ -89,7 +89,7 @@ def record_package_location(sender, instance, **kwargs):
     # Only record package locations for package tracking forms
     try:
         logger.debug("record_package_location...")
-        form_ids = [int(x) for x in settings.ONA_PACKAGE_FORM_IDS]
+        form_ids = [int(x) for x in settings.ONA_FORM_IDS]
         if kwargs.get('created', False) and int(instance.data['form_id']) in form_ids:
             submission = PackageScanFormSubmission(instance.data)
             logger.debug("New formsubmission. %d QR codes", len(submission.get_qr_codes()))

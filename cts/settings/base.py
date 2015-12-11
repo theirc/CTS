@@ -276,8 +276,8 @@ WORLD_BORDERS_SHAPEFILE = os.path.join(
 
 
 CELERYBEAT_SCHEDULE = {
-    'process_new_package_scans': {
-        'task': 'ona.tasks.process_new_package_scans',
+    'process_new_scans': {
+        'task': 'ona.tasks.process_new_scans',
         'schedule': timedelta(minutes=15),
     },
     'verify_deviceid': {
