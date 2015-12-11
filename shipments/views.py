@@ -14,7 +14,7 @@ from catalog.models import Donor
 from catalog.views import FormErrorReturns400Mixin
 from cts.utils import DeleteViewMixin, make_form_readonly
 from qrcode import QRCode, ERROR_CORRECT_M, ERROR_CORRECT_Q, ERROR_CORRECT_L
-from shipments.forms import SHIPMENT_FIELDS, ShipmentEditForm, \
+from shipments.forms import ShipmentEditForm, \
     NewPackageFromKitForm, PackageCreateForm, \
     PackageEditForm, PackageItemEditForm, PackageItemCreateForm, \
     ShipmentLostForm, PackageItemBulkEditForm, PrintForm, PRINT_FORMAT_SUMMARY, PRINT_FORMAT_FULL, \
@@ -67,7 +67,6 @@ class ShipmentsListView(PermissionRequiredMixin, ShipmentPartnerMixin, ListView)
 
 
 class ShipmentCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
-    fields = SHIPMENT_FIELDS
     form_class = ShipmentEditForm
     permission_required = 'shipments.add_shipment'
     model = Shipment
@@ -106,7 +105,7 @@ class ShipmentPackagesView(PermissionRequiredMixin, TemplateView):
         context['shipment'] = self.shipment
         # Look up packages in the view so we get the stats for free
         context['packages'] = PackageDBView.objects.filter(
-            shipment=self.shipment).order_by('number_in_shipment')
+            shipment_id=self.shipment.pk).order_by('number_in_shipment')
         return context
 
 
@@ -162,7 +161,7 @@ class ShipmentUpdateView(MultiplePermissionsRequiredMixin, FormErrorReturns400Mi
         context = super(ShipmentUpdateView, self).get_context_data(**kwargs)
         # Look up packages in the view so we get the stats for free
         context['packages'] = PackageDBView.objects.filter(
-            shipment=self.object).order_by('number_in_shipment')
+            shipment_id=self.object.pk).order_by('number_in_shipment')
         context['shipment'] = self.object
         # We're just populating the shipments dropdown and don't need to compute
         # the shipment prices etc, so skip the expensive query on the SQL View
@@ -436,12 +435,12 @@ class SummaryManifestView(MultiplePermissionsRequiredMixin,
         return super(SummaryManifestView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Package.objects.filter(shipment=self.object)
+        return Package.objects.filter(shipment_id=self.object.pk)
 
     def get_context_data(self, **kwargs):
         context = super(SummaryManifestView, self).get_context_data(**kwargs)
         context['shipment'] = self.object
-        context['packages'] = Package.objects.filter(shipment=self.object)
+        context['packages'] = Package.objects.filter(shipment_id=self.object.pk)
         if 'size' in self.kwargs:
             # qrcode size in cm
             context['size'] = self.kwargs['size']
@@ -624,7 +623,7 @@ class ShipmentsDashboardView(LoginRequiredMixin, JSONResponseMixin, AjaxResponse
                     shipments = shipments.filter(packages__items__donor_id=donor_filter).distinct()
 
                 map_data = []
-                for shipment in shipments.select_related('partner', 'scans'):
+                for shipment in shipments.select_related('partner'):
                     shipment_data = {
                         'descr': shipment.__unicode__(),
                         'colour': shipment.partner.colour,

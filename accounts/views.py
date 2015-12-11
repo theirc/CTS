@@ -30,7 +30,6 @@ class CtsUserSendPasswordReset(PermissionRequiredMixin, View):
 
 class CtsUserCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
     permission_required = 'accounts.add_ctsuser'
-    fields = CTS_USER_FIELDS
     form_class = CtsUserEditForm
     initial = {'is_active': True, 'name': '', 'email': ''}
     model = CtsUser

@@ -9,9 +9,11 @@ from catalog.tests.factories import CatalogItemFactory, ItemCategoryFactory
 class CatalogAPITest(BaseAPITest):
     @classmethod
     def setUpClass(cls):
+        super(CatalogAPITest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(CatalogAPITest, self).setUp()
         self.email = 'ginger@example.com'
         self.password = 'rogers'
         self.user = CtsUserFactory(email=self.email,

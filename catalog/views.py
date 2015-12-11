@@ -31,7 +31,6 @@ FIELD_NAME_RE = re.compile('^quantity-(\d+)$')
 
 
 class CatalogItemCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
-    fields = CATALOG_ITEM_FIELDS
     form_class = CatalogItemEditForm
     permission_required = 'catalog.add_catalogitem'
     model = CatalogItem
@@ -183,7 +182,6 @@ class CatalogImportView(PermissionRequiredMixin, FormErrorReturns400Mixin, FormV
 #
 
 class KitCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
-    fields = KIT_FIELDS
     form_class = KitEditForm
     permission_required = 'shipments.add_kit'
     model = Kit

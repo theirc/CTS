@@ -13,6 +13,7 @@ from shipments.tests.factories import ShipmentFactory, PackageFactory, PackageIt
 class ShipmentTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(ShipmentTest, cls).setUpClass()
         bootstrap_permissions()
 
     def test_package_price(self):
