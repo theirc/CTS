@@ -13,9 +13,11 @@ from accounts.utils import bootstrap_permissions
 class CtsUserViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(CtsUserViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(CtsUserViewTest, self).setUp()
         self.user = CtsUserFactory(email='joe@example.com', password='6pack')
         assert self.client.login(email='joe@example.com', password="6pack")
 

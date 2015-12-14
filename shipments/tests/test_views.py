@@ -28,9 +28,11 @@ from shipments.tests.factories import ShipmentFactory, PackageFactory, \
 class BaseViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(BaseViewTestCase, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(BaseViewTestCase, self).setUp()
         self.email = 'fred@example.com'
         self.password = 'flintstone'
         self.user = get_user_model().objects.create_superuser(password=self.password,
@@ -659,6 +661,7 @@ class FullManifestViewTest(BaseViewTestCase):
 class QRCodeTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(QRCodeTest, cls).setUpClass()
         bootstrap_permissions()
 
     def test_qrcode(self):
