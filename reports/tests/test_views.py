@@ -22,7 +22,7 @@ class TestReportList(TestCase):
     template_name = 'reports/reports_list.html'
 
     def setUp(self):
-        # super(TestReportList, self).setUp()
+        super(TestReportList, self).setUp()
         self.user = CtsUserFactory(email="sam@example.com")
         self.user.set_password("password")
         self.user.save()
