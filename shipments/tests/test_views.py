@@ -806,7 +806,7 @@ class BulkEditPackageItemsViewTest(BaseViewTestCase):
         self.assertNoPermission(rsp)
 
 
-@override_settings(ONA_PACKAGE_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class ShipmentDashboardViewTest(BaseViewTestCase):
     def setUp(self):
         super(ShipmentDashboardViewTest, self).setUp()
@@ -851,7 +851,7 @@ class ShipmentDashboardViewTest(BaseViewTestCase):
         self.assertNotIn(self.shipment, shipments)
 
 
-@override_settings(ONA_PACKAGE_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class ShipmentPackageMapViewTest(BaseViewTestCase):
     def setUp(self):
         super(ShipmentPackageMapViewTest, self).setUp()

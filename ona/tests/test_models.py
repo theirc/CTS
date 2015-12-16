@@ -35,8 +35,8 @@ PACKAGE_DATA = """
     "_submitted_by": null,
     "formhub/uuid": "799705ba0bd54b4d97bcf43644e4c272",
     "_id": 150250,
-    "package_information/package": [
-        {"package_information/package/qr_code": "test", "package_information/package/position": "1"}
+    "package": [
+        {"package/qr_code": "test", "package/position": "1"}
     ],
     "_submission_time": "2014-07-25T17:19:15",
     "governate": "asdfasfd",
@@ -65,7 +65,6 @@ PACKAGE_DATA = """
 VOUCHER_DATA = """
 {
     "_notes": [],
-    "package_count": "1",
     "_xform_id_string": "123",
     "_bamboo_dataset_id": "",
     "_tags": [],
@@ -75,10 +74,8 @@ VOUCHER_DATA = """
     "district": "asdfasdf",
     "_geolocation": ["35.7201", "-79.1772"],
     "_status": "submitted_via_web",
-    "num_packages": "1",
     "today": "2014-07-25",
     "gps": "35.7201 -79.1772 0 24000",
-    "complete": "yes",
     "_uuid": "2a11435f-8eaf-44f9-bd75-00a4bac8fbcd",
     "_submitted_by": null,
     "formhub/uuid": "799705ba0bd54b4d97bcf43644e4c272",
@@ -89,7 +86,7 @@ VOUCHER_DATA = """
     "_attachments": [],
     "deviceid": "enketo.org:nlwPcZ7s4nDDhvk8",
     "sub_district": "asdfasdf",
-    "form_id": "123",
+    "form_id": "456",
     "form_definition": {
         "choices": {
             "location_list": [
@@ -138,7 +135,8 @@ USER_CODE_DATA = """
 """
 
 
-@override_settings(ONA_PACKAGE_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456],
+                   ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class FormSubmissionTestCase(TestCase):
     def test_record_package_location(self):
         PackageFactory(code=QR_CODE)
