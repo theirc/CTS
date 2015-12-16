@@ -25,9 +25,11 @@ from shipments.tests.factories import KitFactory, KitItemFactory, PackageItemFac
 class CatalogViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(CatalogViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(CatalogViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack", role=ROLE_OFFICER)
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -276,9 +278,11 @@ class CatalogViewTest(TestCase):
 class TransporterViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(TransporterViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(TransporterViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack")
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -363,9 +367,11 @@ class TransporterViewTest(TestCase):
 class SupplierViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(SupplierViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(SupplierViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack")
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -450,9 +456,11 @@ class SupplierViewTest(TestCase):
 class CategoryViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(CategoryViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(CategoryViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack", role=ROLE_OFFICER)
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -537,9 +545,11 @@ class CategoryViewTest(TestCase):
 class DonorViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(DonorViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(DonorViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack")
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -652,9 +662,11 @@ class DonorViewTest(TestCase):
 class DonorCodeViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(DonorCodeViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(DonorCodeViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack", role=ROLE_COORDINATOR)
         assert self.client.login(email="joe@example.com", password="6pack")
 
@@ -741,9 +753,11 @@ class DonorCodeViewTest(TestCase):
 class KitDeleteViewTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(KitDeleteViewTest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(KitDeleteViewTest, self).setUp()
         self.user = CtsUserFactory(email="joe@example.com", password="6pack", role=ROLE_COORDINATOR)
         assert self.client.login(email="joe@example.com", password="6pack")
         assert self.user.has_perm('shipments.delete_kit')

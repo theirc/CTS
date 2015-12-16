@@ -17,7 +17,7 @@ from django.views.generic import ListView, UpdateView, DeleteView, CreateView, F
 from braces.views import PermissionRequiredMixin
 
 from catalog.forms import CatalogFileImportForm, CatalogItemEditForm, DonorEditForm, \
-    CATALOG_ITEM_FIELDS, KIT_FIELDS, KitEditForm, AddKitItemsForm
+    CATALOG_ITEM_FIELDS, KitEditForm, AddKitItemsForm
 from catalog.models import CatalogItem, ItemCategory, Transporter, Supplier, \
     Donor, DonorCode
 from catalog.utils import catalog_import, CatalogImportFailure, IMPORT_COLUMN_NAMES
@@ -31,7 +31,6 @@ FIELD_NAME_RE = re.compile('^quantity-(\d+)$')
 
 
 class CatalogItemCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
-    fields = CATALOG_ITEM_FIELDS
     form_class = CatalogItemEditForm
     permission_required = 'catalog.add_catalogitem'
     model = CatalogItem
@@ -183,7 +182,6 @@ class CatalogImportView(PermissionRequiredMixin, FormErrorReturns400Mixin, FormV
 #
 
 class KitCreateView(PermissionRequiredMixin, FormErrorReturns400Mixin, CreateView):
-    fields = KIT_FIELDS
     form_class = KitEditForm
     permission_required = 'shipments.add_kit'
     model = Kit

@@ -47,9 +47,11 @@ class BaseAPITest(TestCase):
 class APITest(BaseAPITest):
     @classmethod
     def setUpClass(cls):
+        super(APITest, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(APITest, self).setUp()
         self.email = 'franz@example.com'
         self.password = 'liszt'
         self.user = CtsUserFactory(email=self.email,

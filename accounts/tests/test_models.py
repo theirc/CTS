@@ -14,6 +14,7 @@ from accounts.utils import bootstrap_permissions
 class CtsUserModelTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(CtsUserModelTest, cls).setUpClass()
         bootstrap_permissions()
 
     def test_hex_color(self):

@@ -70,6 +70,7 @@ class ReportTestMixin(object):
     day_after = date(1972, 11, 4)
 
     def setUp(self):
+        super(ReportTestMixin, self).setUp()
         self.user = CtsUserFactory(email="sam@example.com")
         self.user.set_password("password")
         self.user.save()
@@ -78,6 +79,7 @@ class ReportTestMixin(object):
 
     @classmethod
     def setUpClass(cls):
+        super(ReportTestMixin, cls).setUpClass()
         bootstrap_permissions()
 
         cls.partner1 = PartnerFactory()
@@ -119,6 +121,7 @@ class ReportTestMixin(object):
 
     @classmethod
     def tearDownClass(cls):
+        super(ReportTestMixin, cls).tearDownClass()
         PackageItem.objects.all().delete()
         CatalogItem.objects.all().delete()
         Package.objects.all().delete()
