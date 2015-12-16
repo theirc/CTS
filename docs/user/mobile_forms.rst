@@ -43,7 +43,7 @@ Upload Form Data
 ODK Collect stores completed form submissions on the device. ODK Collect can  be configured
 to automatically upload stored form submissions when the  device is conected to wifi.
 
-If automatic uploadi is not configured, you must manually upload the completed forms.
+If automatic upload is not configured, you must manually upload the completed forms.
 
 #. Select *Send Finalized Form*
 #. Select the form instance(s) to upload
@@ -81,3 +81,11 @@ than the User Device Capture Form:
 * **Shipment Inomplete Reason** -- Supply the reason the Shipment is incomplete
 
 
+Voucher Tracking Form
+----------------------
+
+The Voucher Tracking form allows IRC personnel to activate a voucher which is to be given to a
+recipient. This is similar to the Package Delivery Form in that it collects location information.
+Unlike a Package Delivery Form, each Voucher Tracking Form is meant to track only one package, which
+happens to be a single voucher. It also collects information about the beneficiary, approving party,
+voucher value, and issue/expiration dates.
