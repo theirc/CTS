@@ -281,12 +281,16 @@ CELERYBEAT_SCHEDULE = {
     'process_new_scans': {
         'task': 'ona.tasks.process_new_scans',
         'schedule': timedelta(minutes=15),
-        'expires': 10*60,  # 10 minutes
+        'options': {
+            'expires': 10*60,  # 10 minutes
+        }
     },
     'verify_deviceid': {
         'task': 'ona.tasks.verify_deviceid',
         'schedule': timedelta(minutes=60),
-        'expires': 50*50,  # 50 minutes
+        'options': {
+            'expires': 50*50,  # 50 minutes
+        }
     },
 }
 CELERY_RESULT_BACKEND = None  # We never care about task results
