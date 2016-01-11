@@ -274,15 +274,23 @@ WORLD_BORDERS_SHAPEFILE = os.path.join(
     PROJECT_ROOT, 'shipments', 'data', 'TM_WORLD_BORDERS_SIMPL-0.3.shp'
 )
 
-
+# We set `expires` so that if the queue gets hung or the workers go down,
+# tasks don't pile up in the queue leading to a thundering herd problem
+# when things start running again.
 CELERYBEAT_SCHEDULE = {
     'process_new_scans': {
         'task': 'ona.tasks.process_new_scans',
         'schedule': timedelta(minutes=15),
+        'options': {
+            'expires': 10*60,  # 10 minutes
+        }
     },
     'verify_deviceid': {
         'task': 'ona.tasks.verify_deviceid',
         'schedule': timedelta(minutes=60),
+        'options': {
+            'expires': 50*50,  # 50 minutes
+        }
     },
 }
 CELERY_RESULT_BACKEND = None  # We never care about task results
