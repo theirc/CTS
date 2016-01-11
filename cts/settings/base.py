@@ -287,7 +287,7 @@ CELERYBEAT_SCHEDULE = {
 }
 CELERY_RESULT_BACKEND = None  # We never care about task results
 # Each instance needs its own queue
-CELERY_DEFAULT_QUEUE = 'queue_%s' % os.environ['INSTANCE']
+CELERY_DEFAULT_QUEUE = 'queue_%s' % INSTANCE
 
 # See https://github.com/johnsensible/django-sendfile
 SENDFILE_URL = "/protected/"
