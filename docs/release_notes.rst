@@ -1,6 +1,17 @@
 Release Notes
 =============
 
+0.7.0 on Jan. 12, 2016
+----------------------
+
+* Allow 2cm QR codes to be created (#21)
+* Doc / setup updates (#20, #23)
+* Voucher support (#25, #28)
+* Upgrade Django to 1.8.8 (#27, #30)
+* NewRelic update (#29)
+* Separate task queues (#32)
+* Let tasks expire (#31)
+
 0.6.0 on Nov. 13, 2015
 ----------------------
 
