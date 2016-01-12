@@ -28,9 +28,11 @@ from shipments.tests.factories import ShipmentFactory, PackageFactory, \
 class BaseViewTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(BaseViewTestCase, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(BaseViewTestCase, self).setUp()
         self.email = 'fred@example.com'
         self.password = 'flintstone'
         self.user = get_user_model().objects.create_superuser(password=self.password,
@@ -659,6 +661,7 @@ class FullManifestViewTest(BaseViewTestCase):
 class QRCodeTest(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(QRCodeTest, cls).setUpClass()
         bootstrap_permissions()
 
     def test_qrcode(self):
@@ -803,7 +806,7 @@ class BulkEditPackageItemsViewTest(BaseViewTestCase):
         self.assertNoPermission(rsp)
 
 
-@override_settings(ONA_PACKAGE_FORM_ID=123, ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class ShipmentDashboardViewTest(BaseViewTestCase):
     def setUp(self):
         super(ShipmentDashboardViewTest, self).setUp()
@@ -848,7 +851,7 @@ class ShipmentDashboardViewTest(BaseViewTestCase):
         self.assertNotIn(self.shipment, shipments)
 
 
-@override_settings(ONA_PACKAGE_FORM_ID=123, ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456], ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class ShipmentPackageMapViewTest(BaseViewTestCase):
     def setUp(self):
         super(ShipmentPackageMapViewTest, self).setUp()

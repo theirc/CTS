@@ -35,13 +35,58 @@ PACKAGE_DATA = """
     "_submitted_by": null,
     "formhub/uuid": "799705ba0bd54b4d97bcf43644e4c272",
     "_id": 150250,
-    "package": [{"package/qr_code": "test", "package/position": "1"}],
+    "package": [
+        {"package/qr_code": "test", "package/position": "1"}
+    ],
     "_submission_time": "2014-07-25T17:19:15",
     "governate": "asdfasfd",
     "_attachments": [],
     "deviceid": "enketo.org:nlwPcZ7s4nDDhvk8",
     "sub_district": "asdfasdf",
     "form_id": "123",
+    "form_definition": {
+        "choices": {
+            "location_list": [
+                {"name": "STATUS_PICKED_UP-something",
+                "label": {"Arabic": "Arabic picked up", "English": "English picked up"}
+                 },
+                {"name": "STATUS_IN_TRANSIT-Zero_Point",
+                "label": {"Arabic": "Arabic Zero_Point", "English": "English Zero_Point"}
+                 },
+                {"name": "STATUS_RECEIVED",
+                    "label": {"Arabic": "Arabic Received", "English": "English Received"}
+                 }
+                ]
+            }
+    }
+}
+"""
+
+VOUCHER_DATA = """
+{
+    "_notes": [],
+    "_xform_id_string": "123",
+    "_bamboo_dataset_id": "",
+    "_tags": [],
+    "community": "asdfasdf",
+    "current_location": "STATUS_IN_TRANSIT-Zero_Point",
+    "meta/instanceID": "uuid:2a11435f-8eaf-44f9-bd75-00a4bac8fbcd",
+    "district": "asdfasdf",
+    "_geolocation": ["35.7201", "-79.1772"],
+    "_status": "submitted_via_web",
+    "today": "2014-07-25",
+    "gps": "35.7201 -79.1772 0 24000",
+    "_uuid": "2a11435f-8eaf-44f9-bd75-00a4bac8fbcd",
+    "_submitted_by": null,
+    "formhub/uuid": "799705ba0bd54b4d97bcf43644e4c272",
+    "_id": 150250,
+    "voucher_information/qr_code": "test",
+    "_submission_time": "2014-07-25T17:19:15",
+    "governate": "asdfasfd",
+    "_attachments": [],
+    "deviceid": "enketo.org:nlwPcZ7s4nDDhvk8",
+    "sub_district": "asdfasdf",
+    "form_id": "456",
     "form_definition": {
         "choices": {
             "location_list": [
@@ -90,12 +135,20 @@ USER_CODE_DATA = """
 """
 
 
-@override_settings(ONA_PACKAGE_FORM_ID=123, ONA_DEVICEID_VERIFICATION_FORM_ID=111)
+@override_settings(ONA_FORM_IDS=[123, 456],
+                   ONA_DEVICEID_VERIFICATION_FORM_ID=111)
 class FormSubmissionTestCase(TestCase):
     def test_record_package_location(self):
         PackageFactory(code=QR_CODE)
         self.assertFalse(PackageScan.objects.all())
         form_data = PackageScanFormSubmission(json.loads(PACKAGE_DATA))
+        FormSubmission.from_ona_form_data(form_data)
+        self.assertTrue(PackageScan.objects.all())
+
+    def test_record_voucher_location(self):
+        PackageFactory(code=QR_CODE)
+        self.assertFalse(PackageScan.objects.all())
+        form_data = PackageScanFormSubmission(json.loads(VOUCHER_DATA))
         FormSubmission.from_ona_form_data(form_data)
         self.assertTrue(PackageScan.objects.all())
 

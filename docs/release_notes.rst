@@ -1,6 +1,49 @@
 Release Notes
 =============
 
+0.7.0 on Jan. 12, 2016
+----------------------
+
+* Allow 2cm QR codes to be created (#21)
+* Doc / setup updates (#20, #23)
+* Voucher support (#25, #28)
+* Upgrade Django to 1.8.8 (#27, #30)
+* NewRelic update (#29)
+* Separate task queues (#32)
+* Let tasks expire (#31)
+
+0.6.0 on Nov. 13, 2015
+----------------------
+
+* Speed up maps (#17)
+* Use django-extensions to setup DB connection (#18)
+* Log to syslog (#19)
+* Update SECRET_KEY from environment (#22)
+
+0.5.5 on Aug. 25, 2015
+----------------------
+
+* Improve error handling a bit when accessing ONA (#13)
+* Fix Travis badge on Github (#14, thanks @stbenjam!)
+* Update to Django 1.7.10; latest Django security release (#16)
+
+0.5.4 on Jun. 10, 2015
+----------------------
+
+* Add /health/ URL for load balancers to use
+
+0.5.3 on Jun. 9, 2015
+---------------------
+
+* Handle more places we could get a 404 retrieving Ona forms (#11)
+* Better reporting when an Ona form ID doesn't work (#10)
+* Fix bug viewing shipment package list for partners (#7)
+* Don't store celery task results (#6)
+* Break out deploy-related files to their own repo,
+  https://github.com/theirc/CTS-ircdeploy
+* Update and improve organization of documentation.
+* Remove files related to migrating from CTS v2.
+
 0.5.2 on Apr. 28, 2015
 ----------------------
 

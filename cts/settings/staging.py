@@ -78,7 +78,7 @@ LOG_DIR = os.path.join(os.path.dirname(PROJECT_ROOT), 'log', INSTANCE)
 # ONA related settings
 ONA_DOMAIN = os.environ.get('ONA_DOMAIN%s' % INSTANCE_SUFFIX, 'ona.io')
 ONA_API_ACCESS_TOKEN = os.environ.get('ONA_API_ACCESS_TOKEN%s' % INSTANCE_SUFFIX, '')
-ONA_PACKAGE_FORM_ID = os.environ.get('ONA_PACKAGE_FORM_ID%s' % INSTANCE_SUFFIX, '11983')
+ONA_FORM_IDS = os.environ.get('ONA_FORM_IDS%s' % INSTANCE_SUFFIX, '11983').split(';')  # noqa
 ONA_DEVICEID_VERIFICATION_FORM_ID = \
     os.environ.get('ONA_DEVICEID_VERIFICATION_FORM_ID%s' % INSTANCE_SUFFIX, '0')
 
@@ -88,7 +88,7 @@ SENDFILE_URL = "/protected/"
 SENDFILE_BACKEND = 'sendfile.backends.nginx'
 
 
-CELERYBEAT_SCHEDULE['process_new_package_scans']['schedule'] = timedelta(minutes=2)
+CELERYBEAT_SCHEDULE['process_new_scans']['schedule'] = timedelta(minutes=2)
 CELERYBEAT_SCHEDULE['verify_deviceid']['schedule'] = timedelta(minutes=2)
 
 LOGGING = {

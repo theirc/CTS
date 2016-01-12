@@ -8,10 +8,15 @@ from ona.representation import OnaItemBase, PackageScanFormSubmission
 
 SUBMITTED_AT_FORMAT = '%Y-%m-%dT%H:%M:%S'
 
-SUBMISSION_JSON = {
+VOUCHER_JSON = {
     'gps': '24.24 25.25 1.0 5.0',
-    'qr_code': 'asdf',
+    'voucher_information/qr_code': 'test',
     '_submission_time': datetime.now().strftime(SUBMITTED_AT_FORMAT),
+}
+
+PACKAGE_JSON = {
+    u'package':
+    u'[{"package/qr_code": "test", "package/position": "1"}]'
 }
 
 
@@ -51,45 +56,49 @@ class ProductTestCase(unittest.TestCase):
     """Basic test for Product object."""
 
     def setUp(self):
-        self.form_submission = PackageScanFormSubmission(SUBMISSION_JSON)
+        self.form_submission = PackageScanFormSubmission(VOUCHER_JSON)
 
-    def test_qr_code(self):
-        self.assertEqual(SUBMISSION_JSON['qr_code'], self.form_submission.qr_code)
+    def test_voucher_qr_codes(self):
+        self.assertEqual(['test'], self.form_submission.get_qr_codes())
+
+    def test_package_qr_codes(self):
+        self.form_submission = PackageScanFormSubmission(PACKAGE_JSON)
+        self.assertEqual(set(['test']), self.form_submission.get_qr_codes())
 
     def test_gps(self):
-        self.assertEqual(SUBMISSION_JSON['gps'], self.form_submission.gps)
+        self.assertEqual(VOUCHER_JSON['gps'], self.form_submission.gps)
 
     def test_no_gps(self):
-        data = SUBMISSION_JSON.copy()
+        data = VOUCHER_JSON.copy()
         data.pop('gps')
         self.form_submission = PackageScanFormSubmission(data)
         self.assertFalse(hasattr(self.form_submission, 'gps'))
 
     def test_submission_time(self):
         self.assertEqual(
-            SUBMISSION_JSON['_submission_time'],
+            VOUCHER_JSON['_submission_time'],
             self.form_submission._submission_time.strftime(SUBMITTED_AT_FORMAT))
 
     def test_get_latitude(self):
-        value = float(SUBMISSION_JSON['gps'].split(' ')[0])
+        value = float(VOUCHER_JSON['gps'].split(' ')[0])
         self.assertEqual(value, self.form_submission.get_lat())
 
     def test_get_latitude_no_gps(self):
-        data = SUBMISSION_JSON.copy()
+        data = VOUCHER_JSON.copy()
         data.pop('gps')
         self.form_submission = PackageScanFormSubmission(data)
         self.assertIsNone(self.form_submission.get_lat())
 
     def test_get_longitude(self):
-        value = float(SUBMISSION_JSON['gps'].split(' ')[1])
+        value = float(VOUCHER_JSON['gps'].split(' ')[1])
         self.assertEqual(value, self.form_submission.get_lng())
 
     def test_get_altitude(self):
-        value = float(SUBMISSION_JSON['gps'].split(' ')[2])
+        value = float(VOUCHER_JSON['gps'].split(' ')[2])
         self.assertEqual(value, self.form_submission.get_altitude())
 
     def test_get_accuracy(self):
-        value = float(SUBMISSION_JSON['gps'].split(' ')[3])
+        value = float(VOUCHER_JSON['gps'].split(' ')[3])
         self.assertEqual(value, self.form_submission.get_accuracy())
 
     def test_get_gps_data_out_of_range(self):

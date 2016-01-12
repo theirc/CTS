@@ -13,7 +13,7 @@ from ona.representation import OnaItemBase
 from shipments.models import PackageScan, Shipment
 from shipments.tests.factories import PackageFactory
 from ona.models import FormSubmission, minimum_aware_datetime
-from ona.tasks import process_new_package_scans, verify_deviceid, reset_bad_form_ids, bad_form_ids, \
+from ona.tasks import process_new_scans, verify_deviceid, reset_bad_form_ids, bad_form_ids, \
     forget_form_definitions
 from ona.tests.test_models import PACKAGE_DATA, USER_CODE_DATA, QR_CODE
 
@@ -21,7 +21,7 @@ from ona.tests.test_models import PACKAGE_DATA, USER_CODE_DATA, QR_CODE
 @override_settings(
     ONA_API_ACCESS_TOKEN='foo',
     ONA_DEVICEID_VERIFICATION_FORM_ID=111,
-    ONA_PACKAGE_FORM_ID=123,
+    ONA_FORM_IDS=[123, 456],
     ONA_DOMAIN='ona.io'
 )
 @patch('ona.tasks.OnaApiClient.get_form_submissions')
@@ -37,10 +37,10 @@ class ProcessNewPackageScansTestCase(TestCase):
         submission = json.loads(PACKAGE_DATA)
         mock_ona_form_def.return_value = submission['form_definition']
         mock_ona_form_submissions.return_value = [submission]
-        process_new_package_scans.run()
+        process_new_scans.run()
         self.assertEqual(1, FormSubmission.objects.count())
         # Only add the record once
-        process_new_package_scans.run()
+        process_new_scans.run()
         self.assertEqual(1, FormSubmission.objects.count())
 
     def test_update_package_multiple_locations(self, mock_ona_form_def, mock_ona_form_submissions):
@@ -56,7 +56,7 @@ class ProcessNewPackageScansTestCase(TestCase):
         )
         mock_ona_form_def.return_value = submission['form_definition']
         mock_ona_form_submissions.return_value = [submission, other_submission]
-        process_new_package_scans.run()
+        process_new_scans.run()
         self.assertEqual(2, FormSubmission.objects.count())
         loc = PackageScan.objects.all().order_by('when')[0]
         self.assertEqual(loc.status_label, 'English Zero_Point')
@@ -70,15 +70,23 @@ class ProcessNewPackageScansTestCase(TestCase):
     @patch('ona.tasks.logger')
     def test_bad_form_id(self, mock_logger, mock_ona_form_def, mock_ona_form_submissions):
         mock_ona_form_def.return_value = None
-        process_new_package_scans.run()
-        self.assertIn(settings.ONA_PACKAGE_FORM_ID, bad_form_ids)
+        process_new_scans.run()
+        self.assertIn(settings.ONA_FORM_IDS[0], bad_form_ids)
         self.assertTrue(mock_logger.error.called)
+
+    @patch('ona.tasks.logger')
+    def test_skip_next_bad_form_id(self, mock_logger, mock_ona_form_def, mock_ona_form_submissions):
+        mock_ona_form_def.return_value = None
+        bad_form_ids.add(settings.ONA_FORM_IDS[0])
+        process_new_scans.run()
+        # no error logged because we just skip the bad form id
+        self.assertFalse(mock_logger.error.called)
 
 
 @override_settings(
     ONA_API_ACCESS_TOKEN='foo',
     ONA_DEVICEID_VERIFICATION_FORM_ID=111,
-    ONA_PACKAGE_FORM_ID=123,
+    ONA_FORM_IDS=[123, 456],
     ONA_DOMAIN='ona.io'
 )
 @patch('ona.tasks.OnaApiClient.get_form_definition', autospec=True)

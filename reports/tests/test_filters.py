@@ -17,9 +17,11 @@ class ReportFilterMixin(object):
 
     @classmethod
     def setUpClass(cls):
+        super(ReportFilterMixin, cls).setUpClass()
         bootstrap_permissions()
 
     def setUp(self):
+        super(ReportFilterMixin, self).setUp()
         self.partner = CtsUserFactory(role=ROLE_PARTNER)
 
     def item_for_partner(self, user):

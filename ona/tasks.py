@@ -32,83 +32,85 @@ def forget_form_definitions():
 
 
 @app.task(ignore_result=True)
-def process_new_package_scans():
+def process_new_scans():
     """Updates the local database with new package tracking form submissions"""
-    logger.debug("process_new_package_scans task starting...")
+    logger.debug("process_new_scans task starting...")
     try:
-        form_id = int(settings.ONA_PACKAGE_FORM_ID)
-        if form_id in bad_form_ids:
-            return
-
-        client = OnaApiClient()
-
-        if form_id in form_defs:
-            form_def = form_defs[form_id]
-        else:
-            form_def = client.get_form_definition(form_id)
-            if form_def:
-                form_defs[form_id] = form_def
-            else:
-                # Logging an error should result in an email to the admins so they
-                # know to fix this.
-                logger.error("Bad ONA_PACKAGE_FORM_ID: %s" % form_id)
-                # Let's not keep trying for the bad form ID. We'll have to change the
-                # settings and restart to fix it.
-                bad_form_ids.add(form_id)
+        form_ids = [int(x) for x in settings.ONA_FORM_IDS]
+        for form_id in form_ids:
+            if form_id in bad_form_ids:
                 return
 
-        # What's the last submission we got (if any)
-        most_recent_submission = FormSubmission.objects.filter(form_id=form_id)\
-            .order_by('-submission_time').first()
-        if most_recent_submission:
-            # Don't re-fetch the last form
-            since = most_recent_submission.submission_time
-            logger.debug("Getting forms since %s" % since)
-        else:
-            logger.debug("No form submissions yet for %r" % form_id)
-            since = None
+            client = OnaApiClient()
 
-        try:
-            submissions = client.get_form_submissions(form_id, since=since)
-        except Http404:
-            logger.error(
-                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
-            return
-        except OnaApiClientException as e:
-            if e.status_code != 404:
-                raise
-            logger.error(
-                "Got 404 getting submissions for ONA_PACKAGE_FORM_ID = %s" % form_id)
-            return
-
-        logger.debug("process_new_package_scans downloaded %d submitted forms" % len(submissions))
-        # add the form definition JSON to each submission
-        for data in submissions:
-            data.update({'form_id': form_id})
-            data.update({'form_definition': form_def})
-        # create a list of API repr objects and ensure they are sorted by submission date
-        objects = [PackageScanFormSubmission(x) for x in submissions]
-        objects.sort(key=lambda x: x._submission_time)
-        logger.debug("There are %d objects to look at" % len(objects))
-        for submission in objects:
-            existing = FormSubmission.objects.filter(uuid=submission._uuid).first()
-            if not existing:
-                logger.debug("Got new form, creating new record")
-                try:
-                    FormSubmission.from_ona_form_data(submission)
-                except Exception:
-                    logger.exception("HEY got exception creating new FormSubmission")
+            if form_id in form_defs:
+                form_def = form_defs[form_id]
             else:
-                logger.debug("Form %s (%r, %s) already existed" % (submission._uuid,
-                                                                   submission.form_id,
-                                                                   existing.submission_time))
+                form_def = client.get_form_definition(form_id)
+                if form_def:
+                    form_defs[form_id] = form_def
+                else:
+                    # Logging an error should result in an email to the admins so they
+                    # know to fix this.
+                    logger.error("Bad ONA_FORM_ID: %s" % form_id)
+                    # Let's not keep trying for the bad form ID. We'll have to change the
+                    # settings and restart to fix it.
+                    bad_form_ids.add(form_id)
+                    return
+
+            # What's the last submission we got (if any)
+            most_recent_submission = FormSubmission.objects.filter(form_id=form_id)\
+                .order_by('-submission_time').first()
+            if most_recent_submission:
+                # Don't re-fetch the last form
+                since = most_recent_submission.submission_time
+                logger.debug("Getting forms since %s" % since)
+            else:
+                logger.debug("No form submissions yet for %r" % form_id)
+                since = None
+
+            try:
+                submissions = client.get_form_submissions(form_id, since=since)
+            except Http404:
+                logger.error(
+                    "Got 404 getting submissions for ONA_FORM_ID = %s" % form_id)
+                return
+            except OnaApiClientException as e:
+                if e.status_code != 404:
+                    raise
+                logger.error(
+                    "Got 404 getting submissions for ONA_FORM_ID = %s" % form_id)
+                return
+
+            logger.debug(
+                "process_new_scans downloaded %d submitted forms" % len(submissions))
+            # add the form definition JSON to each submission
+            for data in submissions:
+                data.update({'form_id': form_id})
+                data.update({'form_definition': form_def})
+            # create a list of API repr objects and ensure they are sorted by submission date
+            objects = [PackageScanFormSubmission(x) for x in submissions]
+            objects.sort(key=lambda x: x._submission_time)
+            logger.debug("There are %d objects to look at" % len(objects))
+            for submission in objects:
+                existing = FormSubmission.objects.filter(uuid=submission._uuid).first()
+                if not existing:
+                    logger.debug("Got new form, creating new record")
+                    try:
+                        FormSubmission.from_ona_form_data(submission)
+                    except Exception:
+                        logger.exception("HEY got exception creating new FormSubmission")
+                else:
+                    logger.debug("Form %s (%r, %s) already existed" % (submission._uuid,
+                                                                       submission.form_id,
+                                                                       existing.submission_time))
     except ConnectionError:
         logger.exception("Error connecting to Ona server")
     except OnaApiClientException:
         logger.exception("Error communicating with Ona server")
     except Exception:
-        logger.exception("Something blew up in process_new_package_scans")
-    logger.debug("process_new_package_scans task done")
+        logger.exception("Something blew up in process_new_scans")
+    logger.debug("process_new_scans task done")
 
 
 @app.task(ignore_result=True)

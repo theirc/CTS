@@ -40,13 +40,13 @@ class Donor(models.Model):
         limit_choices_to={'donor_code_type': DonorCode.T1},
         related_name='t1_donors',
         help_text='Add a T1 Code',
-        blank=True, null=True)
+        blank=True)
     t3_codes = models.ManyToManyField(
         'DonorCode',
         limit_choices_to={'donor_code_type': DonorCode.T3},
         related_name='t3_donors',
         help_text='Add a T3 Code',
-        blank=True, null=True)
+        blank=True)
 
     def __unicode__(self):
         return self.name

@@ -4,7 +4,7 @@ import xlrd
 from collections import OrderedDict
 
 from django.db import transaction
-from django.forms.util import ErrorDict
+from django.forms.utils import ErrorDict
 
 from catalog.forms import CatalogItemImportForm
 
