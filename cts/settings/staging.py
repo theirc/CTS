@@ -149,13 +149,6 @@ LOGGING = {
     }
 }
 
-# only send emails to dpoirier (for now)
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-    # ('Caktus CTS Team', 'irc-team@caktusgroup.com'),
-    ('Dan Poirier', 'dpoirier@caktusgroup.com'),
-)
-
 if 'DBBACKUP_S3_ACCESS_KEY' in os.environ:
     # backup settings
 
