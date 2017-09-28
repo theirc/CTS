@@ -3,7 +3,10 @@ sudo: false
 python:
   - "2.7"
 addons:
-  postgresql: "9.2"
+  postgresql: "9.5"
+  apt:
+    packages:
+    - postgresql-9.5-postgis-2.3
 env:
   - DJANGO_SETTINGS_MODULE="cts.settings.dev"
 install:
