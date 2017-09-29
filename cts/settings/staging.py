@@ -66,7 +66,7 @@ SESSION_COOKIE_SECURE = True
 
 SESSION_COOKIE_HTTPONLY = True
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(';') + ['django-dbbackup', ]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(';')
 
 # Uncomment if using celery worker configuration
 # Each instance has its own data, so needs its own broker user/queues etc.
@@ -148,37 +148,3 @@ LOGGING = {
         }
     }
 }
-
-if 'DBBACKUP_S3_ACCESS_KEY' in os.environ:
-    # backup settings
-
-    INSTALLED_APPS += (
-        'dbbackup',
-    )
-    DBBACKUP_S3_BUCKET = os.environ['DBBACKUP_S3_BUCKET']
-    DBBACKUP_S3_ACCESS_KEY = os.environ['DBBACKUP_S3_ACCESS_KEY']
-    DBBACKUP_S3_SECRET_KEY = os.environ['DBBACKUP_S3_SECRET_KEY']
-    DBBACKUP_GPG_RECIPIENT = os.environ['DBBACKUP_GPG_RECIPIENT']
-    DBBACKUP_GPG_ALWAYS_TRUST = os.environ['DBBACKUP_GPG_ALWAYS_TRUST'].lower() == 'true'
-
-    DBBACKUP_SERVER_NAME = '%s-%s' % (ENVIRONMENT, INSTANCE)
-    DBBACKUP_STORAGE = 'dbbackup.storage.s3_storage'
-    DBBACKUP_S3_DIRECTORY = '%s/%s' % (ENVIRONMENT, INSTANCE)  # Put under production/jordan/
-    os.environ.setdefault('GNUPGHOME', os.path.dirname(PROJECT_ROOT))
-
-    # Build the backup command based on our DB settings (dbbackup is STUPID!)
-    # so we can use the binary format, which is much easier to deal with on
-    # restore.
-    command = ['pg_dump', '--format=custom']
-    db = DATABASES['default']
-    if db.get('USER', False):
-        command.append('--username={adminuser}')
-    if db.get('HOST', False):
-        command.append('--host={host}')
-    if db.get('PORT', False):
-        command.append('--port={port}')
-    command.append('{databasename}')
-    command.append('>')
-    DBBACKUP_POSTGRESQL_BACKUP_COMMANDS = [command]
-    del command
-    del db
