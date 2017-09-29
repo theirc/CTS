@@ -1,6 +1,14 @@
 Release Notes
 =============
 
+0.8.0 on Sep. 29, 2017
+----------------------
+
+* Update Travis configuration
+* Update djangorestframework (#37)
+* Update ADMINS (#38)
+* Remove obsolete dbbackup configuration (#39)
+
 0.7.0 on Jan. 12, 2016
 ----------------------
 
