@@ -8,7 +8,7 @@ django-appconf==1.0.1
 six==1.10.0
 xlrd==0.9.3
 django-session-security==2.2.0
-djangorestframework==2.4.2
+djangorestframework==2.4.3
   # optional reqs for django rest framework
   markdown==2.4
   defusedxml==0.4.1
