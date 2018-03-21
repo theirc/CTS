@@ -1,12 +1,11 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.gzip import gzip_page
 
 from shipments import views
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     # Shipments
     url(r'^list/$',
@@ -81,4 +80,4 @@ urlpatterns = patterns(
         views.qrcode_view,
         kwargs={'size_in_centimeters': True},
         name='qrcode_sized'),
-)
+]

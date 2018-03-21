@@ -4,7 +4,8 @@ from accounts.models import ROLE_COORDINATOR, CtsUser, ROLE_PARTNER
 
 
 class CtsUserFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'accounts.CtsUser'
+    class Meta:
+        model = 'accounts.CtsUser'
 
     email = factory.Sequence(lambda n: "user%d@example.com" % n)
     mobile = factory.Sequence(lambda n: "+%d" % n)

@@ -12,7 +12,7 @@ from shipments.tests.factories import ShipmentFactory, PackageFactory
 class BaseFormTestCase(TestCase):
     def setUp(self):
         self.description = 'Yet Another _shipment_ DESCRIPTION'
-        self.partner = CtsUserFactory(role=ROLE_PARTNER)
+        self.partner = CtsUserFactory(role=ROLE_PARTNER, name='Some Partner')
 
 
 class ShipmentEditFormTestCase(BaseFormTestCase):
@@ -40,21 +40,27 @@ class ShipmentEditFormTestCase(BaseFormTestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('estimated_delivery', form.errors.keys())
 
-    def test_default_description(self):
+    def test_create_but_use_default_description(self):
         shipment_date = (timezone.now() + timedelta(days=2)).date()
+        print("Shipment date = %s" % shipment_date)
         store_release = '123'
         data = {
             'description': '',
-            'shipment_date': shipment_date,
+            'shipment_date': shipment_date.strftime('%Y-%m-%d'),
             'estimated_delivery': 0,
             'store_release': store_release,
             'partner': self.partner.id
         }
         form = ShipmentEditForm(data=data)
         self.assertTrue(form.is_valid(), msg=form.errors)
+        print("cleaned_data = %s" % form.cleaned_data)
         shipment = form.save()
+        print("shipment.shipment_date = %s" % shipment.shipment_date)
         shipment_date = datetime.strftime(shipment_date, "%Y-%m-%d")
         description = '-'.join([self.partner.name, store_release, shipment_date])
+        self.assertEqual('', Shipment.objects.get(pk=shipment.pk).description)
+        self.assertEqual(shipment_date, shipment.shipment_date)
+        self.assertEqual(shipment_date, Shipment.objects.get(pk=shipment.pk).shipment_date)
         self.assertEqual(Shipment.objects.get(pk=shipment.pk).__unicode__(), description)
 
     def test_edit(self):

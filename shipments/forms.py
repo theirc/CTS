@@ -26,7 +26,7 @@ SHIPMENT_FIELDS = [
     'partner',
     'acceptable',
     'status_note',
-    ]
+]
 
 
 class ShipmentEditForm(forms.ModelForm):
@@ -60,12 +60,16 @@ class ShipmentEditForm(forms.ModelForm):
         if 'estimated_delivery' in data and data.get('shipment_date', False):
             data['date_expected'] = (data['shipment_date'] +
                                      timedelta(days=data['estimated_delivery']))
+        print("in clean, cleaned_data = %s" % data)
         return data
 
     def save(self, *args, **kwargs):
         # date_expected is not exposed as a field so we have to set it ourselves
         self.instance.date_expected = self.cleaned_data.get('date_expected', None)
-        return super(ShipmentEditForm, self).save(*args, **kwargs)
+        print("self.instance.shipment_date = %s" % self.instance.shipment_date)
+        instance = super(ShipmentEditForm, self).save(*args, **kwargs)
+        print("instance.shipment_date = %s" % instance.shipment_date)
+        return instance
 
 
 class ShipmentLostForm(forms.Form):
@@ -288,6 +292,7 @@ class PackageItemCreateForm(forms.Form):
         catalog_item = self.cleaned_data['catalog_item']
         quantity = self.cleaned_data['quantity']
         return PackageItem.from_catalog_item(self.package, catalog_item, quantity)
+
 
 PRINT_FORMAT_SUMMARY = 1
 PRINT_FORMAT_FULL = 2

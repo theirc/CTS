@@ -2,14 +2,13 @@ from datetime import datetime
 import logging
 
 from django.conf import settings
+from django.contrib.postgres.fields import HStoreField
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.dispatch import receiver
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils.timezone import make_aware, utc
-
-from django_hstore import hstore
 
 from accounts.models import CtsUser
 from shipments.models import PackageScan, Package, Shipment
@@ -33,12 +32,10 @@ class FormSubmission(models.Model):
         ]
     )
 
-    data = hstore.DictionaryField(
+    data = HStoreField(
         help_text='Hstore of Ona form submission')
 
     submission_time = models.DateTimeField(help_text="Copied from the hstore data")
-
-    objects = hstore.HStoreManager()
 
     @staticmethod
     def from_ona_form_data(submission):
@@ -130,7 +127,8 @@ def record_package_location(sender, instance, **kwargs):
                         if not hasattr(Shipment, status):
                             # If no match is found, log the invalid package status as it is
                             # indicative of the app and Ona being out of sync
-                            msg = "FormSubmission with form id of %s has invalid package status: %s" \
+                            msg = "FormSubmission with form id of %s has " \
+                                  "invalid package status: %s" \
                                 % (instance.form_id, status)
                             logger.error(msg)
                             continue

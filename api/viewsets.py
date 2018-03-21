@@ -42,10 +42,17 @@ class CatalogItemFilter(django_filters.FilterSet):
         fields = ['category', 'description', 'in_stock', 'unit']
 
 
+class CatalogItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CatalogItem
+
+
 class CatalogItemViewSet(CTSViewSet):
     filter_class = CatalogItemFilter
     model = CatalogItem
     ordering_fields = '__all__'
+    queryset = model.objects.all()
+    serializer_class = CatalogItemSerializer
 
 
 class DonorViewSet(CTSViewSet):
@@ -58,9 +65,16 @@ class DonorCodeViewSet(CTSViewSet):
     model = DonorCode
 
 
+class ItemCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemCategory
+
+
 class ItemCategoryViewSet(CTSViewSet):
     filter_fields = ['name']
     model = ItemCategory
+    queryset = model.objects.all()
+    serializer_class = ItemCategorySerializer
 
 
 class KitViewSet(CTSViewSet):
@@ -148,4 +162,5 @@ class UserViewSet(CTSViewSet):
     filter_fields = ['email', 'is_active', 'is_staff', 'is_superuser',
                      'name', 'mobile', 'code', 'skype', 'notes', 'role']
     model = get_user_model()
+    queryset = model.objects.all()
     serializer_class = UserSerializer

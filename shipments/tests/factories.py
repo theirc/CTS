@@ -10,13 +10,15 @@ from shipments.models import Shipment, Package, PackageItem, Kit, KitItem, Packa
 
 
 class ShipmentFactory(DjangoModelFactory):
-    FACTORY_FOR = Shipment
+    class Meta:
+        model = Shipment
 
     partner = SubFactory(CtsUserFactory)
 
 
 class PackageFactory(DjangoModelFactory):
-    FACTORY_FOR = Package
+    class Meta:
+        model = Package
 
     name = Sequence(lambda n: "Package %d" % n)
     description = Sequence(lambda n: "Package %d description" % n)
@@ -24,7 +26,8 @@ class PackageFactory(DjangoModelFactory):
 
 
 class PackageItemFactory(DjangoModelFactory):
-    FACTORY_FOR = PackageItem
+    class Meta:
+        model = PackageItem
 
     catalog_item = SubFactory(CatalogItemFactory)
     package = SubFactory(PackageFactory)
@@ -35,13 +38,15 @@ class PackageItemFactory(DjangoModelFactory):
 
 
 class KitFactory(DjangoModelFactory):
-    FACTORY_FOR = Kit
+    class Meta:
+        model = Kit
 
     name = Sequence(lambda n: "Kit %d" % n)
 
 
 class KitItemFactory(DjangoModelFactory):
-    FACTORY_FOR = KitItem
+    class Meta:
+        model = KitItem
 
     kit = SubFactory(KitFactory)
     catalog_item = SubFactory(CatalogItemFactory)
@@ -49,7 +54,8 @@ class KitItemFactory(DjangoModelFactory):
 
 
 class PackageScanFactory(DjangoModelFactory):
-    FACTORY_FOR = PackageScan
+    class Meta:
+        model = PackageScan
 
     package = SubFactory(PackageFactory)
     longitude = 36.13

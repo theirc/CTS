@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.views.decorators.csrf import csrf_exempt
 
 from .views import CatalogItemListView, CatalogItemDeleteView, \
@@ -12,8 +12,7 @@ from .views import CatalogItemListView, CatalogItemDeleteView, \
     DonorCodeUpdateView
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', CatalogItemListView.as_view(), name='catalog_list'),
     url(r'^delete/(?P<pk>\d+)/$', CatalogItemDeleteView.as_view(), name='catalog_delete'),
     url(r'^import/$', CatalogImportView.as_view(), name='catalog_import_modal'),
@@ -68,4 +67,4 @@ urlpatterns = patterns(
         name='new_donorcode_modal'),
     url(r'^donorcodes/edit/(?P<pk>\d+)/$', DonorCodeUpdateView.as_view(),
         name='edit_donorcode_modal'),
-)
+]

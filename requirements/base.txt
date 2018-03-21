@@ -1,40 +1,46 @@
-psycopg2==2.7.4
-Pillow==2.4.0
-Django==1.8.19
-django-braces==1.4.0
-django_compressor==1.4
+# anyjson isn't needed since Python 2.7, but django-celery 3.2.2
+# still uses it.
+anyjson==0.3.3
+
+psycopg2-binary==2.7.4
+Pillow==5.0.0
+Django<1.12
+django-braces==1.12.0
+django_compressor==2.2
 # Required by django-compressor
-django-appconf==1.0.1
-six==1.10.0
-xlrd==0.9.3
-django-session-security==2.2.0
-djangorestframework==2.4.3
+  django-appconf==1.0.2
+  rcssmin==1.0.6
+  rjsmin==1.0.12
+
+xlrd==1.1.0
+django-session-security==2.6.0
+
+djangorestframework>=3.4,<3.5
   # optional reqs for django rest framework
-  markdown==2.4
-  defusedxml==0.4.1
+  markdown==2.6.11
+  defusedxml==0.5.0
 
-django-tables2==1.0.4
-django-tables2-reports==0.0.10
-django-filter==0.11.0
-django-bootstrap3==4.11.0
+django-tables2==1.21.1
+django-tables2-reports==0.1.3
+django-filter==1.1.0
+django-bootstrap3==9.1.0
 
-BeautifulSoup4==4.3.2
-requests==2.3.0
-celery==3.1.13
-django-celery==3.1.16
+BeautifulSoup4==4.6.0
+requests==2.18.4
+celery==4.1.0
+django-celery==3.2.2
 
-django-leaflet==0.13.7
-django-selectable==0.9.0
-django-hstore==1.4.1
+django-leaflet==0.23.0
+django-selectable==1.1.0
 
-qrcode==5.0.1
-django-rest-swagger==0.1.14
+qrcode==5.3
+django-rest-swagger==2.1.2
 
-django-sendfile==0.3.6
-  Unidecode==0.04.16
+django-sendfile==0.3.11
+  Unidecode==1.0.22
 
 # To read Salt config
-PyYAML==3.11
+PyYAML==3.12
 
 # To use 'sqldsn'
-django-extensions==1.5.7
+django-extensions==2.0.6

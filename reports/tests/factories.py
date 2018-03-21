@@ -5,14 +5,16 @@ from shipments.tests.factories import ShipmentFactory
 
 
 class DonorShipmentDataFactory(DjangoModelFactory):
-    FACTORY_FOR = DonorShipmentData
+    class Meta:
+        model = DonorShipmentData
 
     donor = SubFactory(DonorFactory)
     shipment = SubFactory(ShipmentFactory)
 
 
 class DonorCategoryDataFactory(DjangoModelFactory):
-    FACTORY_FOR = DonorCategoryData
+    class Meta:
+        model = DonorCategoryData
 
     donor = SubFactory(DonorFactory)
     category = SubFactory(ItemCategoryFactory)

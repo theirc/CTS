@@ -11,7 +11,6 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -104,18 +103,6 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ.get('SECRET_KEY', 'qr7rsp_z@z5_=*)n6^a6e^(83=ctdz_1!_zilo%u=uu^(qgabj')
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-    'currency.context_processors.currencies',
-    'cts.utils.context_processor',
-)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -132,9 +119,28 @@ ROOT_URLCONF = 'cts.prefixed_urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'cts.wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'currency.context_processors.currencies',
+                'cts.utils.context_processor',
+            ]
+        },
+    },
+]
 
 FIXTURE_DIRS = (
     os.path.join(BASE_DIR, 'fixtures'),
@@ -157,7 +163,6 @@ INSTALLED_APPS = (
     'selectable',
     'session_security',
     'leaflet',
-    'django_hstore',
     'rest_framework_swagger',
     'djcelery',  # for 'django-admin.py celery [worker|beat]' commands
     'django_tables2',
@@ -231,7 +236,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 
-    'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.DjangoFilterBackend'],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 
     # Use hyperlinked styles by default.
     # Only used if the `serializer_class` attribute is not set on a view.
@@ -242,9 +247,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 
-    'PAGINATE_BY': 50,                 # Default to 50
-    'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
-    # 'MAX_PAGINATE_BY': 500,             # Maximum limit allowed when using `?page_size=xxx`.
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'SEARCH_PARAM': 'q',
+    'MAX_PAGE_SIZE': 100
 }
 
 
@@ -282,14 +289,14 @@ CELERYBEAT_SCHEDULE = {
         'task': 'ona.tasks.process_new_scans',
         'schedule': timedelta(minutes=15),
         'options': {
-            'expires': 10*60,  # 10 minutes
+            'expires': 10 * 60,  # 10 minutes
         }
     },
     'verify_deviceid': {
         'task': 'ona.tasks.verify_deviceid',
         'schedule': timedelta(minutes=60),
         'options': {
-            'expires': 50*50,  # 50 minutes
+            'expires': 50 * 50,  # 50 minutes
         }
     },
 }

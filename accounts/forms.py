@@ -68,10 +68,6 @@ class CtsUserEditForm(forms.ModelForm):
             self.instance.save()
             user = self.instance
         else:
-            # We want .create_user magic when creating a user
-            # BUT we cannot pass `is_active` because create_user
-            # passes that separately, hard-coded True.
-            del self.cleaned_data['is_active']
             user = CtsUser.objects.create_user(
                 password=CtsUser.objects.make_random_password(),
                 **self.cleaned_data

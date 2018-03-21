@@ -149,6 +149,7 @@ class CtsUserViewTest(TestCase):
             'role': ROLE_PARTNER,
             'password1': new_password,
             'password2': new_password,
+            'is_active': True,
         }
         rsp = self.client.post(url, data=data)
         if rsp.status_code == 400:

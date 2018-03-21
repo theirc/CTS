@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.views.generic.base import RedirectView
 
 
@@ -12,10 +12,9 @@ else:
     PATTERN = r'^'
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(PATTERN, include('cts.urls')),
 
     # If no prefix, redirect
     url(r'^$', RedirectView.as_view(permanent=False, pattern_name='instances')),
-)
+]

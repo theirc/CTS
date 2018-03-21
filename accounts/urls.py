@@ -1,11 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import CtsUserListView, CtsUserDeleteView, CtsUserUpdateView, CtsUserCreateView, \
     CtsUserResetAPITokenView, CtsUserBarcodeView, CtsUserSendPasswordReset
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', CtsUserListView.as_view(), name='user_list'),
     url(r'^delete/(?P<pk>\d+)/$', CtsUserDeleteView.as_view(), name='user_delete'),
     url(r'^new/$', CtsUserCreateView.as_view(),
@@ -17,4 +16,4 @@ urlpatterns = patterns(
     url(r'^barcode/(?P<pk>\d+)/$', CtsUserBarcodeView.as_view(), name='user_barcode'),
     url(r'^sendreset/(?P<pk>\d+)/$', CtsUserSendPasswordReset.as_view(),
         name='send_password_reset_email'),
-)
+]

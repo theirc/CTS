@@ -11,8 +11,8 @@ from accounts.utils import bootstrap_permissions
 from catalog.models import ItemCategory, Donor, CatalogItem
 from catalog.tests.factories import DonorFactory, ItemCategoryFactory
 from reports.views import PackageReport, DonorByShipmentReport, DonorByCategoryReport, ItemReport, \
-    ShipmentReport, ReportBase, ReceivedItemsByShipmentReport, ReceivedItemsByDonorOrPartnerReport, \
-    ShipmentMonthlySummaryReport
+    ShipmentReport, ReportBase, ReceivedItemsByShipmentReport, \
+    ReceivedItemsByDonorOrPartnerReport, ShipmentMonthlySummaryReport
 from shipments.models import Shipment, PackageItem, Package
 from shipments.tests.factories import ShipmentFactory, PackageFactory, PackageItemFactory
 

@@ -4,18 +4,21 @@ from catalog.models import DonorCode
 
 
 class ItemCategoryFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.ItemCategory'
+    class Meta:
+        model = 'catalog.ItemCategory'
 
 
 class CatalogItemFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.CatalogItem'
+    class Meta:
+        model = 'catalog.CatalogItem'
 
     item_category = factory.SubFactory(ItemCategoryFactory)
     item_code = factory.Sequence(lambda n: "i%04d" % n)
 
 
 class DonorCodeT1Factory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.DonorCode'
+    class Meta:
+        model = 'catalog.DonorCode'
 
     code = factory.Sequence(lambda n: 'donor-code-%s' % n)
     donor_code_type = DonorCode.T1
@@ -27,7 +30,8 @@ class DonorCodeT3Factory(DonorCodeT1Factory):
 
 
 class DonorFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.Donor'
+    class Meta:
+        model = 'catalog.Donor'
 
     name = factory.Sequence(lambda n: 'donor-%s' % n)
 
@@ -55,10 +59,12 @@ class DonorFactory(factory.DjangoModelFactory):
 
 
 class SupplierFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.Supplier'
+    class Meta:
+        model = 'catalog.Supplier'
 
     name = factory.Sequence(lambda n: 'supplier-%d' % n)
 
 
 class TransporterFactory(factory.DjangoModelFactory):
-    FACTORY_FOR = 'catalog.Transporter'
+    class Meta:
+        model = 'catalog.Transporter'

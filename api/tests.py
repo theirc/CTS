@@ -70,6 +70,7 @@ class APITest(BaseAPITest):
         # The users API should list our test user
         rsp = self.call_api('/api/auth/users/')
         self.assertEqual(200, rsp.status_code)
+        print(json.loads(rsp.content))
         data = json.loads(rsp.content)['results']
         user = data[0]
         self.assertEqual(user['email'], self.email)

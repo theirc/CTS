@@ -109,7 +109,7 @@ class ImportTest(TestCase):
                 mock_import.return_value = 666
                 retval = catalog_import(path)
         self.assertEqual(666, retval)
-        mock_sheet.assertCalledWith(path)
+        mock_sheet.assert_called_with(path, 0)
 
     def test_catalog_import_function_sheet_fails(self):
         path = 'sdiuyf'
@@ -118,7 +118,7 @@ class ImportTest(TestCase):
             with patch('catalog.utils._catalog_import_from_simple_sheet'):
                 with self.assertRaises(CatalogImportFailure):
                     catalog_import(path)
-        mock_sheet.assertCalledWith(path)
+        mock_sheet.assert_called_with(path, 0)
 
 
 class SimpleSheetTest(TestCase):
