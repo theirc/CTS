@@ -118,7 +118,7 @@ class ShipmentUpdateView(MultiplePermissionsRequiredMixin, FormErrorReturns400Mi
     model = Shipment
     template_name = 'shipments/create_edit_shipment.html'
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         """
         Returns an instance of the form to be used in this view.
         """

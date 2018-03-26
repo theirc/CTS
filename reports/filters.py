@@ -1,6 +1,7 @@
 import datetime
 from operator import methodcaller
 
+from django.conf import settings
 from django.forms import CheckboxSelectMultiple
 
 import django_filters
@@ -10,7 +11,7 @@ from reports.models import DonorCategoryData, DonorShipmentData
 from shipments.models import PackageDBView, ShipmentDBView, PackageItemDBView, Shipment
 
 
-EMPTY_LABEL = '---------'
+# EMPTY_LABEL = '---------'
 
 
 THIS_YEAR = datetime.date.today().year
@@ -24,23 +25,11 @@ DATE_INPUT_HELP = "(M/D/Y)"
 class ReportFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
-        """Add an empty choice to all ChoiceFields."""
+        """Tweak some of the filter fields"""
         self.user = kwargs.pop('user')
         super(ReportFilter, self).__init__(*args, **kwargs)
-        for fltr in self.filters.values():
-            if 'shipment' == fltr.name:
-                # override the options; sort on unicode of each Shipment
-                qs = fltr.field.choices.queryset
-                sorted_shipments = sorted(qs, key=methodcaller('__unicode__'))
-                # If they specified a partner, limit by that
-                if self.data.get('partner', False) is not False:
-                    partner_id = int(self.data['partner'])
-                    sorted_shipments = [shipment for shipment in sorted_shipments
-                                        if shipment.partner_id == partner_id]
-                fltr.field.choices = [(x.pk, x) for x in sorted_shipments]
-                fltr.field.choices.insert(0, (None, EMPTY_LABEL))
-            if isinstance(fltr, django_filters.ChoiceFilter):
-                fltr.field.choices.insert(0, (None, EMPTY_LABEL))
+        # Code here used to insert an empty choice label for shipments, but
+        # DRF does that for us now.
         if not self.user.has_perm('reports.view_all_partners') and 'partner' in self.filters:
             # Remember the key to use to filter on partners later on
             self.partner_field_name = self.filters['partner'].name
@@ -74,14 +63,14 @@ class PackageReportFilter(ReportFilter):
 
 class DonorByShipmentReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
@@ -105,14 +94,14 @@ class DonorByShipmentReportFilter(ReportFilter):
 
 class DonorByCategoryReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='first_date_shipped',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='last_date_shipped',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
@@ -126,14 +115,14 @@ class DonorByCategoryReportFilter(ReportFilter):
 
 class ItemReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='package__shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='package__shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
@@ -157,14 +146,14 @@ class ItemReportFilter(ReportFilter):
 
 class ShipmentReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
@@ -187,14 +176,14 @@ class ShipmentReportFilter(ReportFilter):
 
 class ReceivedItemsByShipmentReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
@@ -208,14 +197,14 @@ class ReceivedItemsByShipmentReportFilter(ReportFilter):
 
 class ReceivedItemsByDonorOrPartnerReportFilter(ReportFilter):
     shipped_before = django_filters.DateFilter(
-        lookup_type='lte',
+        lookup_expr='lte',
         name='shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,
         label='Shipped before ' + DATE_INPUT_HELP
     )
     shipped_after = django_filters.DateFilter(
-        lookup_type='gte',
+        lookup_expr='gte',
         name='shipment__shipment_date',
         # D/M/Y is typical in Jordan, so use that
         input_formats=DATE_INPUT_FORMATS,

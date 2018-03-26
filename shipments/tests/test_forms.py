@@ -20,7 +20,9 @@ class ShipmentEditFormTestCase(BaseFormTestCase):
         shipment_date = (timezone.now() + timedelta(days=2)).date()
         data = {
             'description': self.description,
-            'shipment_date': shipment_date,
+            'shipment_date_year': shipment_date.strftime('%Y'),
+            'shipment_date_month': shipment_date.strftime('%m'),
+            'shipment_date_day': shipment_date.strftime('%d'),
             'estimated_delivery': 0,
             'partner': self.partner.id,
             'store_release': 'foo'
@@ -42,25 +44,21 @@ class ShipmentEditFormTestCase(BaseFormTestCase):
 
     def test_create_but_use_default_description(self):
         shipment_date = (timezone.now() + timedelta(days=2)).date()
-        print("Shipment date = %s" % shipment_date)
         store_release = '123'
         data = {
             'description': '',
-            'shipment_date': shipment_date.strftime('%Y-%m-%d'),
+            'shipment_date_year': shipment_date.strftime('%Y'),
+            'shipment_date_month': shipment_date.strftime('%m'),
+            'shipment_date_day': shipment_date.strftime('%d'),
             'estimated_delivery': 0,
             'store_release': store_release,
             'partner': self.partner.id
         }
         form = ShipmentEditForm(data=data)
         self.assertTrue(form.is_valid(), msg=form.errors)
-        print("cleaned_data = %s" % form.cleaned_data)
         shipment = form.save()
-        print("shipment.shipment_date = %s" % shipment.shipment_date)
         shipment_date = datetime.strftime(shipment_date, "%Y-%m-%d")
         description = '-'.join([self.partner.name, store_release, shipment_date])
-        self.assertEqual('', Shipment.objects.get(pk=shipment.pk).description)
-        self.assertEqual(shipment_date, shipment.shipment_date)
-        self.assertEqual(shipment_date, Shipment.objects.get(pk=shipment.pk).shipment_date)
         self.assertEqual(Shipment.objects.get(pk=shipment.pk).__unicode__(), description)
 
     def test_edit(self):
@@ -72,7 +70,9 @@ class ShipmentEditFormTestCase(BaseFormTestCase):
         )
         data = {
             'description': 'New description',
-            'shipment_date': shipment_date,
+            'shipment_date_year': shipment_date.strftime('%Y'),
+            'shipment_date_month': shipment_date.strftime('%m'),
+            'shipment_date_day': shipment_date.strftime('%d'),
             'estimated_delivery': 1,
             'store_release': 'foo',
             'partner': self.partner.id
@@ -89,7 +89,9 @@ class ShipmentEditFormTestCase(BaseFormTestCase):
         shipment_date = (timezone.now() + timedelta(days=2)).date()
         data = {
             'description': self.description,
-            'shipment_date': shipment_date,
+            'shipment_date_year': shipment_date.strftime('%Y'),
+            'shipment_date_month': shipment_date.strftime('%m'),
+            'shipment_date_day': shipment_date.strftime('%d'),
             'estimated_delivery': 1000,
         }
         form = ShipmentEditForm(data=data)

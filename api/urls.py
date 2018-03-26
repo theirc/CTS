@@ -9,6 +9,7 @@ from api.viewsets import ItemCategoryViewSet, UserViewSet, \
 
 
 router = routers.DefaultRouter()
+# DRF insists on our adding base_name to these, even though we don't use it.
 router.register(r'auth/users', UserViewSet, base_name='foo-auth-users')
 router.register(r'catalog/items', CatalogItemViewSet, base_name='foo-catitems')
 router.register(r'catalog/categories', ItemCategoryViewSet, base_name='foo-catcats')

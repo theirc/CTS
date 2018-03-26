@@ -56,20 +56,16 @@ class ShipmentEditForm(forms.ModelForm):
                 self.initial['estimated_delivery'] = estimated_duration.days
 
     def clean(self):
-        data = self.cleaned_data
+        data = super(ShipmentEditForm, self).clean()
         if 'estimated_delivery' in data and data.get('shipment_date', False):
             data['date_expected'] = (data['shipment_date'] +
                                      timedelta(days=data['estimated_delivery']))
-        print("in clean, cleaned_data = %s" % data)
         return data
 
     def save(self, *args, **kwargs):
         # date_expected is not exposed as a field so we have to set it ourselves
         self.instance.date_expected = self.cleaned_data.get('date_expected', None)
-        print("self.instance.shipment_date = %s" % self.instance.shipment_date)
-        instance = super(ShipmentEditForm, self).save(*args, **kwargs)
-        print("instance.shipment_date = %s" % instance.shipment_date)
-        return instance
+        return super(ShipmentEditForm, self).save(*args, **kwargs)
 
 
 class ShipmentLostForm(forms.Form):

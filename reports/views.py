@@ -12,7 +12,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from accounts.models import ROLE_PARTNER
-from cts.utils import camel_to_space, camel_to_underscore
+from cts.utils import camel_to_space, camel_to_underscore, not_falsey
 
 from shipments.models import PackageDBView, ShipmentDBView, PackageItemDBView, Shipment
 
@@ -94,8 +94,8 @@ class ReportBase(LoginRequiredMixin, AjaxResponseMixin, TemplateView):
         report's name prefixed by 'ajax_'.
         """
         name = self.__class__.get_report_url_name()
-        return [self.ajax_template_name, 'reports/ajax_{}.html'.format(name),
-                'reports/ajax_report.html']
+        return not_falsey([self.ajax_template_name, 'reports/ajax_{}.html'.format(name),
+                             'reports/ajax_report.html'])
 
     def get_context_data(self, **kwargs):
         kwargs['filter'] = self.get_filter()
@@ -160,7 +160,7 @@ class ReportBase(LoginRequiredMixin, AjaxResponseMixin, TemplateView):
         report's name.
         """
         name = self.__class__.get_report_url_name()
-        return [self.template_name, 'reports/{}.html'.format(name), 'reports/report.html']
+        return not_falsey([self.template_name, 'reports/{}.html'.format(name), 'reports/report.html'])
 
     @classmethod
     def get_url_pattern(cls):

@@ -78,7 +78,7 @@ class ImportTest(TestCase):
     def test_exception_during_import(self):
         sheet = MockSimpleSheet([self.valid_row])
         with patch('catalog.utils.CatalogItemImportForm') as mock_form:
-            mock_form.side_effect = TypeError
+            mock_form.side_effect = TypeError("This exception is part of the test")
             with self.assertRaises(CatalogImportFailure):
                 _catalog_import_from_simple_sheet(sheet)
 

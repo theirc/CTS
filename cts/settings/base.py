@@ -4,6 +4,7 @@ import os
 from datetime import timedelta
 
 # ENVIRONMENT can be 'staging', 'production'
+
 ENVIRONMENT = os.environ['ENVIRONMENT']
 # INSTANCE might be 'jordan', 'turkey', etc.
 INSTANCE = os.environ['INSTANCE']
@@ -104,7 +105,7 @@ STATICFILES_FINDERS = (
 SECRET_KEY = os.environ.get('SECRET_KEY', 'qr7rsp_z@z5_=*)n6^a6e^(83=ctdz_1!_zilo%u=uu^(qgabj')
 
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -311,3 +312,5 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 BOOTSTRAP3 = {
     'success_css_class': '',
 }
+
+FILTERS_EMPTY_CHOICE_LABEL = '---------'

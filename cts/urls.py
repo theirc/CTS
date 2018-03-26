@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 import django.contrib.auth.views
 from django.views.generic import TemplateView
+from rest_framework_swagger.views import get_swagger_view
 
 import accounts.urls
 import api.urls
@@ -41,7 +42,7 @@ urlpatterns = [
     # other REST API URLs
     url(r'^api/', include(api.urls)),
     url(r'^selectable/', include(selectable.urls)),
-    # url(r'^apidocs/', include(rest_framework_swagger.urls)),  # FIXME: REPLACE THIS
+    url(r'^apidocs/', get_swagger_view(title='CTS API'), name='django.swagger.base.view'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

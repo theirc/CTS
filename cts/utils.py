@@ -147,3 +147,11 @@ class USDCurrencyField(DecimalField):
             default=default,
             **kwargs
         )
+
+
+def not_falsey(iterable):
+    return [
+        x
+        for x in iterable
+        if x
+    ]
